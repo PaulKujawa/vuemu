@@ -7,20 +7,31 @@
     "@types/node": "12.7.4",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
+    "eslint-config-prettier": "^6.2.0",
+    "prettier": "^1.18.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1",
+    "source-map-explorer": "^2.0.1",
     "typescript": "3.6.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "eslint \"src/**/*.{js,jsx,tsx}\" --quiet",
+    "format": "prettier --write \"src/**/*.{js,jsx,tsx}\"",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "prettier",
+      "prettier/react"
+    ]
   },
+  "prettier": {},
   "browserslist": {
     "production": [
       ">0.2%",
