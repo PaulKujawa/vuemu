@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, LinkProps, Route } from "react-router-dom";
-import Categories from "../pages/Categories";
-import Login from "../pages/Login";
-import LoginCheck from "../pages/LoginCheck";
-import StartPage from "../pages/StartPage";
+import Categories from "pages/Categories";
+import Login from "pages/Login";
+import LoginCheck from "pages/LoginCheck";
+import StartPage from "pages/StartPage";
 
 // see https://github.com/ReactTraining/react-router/issues/6056
 export const AdapterLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
