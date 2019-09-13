@@ -1,20 +1,14 @@
-import Container from "@material-ui/core/Container";
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import NavBar from "components/NavBar";
-import RouterOutlet from "components/RouterOutlet";
+import ContainerDefault from "components/ContainerDefault";
+import { Route, Switch } from "react-router-dom";
+import ContainerStartPage from "components/ContainerStartPage";
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <div>
-        <NavBar />
-
-        <Container maxWidth="lg">
-          <RouterOutlet />
-        </Container>
-      </div>
-    </Router>
+    <Switch>
+      <Route exact path="/" component={ContainerStartPage} />
+      <Route component={ContainerDefault} />
+    </Switch>
   );
 };
 

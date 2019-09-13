@@ -8,7 +8,7 @@ import {
 import SearchIcon from "@material-ui/icons/Search";
 import React from "react";
 
-// see https://material-ui.com/components/app-bar/#app-bar-with-search-field
+// c&p from https://material-ui.com/components/app-bar/#app-bar-with-search-field
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
