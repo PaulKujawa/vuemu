@@ -10,7 +10,7 @@ export const webStorage = {
       this.removeItem(id);
     }
   },
-  setItem(id: string, value: any): void {
+  setItem<T>(id: string, value: T): void {
     const toBeStore = JSON.stringify(value);
     localStorage.setItem(id, toBeStore);
   },

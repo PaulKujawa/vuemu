@@ -1,6 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
-import { store } from "redux/store";
+import { AppState } from "store";
+import { isAuthenticated } from "store/user/reducers";
 
 /*
  * see https://reacttraining.com/react-router/web/example/auth-workflow
@@ -12,17 +14,20 @@ import { store } from "redux/store";
 
 interface Props {
   component: React.FC<any>;
+  authenticated: boolean;
   [prop: string]: any;
 }
 
-const GuardedRoute: React.FC<Props> = ({ component: Component, ...rest }) => {
-  const isAuthenticated = store.getters.auth.loggedIn;
-
+const GuardedRoute: React.FC<Props> = ({
+  component: Component,
+  authenticated,
+  ...rest
+}) => {
   return (
     <Route
       {...rest}
       render={props => {
-        if (isAuthenticated) {
+        if (authenticated) {
           return <Component {...props} />;
         }
 
@@ -39,4 +44,8 @@ const GuardedRoute: React.FC<Props> = ({ component: Component, ...rest }) => {
   );
 };
 
-export default GuardedRoute;
+const mapStateToProps = ({ user }: AppState) => ({
+  authenticated: isAuthenticated(user)
+});
+
+export default connect(mapStateToProps)(GuardedRoute);

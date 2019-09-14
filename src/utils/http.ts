@@ -1,5 +1,6 @@
 import React from "react";
-import { store } from "redux/store";
+import { store } from "store";
+import { isAuthenticated } from "store/user/reducers";
 
 interface FetchParams {
   url: RequestInfo;
@@ -55,11 +56,11 @@ export const mapQueryParams = <T extends { [key: string]: string }>(
 export const mapRequestInit = (init?: RequestInit) => {
   return (url: RequestInfo) => {
     const headers = [["Accept", "application/json"]];
-    const auth = store.getters.auth;
+    const state = store.getState();
 
     // TODO otherwise, I could already throw here to save the request
-    if (auth.loggedIn) {
-      headers.push(["Authorization", "Bearer " + auth.accessToken]);
+    if (isAuthenticated(state.user)) {
+      headers.push(["Authorization", "Bearer " + state.user.accessToken]);
     }
 
     return {
