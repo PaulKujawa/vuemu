@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d4c0e4d8-ebd6-4616-9ece-e39f32c22034/deploy-status)](https://app.netlify.com/sites/vuemu/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
