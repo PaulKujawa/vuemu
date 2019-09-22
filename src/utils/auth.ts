@@ -1,17 +1,19 @@
 import { AuthRequest } from "models/authentication";
-import { mapQueryParams } from "utils/http";
+import { buildQueryParams } from "utils/http";
 import { webStorage } from "utils/web-storage";
 import { Location } from "history";
 
 const AUTH_WEB_STORAGE_KEY = "auth-redirect";
 
 export const getSpotifyAuthUrl = () => {
-  return mapQueryParams<AuthRequest>({
+  const query = buildQueryParams<AuthRequest>({
     // exact urls need to be registered via Spotify UI
     redirect_uri: window.location.origin + "/login-check",
     client_id: "06ea71fe4011445093a4e6acfb6ff784",
     response_type: "token"
-  })("https://accounts.spotify.com/authorize");
+  });
+
+  return "https://accounts.spotify.com/authorize?" + query;
 };
 
 export const setPostAuthTarget = (fullPath: string): void => {

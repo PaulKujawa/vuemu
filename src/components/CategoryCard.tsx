@@ -16,7 +16,7 @@ interface Props {
 const CategoryCard: React.FC<Props> = ({ category }) => {
   return (
     <Card>
-      <CardActionArea component={AdapterLink} to={"/category/" + category.id}>
+      <CardActionArea component={AdapterLink} to={"/categories/" + category.id}>
         {/* CardMedia has no placeholder support but would otherwise work with `height: 100%` */}
         <ImageWithPlaceholder url={category.icons[0].url} />
         <CardContent>

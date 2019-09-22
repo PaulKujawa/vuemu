@@ -7,8 +7,9 @@ import {
   Typography
 } from "@material-ui/core";
 import CategoryCard from "components/CategoryCard";
-import React from "react";
-import { fetchCategories } from "repositories/category-repository";
+import React, { useState } from "react";
+import { FetchParameters, useFetch } from "utils/http";
+import { CategoryPaging } from "models/category";
 
 const useStyles = makeStyles(
   createStyles({
@@ -19,10 +20,16 @@ const useStyles = makeStyles(
 );
 
 const Categories: React.FC = () => {
-  const response = fetchCategories();
   const classes = useStyles();
+  const [request] = useState<FetchParameters>({
+    api: "browse",
+    endpoint: "categories",
+    query: { limit: "40" }
+  });
 
-  if (response.pending) {
+  const { data, error, pending } = useFetch<CategoryPaging>(request);
+
+  if (pending) {
     return (
       <Box mt={3}>
         <LinearProgress color="secondary" />
@@ -30,7 +37,7 @@ const Categories: React.FC = () => {
     );
   }
 
-  if (response.error) {
+  if (error) {
     // TODO error handling
     return <div>error</div>;
   }
@@ -45,7 +52,7 @@ const Categories: React.FC = () => {
 
       <div className={classes.root}>
         <Grid container spacing={2}>
-          {response.data!.categories.items.map(category => (
+          {data!.categories.items.map(category => (
             <Grid item xs={6} sm={4} md={3} key={category.id}>
               <CategoryCard category={category as any} />
             </Grid>
