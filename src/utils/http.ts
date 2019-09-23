@@ -15,9 +15,7 @@ export interface FetchResponse<DTO> {
 
 const BASE_URL = "https://api.spotify.com/v1";
 
-export function buildQueryParams<T extends { [key: string]: string }>(
-  queryParams: T
-) {
+export function buildQueryParams<T>(queryParams: T): string {
   const query = Object.entries(queryParams)
     .map(([key, value]) => `${key}=${value}`)
     .join("&");
@@ -25,7 +23,7 @@ export function buildQueryParams<T extends { [key: string]: string }>(
   return encodeURI(query);
 }
 
-function buildRequestInit(init?: RequestInit) {
+function buildRequestInit(init?: RequestInit): RequestInit {
   const headers = [["Accept", "application/json"]];
   const state = store.getState();
 
@@ -37,7 +35,7 @@ function buildRequestInit(init?: RequestInit) {
   return { headers, ...init };
 }
 
-function logError(error: FetchResponseError, whitelist: number[] = []) {
+function logError(error: FetchResponseError, whitelist: number[] = []): void {
   if (!error.status || !whitelist.includes(error.status)) {
     window.console.warn("sentry:", error.message);
   }

@@ -1,5 +1,5 @@
-export type Image = {
-  height: number;
+export interface Image {
+  height: number | null;
   url: string;
-  width: number;
-};
+  width: number | null;
+}

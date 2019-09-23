@@ -1,19 +1,19 @@
-export type AuthRequest = {
+export interface AuthRequest {
   client_id: string;
-  response_type: "token";
   redirect_uri: string;
-};
+  response_type: "token";
+}
 
-export type AuthResponseSuccess = {
+export interface AuthResponseSuccess {
   access_token: string;
-  token_type: "Bearer";
   expires_in: 3600;
   state?: string;
-};
+  token_type: "Bearer";
+}
 
-export type AuthResponseFailure = {
+export interface AuthResponseFailure {
   error: string;
   state?: string;
-};
+}
 
 export type AuthResponse = AuthResponseSuccess | AuthResponseFailure;

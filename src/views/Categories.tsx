@@ -21,10 +21,11 @@ const useStyles = makeStyles(
 
 const Categories: React.FC = () => {
   const classes = useStyles();
+
   const [request] = useState<FetchParameters>({
     api: "browse",
     endpoint: "categories",
-    query: { limit: "40" }
+    query: { limit: "50" }
   });
 
   const { data, error, pending } = useFetch<CategoryPaging>(request);
@@ -46,7 +47,7 @@ const Categories: React.FC = () => {
     <div>
       <Box my={3}>
         <Typography variant="h2" component="h1">
-          Categories
+          Browse by category
         </Typography>
       </Box>
 

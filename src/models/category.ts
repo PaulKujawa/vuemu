@@ -1,11 +1,13 @@
 import { Image } from "models/image";
 import { Paging } from "models/paging";
 
-export type Category = {
+export interface Category {
   href: string;
   icons: Image[];
   id: string;
   name: string;
-};
+}
 
-export type CategoryPaging = { categories: Paging<Category> };
+export interface CategoryPaging {
+  categories: Paging<Category>;
+}
