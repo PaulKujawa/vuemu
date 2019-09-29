@@ -78,7 +78,7 @@ const CategoryComp: React.FC<Props> = props => {
         <Grid container spacing={2}>
           {playlistsResponse.data!.playlists.items.map(playlist => (
             <Grid item xs={6} sm={4} md={3} key={playlist.id}>
-              <PlaylistCard playlist={playlist as any} />
+              <PlaylistCard playlist={playlist} />
             </Grid>
           ))}
         </Grid>

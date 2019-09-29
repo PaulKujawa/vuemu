@@ -55,7 +55,7 @@ const Categories: React.FC = () => {
         <Grid container spacing={2}>
           {data!.categories.items.map(category => (
             <Grid item xs={6} sm={4} md={3} key={category.id}>
-              <CategoryCard category={category as any} />
+              <CategoryCard category={category} />
             </Grid>
           ))}
         </Grid>
