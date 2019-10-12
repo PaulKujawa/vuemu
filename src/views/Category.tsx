@@ -11,10 +11,8 @@ import { Category as CategoryModel } from "models/category";
 import { getNextOffset } from "models/paging";
 import { PlaylistPaging } from "models/playlist";
 import React, { useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { FetchParameters, useFetch } from "utils/http";
-
-interface Props extends RouteComponentProps<{ id: string }> {}
 
 const useStyles = makeStyles(
   createStyles({
@@ -24,9 +22,9 @@ const useStyles = makeStyles(
   })
 );
 
-const CategoryComp: React.FC<Props> = props => {
+const CategoryComp: React.FC = () => {
   const classes = useStyles();
-  const categoryId = props.match.params.id;
+  const { id: categoryId } = useParams();
 
   const [categoryRequest] = useState<FetchParameters>({
     api: "browse",

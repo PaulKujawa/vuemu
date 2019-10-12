@@ -6,8 +6,12 @@ import { Route, Switch } from "react-router-dom";
 const App: React.FC = () => {
   return (
     <Switch>
-      <Route exact path="/" component={ContainerStartPage} />
-      <Route component={ContainerDefault} />
+      <Route exact path="/">
+        <ContainerStartPage />
+      </Route>
+      <Route>
+        <ContainerDefault />
+      </Route>
     </Switch>
   );
 };

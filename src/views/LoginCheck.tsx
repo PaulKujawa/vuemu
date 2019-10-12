@@ -1,19 +1,21 @@
 import { AuthResponseSuccess, AuthResponse } from "models/authentication";
 import React from "react";
 import { connect } from "react-redux";
-import { RouteComponentProps, Redirect } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 import { AppState } from "store";
 import { authenticate } from "store/user/actionCreators";
 import { isAuthenticated } from "store/user/reducers";
 import { getPostAuthTarget } from "utils/auth";
 
-interface Props extends RouteComponentProps {
+interface Props {
   authenticated: boolean;
   onAuthenticate: (response: AuthResponseSuccess) => void;
 }
 
 const LoginCheck: React.FC<Props> = props => {
-  const spotifyResponse: AuthResponse = props.location.hash
+  const { hash } = useLocation();
+
+  const spotifyResponse: AuthResponse = hash
     .substring(1)
     .split("&")
     .map(keyValue => keyValue.split("="))

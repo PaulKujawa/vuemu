@@ -15,11 +15,19 @@ const ContainerDefault: React.FC = () => {
 
       <Container maxWidth="lg">
         <Switch>
-          <GuardedRoute path="/categories/:id" component={Category} />
-          <GuardedRoute path="/categories" component={Categories} />
-          <Route path="/login" component={Login} />
-          <Route path="/login-check" component={LoginCheck} />
-          {/* TODO 404 page via <Route component={NoMatch} /> */}
+          <GuardedRoute path="/categories/:id">
+            <Category />
+          </GuardedRoute>
+          <GuardedRoute path="/categories">
+            <Categories />
+          </GuardedRoute>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/login-check">
+            <LoginCheck />
+          </Route>
+          {/* TODO 404 page */}
         </Switch>
       </Container>
     </div>

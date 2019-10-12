@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, useLocation } from "react-router-dom";
 import { AppState } from "store";
 import { isAuthenticated } from "store/user/reducers";
 
@@ -19,27 +19,27 @@ interface Props {
 }
 
 const GuardedRoute: React.FC<Props> = ({
-  component: Component,
+  children,
   authenticated,
   ...rest
 }) => {
+  const location = useLocation();
+
   return (
     <Route
       {...rest}
-      render={props => {
-        if (authenticated) {
-          return <Component {...props} />;
-        }
-
-        return (
+      render={() =>
+        authenticated ? (
+          children
+        ) : (
           <Redirect
             to={{
               pathname: "/login",
-              state: { redirectedFrom: props.location }
+              state: { redirectedFrom: location }
             }}
           />
-        );
-      }}
+        )
+      }
     />
   );
 };
