@@ -1,7 +1,7 @@
-import { AuthRequest } from "models/authentication";
-import { buildQueryParams } from "utils/http";
-import { webStorage } from "utils/web-storage";
+import { buildQueryParams } from "http/utils";
 import { Location } from "history";
+import { AuthRequest } from "models/authentication";
+import { webStorage } from "utils/web-storage";
 
 const AUTH_WEB_STORAGE_KEY = "auth-redirect";
 

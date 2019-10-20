@@ -7,12 +7,26 @@ import {
   createStyles
 } from "@material-ui/core";
 import PlaylistCard from "components/PlaylistCard";
-import { Category as CategoryModel } from "models/category";
-import { getNextOffset } from "models/paging";
-import { PlaylistPaging } from "models/playlist";
-import React, { useState } from "react";
+// import { getNextOffset } from "models/paging";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FetchParameters, useFetch } from "utils/http";
+import { connect } from "react-redux";
+import { Category as ICategory } from "models/category";
+import { AppState } from "store";
+import { getCategory } from "store/category/actions";
+import { PlaylistSimplified } from "models/playlist";
+import { getPlaylists } from "store/playlist/actions";
+
+interface Props {
+  category: ICategory | null;
+  categoryError: any;
+  isIsCategoryPending: boolean;
+  getCategory: typeof getCategory;
+  playlists: PlaylistSimplified[];
+  playlistsError: any;
+  arePlaylistsPending: boolean;
+  getPlaylists: typeof getPlaylists;
+}
 
 const useStyles = makeStyles(
   createStyles({
@@ -22,41 +36,48 @@ const useStyles = makeStyles(
   })
 );
 
-const CategoryComp: React.FC = () => {
+const _Category: React.FC<Props> = ({
+  category,
+  categoryError,
+  isIsCategoryPending,
+  getCategory,
+  playlists,
+  playlistsError,
+  arePlaylistsPending,
+  getPlaylists
+}) => {
   const classes = useStyles();
-  const { id: categoryId } = useParams();
+  const { id } = useParams();
 
-  const [categoryRequest] = useState<FetchParameters>({
-    api: "browse",
-    endpoint: `categories/${categoryId}`,
-    ignoreErrors: [404]
-  });
-
-  const [playlistsRequest, setPlaylistRequest] = useState<FetchParameters>({
-    api: "browse",
-    endpoint: `categories/${categoryId}/playlists`
-  });
-
-  const categoryResponse = useFetch<CategoryModel>(categoryRequest);
-  const playlistsResponse = useFetch<PlaylistPaging>(playlistsRequest);
+  useEffect(() => {
+    if (id) {
+      getCategory(id);
+      getPlaylists(id);
+    }
+  }, [id, getCategory, getPlaylists]);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onClickLoadMore = (
-    request: typeof playlistsRequest,
-    response: typeof playlistsResponse
-  ) => {
-    const { query } = playlistsRequest;
-    const offset = getNextOffset(request, response.data!.playlists);
-    setPlaylistRequest({ ...playlistsRequest, query: { ...query, offset } });
-  };
+  // const onClickLoadMore = (
+  //   request: typeof playlistsRequest,
+  //   response: typeof playlistsResponse
+  // ) => {
+  //   const { query } = playlistsRequest;
+  //   const offset = getNextOffset(request, response.data!.playlists);
+  //   setPlaylistRequest({ ...playlistsRequest, query: { ...query, offset } });
+  // };
 
-  if (categoryResponse.error || playlistsResponse.error) {
+  if (categoryError || playlistsError) {
     // TODO error handling
     return <div>error :/</div>;
   }
 
-  // don't show for subsequent playlistResponse pagination requests
-  if (categoryResponse.pending || !playlistsResponse.data) {
+  // TODO don't show for subsequent playlistResponse pagination requests
+  if (
+    !category ||
+    isIsCategoryPending ||
+    !playlists.length ||
+    arePlaylistsPending
+  ) {
     return (
       <Box mt={3}>
         <LinearProgress color="secondary" />
@@ -68,15 +89,15 @@ const CategoryComp: React.FC = () => {
     <div>
       <Box my={3}>
         <Typography variant="h2" component="h1">
-          {categoryResponse.data!.name} playlists
+          {category!.name} playlists
         </Typography>
       </Box>
 
       <div className={classes.root}>
         <Grid container spacing={2}>
-          {playlistsResponse.data!.playlists.items.map(playlist => (
+          {playlists.map(playlist => (
             <Grid item xs={6} sm={4} md={3} key={playlist.id}>
-              <PlaylistCard playlist={playlist as any} />
+              <PlaylistCard playlist={playlist} />
             </Grid>
           ))}
         </Grid>
@@ -97,4 +118,25 @@ const CategoryComp: React.FC = () => {
   );
 };
 
-export default CategoryComp;
+const mapStateToProps = ({ category, playlist }: AppState) => ({
+  category: category.category,
+  categoryError: category.categoryError,
+  isIsCategoryPending: category.isCategoryPending,
+  playlists: playlist.playlists,
+  playlistsError: playlist.playlistsError,
+  arePlaylistsPending: playlist.arePlaylistsPending
+});
+
+const mapDispatchToProps = (dispatch: Function) => ({
+  getCategory(id: string) {
+    dispatch(getCategory(id));
+  },
+  getPlaylists(categoryId: string) {
+    dispatch(getPlaylists(categoryId));
+  }
+});
+
+export const Category = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_Category as any);

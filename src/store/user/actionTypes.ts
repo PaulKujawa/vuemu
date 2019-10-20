@@ -1,10 +1,9 @@
 import { AuthResponseSuccess } from "models/authentication";
 
-export const AUTHENTICATE = "AUTHENTICATE";
-
-interface AuthenticateAction {
-  type: typeof AUTHENTICATE;
+export const AUTH_SUCCESS = "[USER] AUTH SUCCESS";
+interface AuthenticateSuccessAction {
+  type: typeof AUTH_SUCCESS;
   payload: AuthResponseSuccess;
 }
 
-export type UserActionTypes = AuthenticateAction;
+export type UserActionTypes = AuthenticateSuccessAction;

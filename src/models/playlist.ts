@@ -1,6 +1,5 @@
 import { ExternalUrl } from "models/externalUrl";
 import { Image } from "models/image";
-import { Paging } from "models/paging";
 import { User } from "models/user";
 
 export interface PlaylistSimplified {
@@ -18,4 +17,5 @@ export interface PlaylistSimplified {
   uri: string;
 }
 
-export type PlaylistPaging = { playlists: Paging<PlaylistSimplified> };
+// TODO actual properties
+export interface PlaylistFull extends PlaylistSimplified {}

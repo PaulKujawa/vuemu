@@ -1,6 +1,6 @@
-import { AUTHENTICATE, UserActionTypes } from "store/user/actionTypes";
+import { AUTH_SUCCESS, UserActionTypes } from "store/user/actionTypes";
 import { AuthResponseSuccess } from "models/authentication";
 
 export function authenticate(payload: AuthResponseSuccess): UserActionTypes {
-  return { type: AUTHENTICATE, payload };
+  return { type: AUTH_SUCCESS, payload };
 }

@@ -7,9 +7,18 @@ import {
   Typography
 } from "@material-ui/core";
 import CategoryCard from "components/CategoryCard";
-import React, { useState } from "react";
-import { FetchParameters, useFetch } from "utils/http";
-import { CategoryPaging } from "models/category";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { Category } from "models/category";
+import { getCategories } from "store/category/actions";
+import { AppState } from "store";
+
+interface Props {
+  categories: Category[];
+  error: any;
+  arePending: boolean;
+  getCategories: typeof getCategories;
+}
 
 const useStyles = makeStyles(
   createStyles({
@@ -19,18 +28,19 @@ const useStyles = makeStyles(
   })
 );
 
-const Categories: React.FC = () => {
+const _Categories: React.FC<Props> = ({
+  categories,
+  error,
+  arePending,
+  getCategories
+}) => {
   const classes = useStyles();
 
-  const [request] = useState<FetchParameters>({
-    api: "browse",
-    endpoint: "categories",
-    query: { limit: "50" }
-  });
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
 
-  const { data, error, pending } = useFetch<CategoryPaging>(request);
-
-  if (pending) {
+  if (!categories.length || arePending) {
     return (
       <Box mt={3}>
         <LinearProgress color="secondary" />
@@ -53,9 +63,9 @@ const Categories: React.FC = () => {
 
       <div className={classes.root}>
         <Grid container spacing={2}>
-          {data!.categories.items.map(category => (
+          {categories.map(category => (
             <Grid item xs={6} sm={4} md={3} key={category.id}>
-              <CategoryCard category={category as any} />
+              <CategoryCard category={category} />
             </Grid>
           ))}
         </Grid>
@@ -64,4 +74,19 @@ const Categories: React.FC = () => {
   );
 };
 
-export default Categories;
+const mapStateToProps = ({ category }: AppState) => ({
+  categories: category.categories,
+  arePending: category.areCategoriesPending,
+  error: category.categoriesError
+});
+
+const mapDispatchToProps = (dispatch: Function) => ({
+  getCategories() {
+    dispatch(getCategories());
+  }
+});
+
+export const Categories = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_Categories as any);

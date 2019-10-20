@@ -1,7 +1,4 @@
-import { FetchParameters } from "utils/http";
-
-export interface Paging<T> {
-  items: T[];
+export interface Pagination {
   limit: number;
   next: string | null;
   offset: number;
@@ -9,15 +6,19 @@ export interface Paging<T> {
   total: number;
 }
 
-export function isLastBatch({ offset, limit, total }: Paging<any>): boolean {
-  return offset + limit >= total;
+export interface Paginated<T> extends Pagination {
+  items: T[];
 }
 
-export function getNextOffset(
-  fetchParams: FetchParameters,
-  { limit }: Paging<any>
-): string {
-  const current = Number(fetchParams.query && fetchParams.query.offset) || 0;
+// export function isLastBatch({ offset, limit, total }: Paginated<any>): boolean {
+//   return offset + limit >= total;
+// }
 
-  return (current + limit).toString();
-}
+// export function getNextOffset(
+//   fetchParams: FetchParameters,
+//   { limit }: Paginated<any>
+// ): string {
+//   const current = Number(fetchParams.query && fetchParams.query.offset) || 0;
+
+//   return (current + limit).toString();
+// }

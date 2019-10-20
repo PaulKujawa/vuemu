@@ -1,4 +1,4 @@
-import { AUTHENTICATE, UserActionTypes } from "store/user/actionTypes";
+import { AUTH_SUCCESS, UserActionTypes } from "store/user/actionTypes";
 import { webStorage } from "utils/web-storage";
 
 export interface UserState {
@@ -8,7 +8,9 @@ export interface UserState {
 
 const WEB_STORAGE_KEY = "redux-user-auth";
 
-const initialState = webStorage.getItem<UserState>(WEB_STORAGE_KEY) || {
+const initialState: UserState = webStorage.getItem<UserState>(
+  WEB_STORAGE_KEY
+) || {
   accessToken: null,
   tokenExp: null
 };
@@ -18,7 +20,7 @@ export const userReducer = (
   action: UserActionTypes
 ): UserState => {
   switch (action.type) {
-    case AUTHENTICATE: {
+    case AUTH_SUCCESS: {
       const date = new Date();
       const tokenExp = date.getTime() + action.payload.expires_in * 1000;
       const auth = { accessToken: action.payload.access_token, tokenExp };

@@ -1,28 +1,32 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { categoryReducer } from "store/category/reducers";
 import { userReducer } from "store/user/reducers";
 import { searchTermReducer } from "store/searchTerm/reducers";
+import createSagaMiddleware from "redux-saga";
+import { all } from "@redux-saga/core/effects";
+import { categorySagas } from "store/category/sagas";
+import { playlistReducer } from "store/playlist/reducers";
+import { playlistSagas } from "store/playlist/sagas";
 
-// see https://github.com/zalmoxisus/redux-devtools-extension#11-basic-store
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION__?: Function;
-  }
-}
-
-/*
- * reducer composition
- *
- * an emitted action flows through all reducer functions
- * that use a actionType based switch-case block to determine what state to return
- */
 const rootReducer = combineReducers({
+  category: categoryReducer,
   searchTerm: searchTermReducer,
+  playlist: playlistReducer,
   user: userReducer
 });
 
+const sagaMiddleware = createSagaMiddleware();
+const composeEnhancer =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 export const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancer(applyMiddleware(sagaMiddleware))
 );
+
+sagaMiddleware.run(function*() {
+  yield all([...categorySagas]);
+  yield all([...playlistSagas]);
+});
 
 export type AppState = ReturnType<typeof rootReducer>;
