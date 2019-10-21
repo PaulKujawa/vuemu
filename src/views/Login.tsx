@@ -2,7 +2,7 @@ import React from "react";
 import { getSpotifyAuthUrl, setPostAuthTarget } from "utils/auth";
 import { useLocation } from "react-router-dom";
 
-const Login: React.FC = () => {
+const Login = () => {
   const { state } = useLocation();
   const redirectedFrom = state && state.redirectedFrom;
 

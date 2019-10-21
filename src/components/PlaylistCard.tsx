@@ -12,7 +12,7 @@ interface Props {
   playlist: PlaylistSimplified;
 }
 
-const PlaylistCard: React.FC<Props> = ({ playlist }) => {
+const PlaylistCard = ({ playlist }: Props) => {
   return (
     <Card>
       <CardActionArea

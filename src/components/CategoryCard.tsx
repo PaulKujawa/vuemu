@@ -13,7 +13,7 @@ interface Props {
   category: Category;
 }
 
-const CategoryCard: React.FC<Props> = ({ category }) => {
+const CategoryCard = ({ category }: Props) => {
   return (
     <Card>
       <CardActionArea component={AdapterLink} to={"/categories/" + category.id}>

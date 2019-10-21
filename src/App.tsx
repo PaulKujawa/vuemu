@@ -3,7 +3,7 @@ import ContainerDefault from "components/ContainerDefault";
 import ContainerStartPage from "components/ContainerStartPage";
 import { Route, Switch } from "react-router-dom";
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <Switch>
       <Route exact path="/">

@@ -12,7 +12,7 @@ interface Props {
   onAuthenticate: (response: AuthResponseSuccess) => void;
 }
 
-const LoginCheck: React.FC<Props> = props => {
+const LoginCheck = ({ onAuthenticate }: Props) => {
   const { hash } = useLocation();
 
   const spotifyResponse: AuthResponse = hash
@@ -26,7 +26,7 @@ const LoginCheck: React.FC<Props> = props => {
 
   // could check for props and spread only them for savety :shrug:
   if ("access_token" in spotifyResponse) {
-    props.onAuthenticate(spotifyResponse);
+    onAuthenticate(spotifyResponse);
     return <Redirect to={getPostAuthTarget("/categories")} />;
   }
 

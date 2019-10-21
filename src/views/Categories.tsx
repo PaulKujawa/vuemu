@@ -28,12 +28,12 @@ const useStyles = makeStyles(
   })
 );
 
-const _Categories: React.FC<Props> = ({
+const _Categories = ({
   categories,
   error,
   arePending,
   getCategories
-}) => {
+}: Props) => {
   const classes = useStyles();
 
   useEffect(() => {

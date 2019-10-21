@@ -13,16 +13,12 @@ import { isAuthenticated } from "store/user/reducers";
  */
 
 interface Props {
-  component: React.FC<any>;
+  component: React.FC;
   authenticated: boolean;
   [prop: string]: any;
 }
 
-const GuardedRoute: React.FC<Props> = ({
-  children,
-  authenticated,
-  ...rest
-}) => {
+const GuardedRoute = ({ children, authenticated, ...rest }: Props) => {
   const location = useLocation();
 
   return (

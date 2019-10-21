@@ -36,7 +36,7 @@ const useStyles = makeStyles(
   })
 );
 
-const _Category: React.FC<Props> = ({
+const _Category = ({
   category,
   categoryError,
   isIsCategoryPending,
@@ -45,7 +45,7 @@ const _Category: React.FC<Props> = ({
   playlistsError,
   arePlaylistsPending,
   getPlaylists
-}) => {
+}: Props) => {
   const classes = useStyles();
   const { id } = useParams();
 

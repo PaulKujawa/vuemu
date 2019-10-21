@@ -1,7 +1,7 @@
 import React from "react";
 import StartPage from "views/StartPage";
 
-const ContainerStartPage: React.FC = () => {
+const ContainerStartPage = () => {
   return <StartPage />;
 };
 

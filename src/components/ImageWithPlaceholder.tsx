@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 /*
  * Has a fixed ratio of 1:1 which could be made adjustable.
  */
-const ImageWithPlaceholder: React.FC<Props> = props => {
+const ImageWithPlaceholder = (props: Props) => {
   const classes = useStyles(props);
 
   return (

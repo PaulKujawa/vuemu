@@ -8,7 +8,7 @@ import { Route, Switch } from "react-router-dom";
 import { Category } from "views/Category";
 import GuardedRoute from "components/GuardedRoute";
 
-const ContainerDefault: React.FC = () => {
+const ContainerDefault = () => {
   return (
     <div>
       <NavBar />

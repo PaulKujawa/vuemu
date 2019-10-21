@@ -33,7 +33,7 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const StartPage: React.FC = () => {
+const StartPage = () => {
   const classes = useStyles();
 
   return (

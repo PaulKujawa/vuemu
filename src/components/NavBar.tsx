@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const NavBar: React.FC = () => {
+const NavBar = () => {
   const classes = useStyles();
 
   return (
