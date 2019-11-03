@@ -6,19 +6,11 @@ import {
   makeStyles,
   Typography
 } from "@material-ui/core";
-import CategoryCard from "components/CategoryCard";
+import { CategoryCard } from "components/CategoryCard";
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { Category } from "models/category";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { getCategories } from "store/category/actions";
 import { AppState } from "store";
-
-interface Props {
-  categories: Category[];
-  error: any;
-  arePending: boolean;
-  getCategories: typeof getCategories;
-}
 
 const useStyles = makeStyles(
   createStyles({
@@ -28,17 +20,22 @@ const useStyles = makeStyles(
   })
 );
 
-const _Categories = ({
-  categories,
-  error,
-  arePending,
-  getCategories
-}: Props) => {
+export const Categories = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const { categories, arePending, error } = useSelector(
+    ({ category }: AppState) => ({
+      categories: category.categories,
+      arePending: category.areCategoriesPending,
+      error: category.categoriesError
+    }),
+    shallowEqual
+  );
 
   useEffect(() => {
-    getCategories();
-  }, [getCategories]);
+    dispatch(getCategories());
+  }, [dispatch]);
 
   if (!categories.length || arePending) {
     return (
@@ -73,20 +70,3 @@ const _Categories = ({
     </div>
   );
 };
-
-const mapStateToProps = ({ category }: AppState) => ({
-  categories: category.categories,
-  arePending: category.areCategoriesPending,
-  error: category.categoriesError
-});
-
-const mapDispatchToProps = (dispatch: Function) => ({
-  getCategories() {
-    dispatch(getCategories());
-  }
-});
-
-export const Categories = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(_Categories as any);

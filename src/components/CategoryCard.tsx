@@ -5,7 +5,7 @@ import {
   CardContent,
   Typography
 } from "@material-ui/core";
-import ImageWithPlaceholder from "components/ImageWithPlaceholder";
+import { ImageWithPlaceholder } from "components/ImageWithPlaceholder";
 import { Category } from "models/category";
 import { AdapterLink } from "components/AdapterLink";
 
@@ -13,7 +13,7 @@ interface Props {
   category: Category;
 }
 
-const CategoryCard = ({ category }: Props) => {
+export const CategoryCard = ({ category }: Props) => {
   return (
     <Card>
       <CardActionArea component={AdapterLink} to={"/categories/" + category.id}>
@@ -28,5 +28,3 @@ const CategoryCard = ({ category }: Props) => {
     </Card>
   );
 };
-
-export default CategoryCard;

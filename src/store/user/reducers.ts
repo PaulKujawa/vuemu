@@ -34,15 +34,3 @@ export const userReducer = (
       return state;
   }
 };
-
-// TODO has Redux no selectors?
-export const isAuthenticated = (state: UserState): boolean => {
-  if (!state.accessToken || !state.tokenExp) {
-    return false;
-  }
-
-  const date = new Date();
-  const now = date.getTime();
-
-  return now < state.tokenExp;
-};

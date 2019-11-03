@@ -8,15 +8,15 @@ export interface CategoryState {
   categoriesPagination: Pagination | null;
   areCategoriesPending: boolean;
   category: Category | null;
-  isCategoryPending: boolean;
   categoryError: any;
+  isCategoryPending: boolean;
 }
 
 const initialState: CategoryState = {
   categories: [],
   categoriesError: null,
-  areCategoriesPending: false,
   categoriesPagination: null,
+  areCategoriesPending: false,
   category: null,
   categoryError: null,
   isCategoryPending: false

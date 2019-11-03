@@ -1,8 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Redirect, Route, useLocation } from "react-router-dom";
 import { AppState } from "store";
-import { isAuthenticated } from "store/user/reducers";
+import { isAuthenticated } from "utils/auth";
 
 /*
  * see https://reacttraining.com/react-router/web/example/auth-workflow
@@ -13,13 +13,14 @@ import { isAuthenticated } from "store/user/reducers";
  */
 
 interface Props {
-  component: React.FC;
-  authenticated: boolean;
   [prop: string]: any;
 }
 
-const GuardedRoute = ({ children, authenticated, ...rest }: Props) => {
+export const GuardedRoute = ({ children, ...rest }: Props) => {
   const location = useLocation();
+  const authenticated = useSelector(({ user }: AppState) =>
+    isAuthenticated(user)
+  );
 
   return (
     <Route
@@ -39,9 +40,3 @@ const GuardedRoute = ({ children, authenticated, ...rest }: Props) => {
     />
   );
 };
-
-const mapStateToProps = ({ user }: AppState) => ({
-  authenticated: isAuthenticated(user)
-});
-
-export default connect(mapStateToProps)(GuardedRoute);

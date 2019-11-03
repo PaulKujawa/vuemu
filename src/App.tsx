@@ -1,9 +1,9 @@
 import React from "react";
-import ContainerDefault from "components/ContainerDefault";
-import ContainerStartPage from "components/ContainerStartPage";
+import { ContainerDefault } from "components/ContainerDefault";
+import { ContainerStartPage } from "components/ContainerStartPage";
 import { Route, Switch } from "react-router-dom";
 
-const App = () => {
+export const App = () => {
   return (
     <Switch>
       <Route exact path="/">
@@ -15,5 +15,3 @@ const App = () => {
     </Switch>
   );
 };
-
-export default App;

@@ -1,4 +1,4 @@
-import { takeEvery, call, put } from "@redux-saga/core/effects";
+import { call, put, takeLatest } from "@redux-saga/core/effects";
 import { BROWSER_API } from "http/browse-api";
 import {
   getCategoriesSuccess,
@@ -9,10 +9,15 @@ import {
   GET_CATEGORIES,
   GET_CATEGORY
 } from "store/category/actions";
+import { Paginated } from "models/paging";
+import { Category } from "models/category";
 
 function* getCategoriesSaga() {
   try {
-    const categories = yield call(BROWSER_API.getCategories);
+    const categories: Paginated<Category> = yield call(
+      BROWSER_API.getCategories
+    );
+
     yield put(getCategoriesSuccess(categories));
   } catch (err) {
     yield put(getCategoriesFailure(err));
@@ -21,7 +26,11 @@ function* getCategoriesSaga() {
 
 function* getCategorySaga(action: GetCategoryAction) {
   try {
-    const category = yield call(BROWSER_API.getCategory, action.payload);
+    const category: Category = yield call(
+      BROWSER_API.getCategory,
+      action.payload
+    );
+
     yield put(getCategorySuccess(category));
   } catch (err) {
     yield put(getCategoryFailure(err));
@@ -29,6 +38,6 @@ function* getCategorySaga(action: GetCategoryAction) {
 }
 
 export const categorySagas = [
-  takeEvery(GET_CATEGORIES, getCategoriesSaga),
-  takeEvery(GET_CATEGORY, getCategorySaga)
+  takeLatest(GET_CATEGORIES, getCategoriesSaga),
+  takeLatest(GET_CATEGORY, getCategorySaga)
 ];

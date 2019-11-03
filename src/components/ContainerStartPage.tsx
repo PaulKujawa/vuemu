@@ -1,8 +1,6 @@
 import React from "react";
-import StartPage from "views/StartPage";
+import { StartPage } from "views/StartPage";
 
-const ContainerStartPage = () => {
+export const ContainerStartPage = () => {
   return <StartPage />;
 };
-
-export default ContainerStartPage;

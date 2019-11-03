@@ -2,7 +2,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { teal, amber } from "@material-ui/core/colors";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import App from "App";
+import { App } from "App";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";

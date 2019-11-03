@@ -6,27 +6,14 @@ import {
   makeStyles,
   createStyles
 } from "@material-ui/core";
-import PlaylistCard from "components/PlaylistCard";
+import { PlaylistCard } from "components/PlaylistCard";
 // import { getNextOffset } from "models/paging";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
-import { Category as ICategory } from "models/category";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { AppState } from "store";
 import { getCategory } from "store/category/actions";
-import { PlaylistSimplified } from "models/playlist";
 import { getPlaylists } from "store/playlist/actions";
-
-interface Props {
-  category: ICategory | null;
-  categoryError: any;
-  isIsCategoryPending: boolean;
-  getCategory: typeof getCategory;
-  playlists: PlaylistSimplified[];
-  playlistsError: any;
-  arePlaylistsPending: boolean;
-  getPlaylists: typeof getPlaylists;
-}
 
 const useStyles = makeStyles(
   createStyles({
@@ -36,25 +23,35 @@ const useStyles = makeStyles(
   })
 );
 
-const _Category = ({
-  category,
-  categoryError,
-  isIsCategoryPending,
-  getCategory,
-  playlists,
-  playlistsError,
-  arePlaylistsPending,
-  getPlaylists
-}: Props) => {
+export const Category = () => {
   const classes = useStyles();
   const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const { category, categoryError, isIsCategoryPending } = useSelector(
+    ({ category }: AppState) => ({
+      category: category.category,
+      categoryError: category.categoryError,
+      isIsCategoryPending: category.isCategoryPending
+    }),
+    shallowEqual
+  );
+
+  const { playlists, playlistsError, arePlaylistsPending } = useSelector(
+    ({ playlist }: AppState) => ({
+      playlists: playlist.playlists,
+      playlistsError: playlist.playlistsError,
+      arePlaylistsPending: playlist.arePlaylistsPending
+    }),
+    shallowEqual
+  );
 
   useEffect(() => {
     if (id) {
-      getCategory(id);
-      getPlaylists(id);
+      dispatch(getCategory(id));
+      dispatch(getPlaylists(id));
     }
-  }, [id, getCategory, getPlaylists]);
+  }, [id, dispatch]);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // const onClickLoadMore = (
@@ -117,26 +114,3 @@ const _Category = ({
     </div>
   );
 };
-
-const mapStateToProps = ({ category, playlist }: AppState) => ({
-  category: category.category,
-  categoryError: category.categoryError,
-  isIsCategoryPending: category.isCategoryPending,
-  playlists: playlist.playlists,
-  playlistsError: playlist.playlistsError,
-  arePlaylistsPending: playlist.arePlaylistsPending
-});
-
-const mapDispatchToProps = (dispatch: Function) => ({
-  getCategory(id: string) {
-    dispatch(getCategory(id));
-  },
-  getPlaylists(categoryId: string) {
-    dispatch(getPlaylists(categoryId));
-  }
-});
-
-export const Category = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(_Category as any);

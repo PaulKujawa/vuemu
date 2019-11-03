@@ -8,16 +8,16 @@ import { categorySagas } from "store/category/sagas";
 import { playlistReducer } from "store/playlist/reducers";
 import { playlistSagas } from "store/playlist/sagas";
 
+const sagaMiddleware = createSagaMiddleware();
+const composeEnhancer =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const rootReducer = combineReducers({
   category: categoryReducer,
   searchTerm: searchTermReducer,
   playlist: playlistReducer,
   user: userReducer
 });
-
-const sagaMiddleware = createSagaMiddleware();
-const composeEnhancer =
-  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(
   rootReducer,

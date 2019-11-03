@@ -1,5 +1,5 @@
 import { store } from "store";
-import { isAuthenticated } from "store/user/reducers";
+import { isAuthenticated } from "utils/auth";
 
 type FetchHeaders = Record<string, string>;
 

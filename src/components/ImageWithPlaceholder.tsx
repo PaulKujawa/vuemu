@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 /*
  * Has a fixed ratio of 1:1 which could be made adjustable.
  */
-const ImageWithPlaceholder = (props: Props) => {
+export const ImageWithPlaceholder = (props: Props) => {
   const classes = useStyles(props);
 
   return (
@@ -38,5 +38,3 @@ const ImageWithPlaceholder = (props: Props) => {
     </div>
   );
 };
-
-export default ImageWithPlaceholder;

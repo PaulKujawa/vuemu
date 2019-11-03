@@ -5,14 +5,14 @@ import {
   CardContent,
   Typography
 } from "@material-ui/core";
-import ImageWithPlaceholder from "components/ImageWithPlaceholder";
+import { ImageWithPlaceholder } from "components/ImageWithPlaceholder";
 import { PlaylistSimplified } from "models/playlist";
 
 interface Props {
   playlist: PlaylistSimplified;
 }
 
-const PlaylistCard = ({ playlist }: Props) => {
+export const PlaylistCard = ({ playlist }: Props) => {
   return (
     <Card>
       <CardActionArea
@@ -31,5 +31,3 @@ const PlaylistCard = ({ playlist }: Props) => {
     </Card>
   );
 };
-
-export default PlaylistCard;

@@ -1,14 +1,14 @@
 import Container from "@material-ui/core/Container";
-import NavBar from "components/NavBar";
+import { NavBar } from "components/NavBar";
 import { Categories } from "views/Categories";
-import Login from "views/Login";
-import LoginCheck from "views/LoginCheck";
+import { Login } from "views/Login";
+import { LoginCheck } from "views/LoginCheck";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Category } from "views/Category";
-import GuardedRoute from "components/GuardedRoute";
+import { GuardedRoute } from "components/GuardedRoute";
 
-const ContainerDefault = () => {
+export const ContainerDefault = () => {
   return (
     <div>
       <NavBar />
@@ -33,5 +33,3 @@ const ContainerDefault = () => {
     </div>
   );
 };
-
-export default ContainerDefault;

@@ -33,7 +33,7 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const StartPage = () => {
+export const StartPage = () => {
   const classes = useStyles();
 
   return (
@@ -56,5 +56,3 @@ const StartPage = () => {
     </div>
   );
 };
-
-export default StartPage;

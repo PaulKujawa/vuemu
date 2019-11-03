@@ -1,8 +1,7 @@
-import React from "react";
 import { getSpotifyAuthUrl, setPostAuthTarget } from "utils/auth";
 import { useLocation } from "react-router-dom";
 
-const Login = () => {
+export const Login = () => {
   const { state } = useLocation();
   const redirectedFrom = state && state.redirectedFrom;
 
@@ -14,5 +13,3 @@ const Login = () => {
 
   return null;
 };
-
-export default Login;

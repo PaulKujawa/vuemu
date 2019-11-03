@@ -2,6 +2,7 @@ import { buildQueryParams } from "http/utils";
 import { Location } from "history";
 import { AuthRequest } from "models/authentication";
 import { webStorage } from "utils/web-storage";
+import { UserState } from "store/user/reducers";
 
 const AUTH_WEB_STORAGE_KEY = "auth-redirect";
 
@@ -28,4 +29,15 @@ export const getPostAuthTarget = (targetRoute: string): Location | string => {
   }
 
   return preAuthTarget || targetRoute;
+};
+
+export const isAuthenticated = (state: UserState): boolean => {
+  if (!state.accessToken || !state.tokenExp) {
+    return false;
+  }
+
+  const date = new Date();
+  const now = date.getTime();
+
+  return now < state.tokenExp;
 };
