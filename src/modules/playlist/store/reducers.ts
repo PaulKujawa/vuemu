@@ -1,41 +1,17 @@
-import {
-  PlaylistSimplified,
-  PlaylistFull
-} from "modules/playlist/models/playlist";
-import { Pagination } from "modules/shared/models/paging";
 import * as Actions from "./actions";
-
-export interface PlaylistState {
-  playlists: PlaylistSimplified[];
-  playlistsError: any;
-  playlistsPagination: Pagination | null;
-  arePlaylistsPending: boolean;
-  playlist: PlaylistFull | null;
-  playlistPending: boolean;
-  playlistError: any;
-}
-
-const initialState: PlaylistState = {
-  playlists: [],
-  playlistsError: null,
-  arePlaylistsPending: false,
-  playlistsPagination: null,
-  playlist: null,
-  playlistError: null,
-  playlistPending: false
-};
+import { PlaylistState, initialState } from "modules/playlist/store/state";
 
 export const playlistReducer = (
   state: PlaylistState = initialState,
   action: Actions.PlaylistActionTypes
 ): PlaylistState => {
   switch (action.type) {
-    case Actions.GET_PLAYLISTS:
+    case Actions.GET_PLAYLISTS_TYPE:
       return {
         ...state,
         arePlaylistsPending: true
       };
-    case Actions.GET_PLAYLISTS_SUCCESS: {
+    case Actions.GET_PLAYLISTS_SUCCESS_TYPE: {
       const { items, ...pagination } = action.payload;
 
       return {
@@ -45,25 +21,25 @@ export const playlistReducer = (
         playlistsPagination: pagination
       };
     }
-    case Actions.GET_PLAYLISTS_FAILURE:
+    case Actions.GET_PLAYLISTS_FAILURE_TYPE:
       return {
         ...state,
         playlistsError: action.payload,
         arePlaylistsPending: false
       };
-    case Actions.GET_PLAYLIST: {
+    case Actions.GET_PLAYLIST_TYPE: {
       return {
         ...state,
         playlistPending: true
       };
     }
-    case Actions.GET_PLAYLIST_SUCCESS:
+    case Actions.GET_PLAYLIST_SUCCESS_TYPE:
       return {
         ...state,
         playlist: action.payload,
         playlistPending: false
       };
-    case Actions.GET_PLAYLIST_FAILURE:
+    case Actions.GET_PLAYLIST_FAILURE_TYPE:
       return {
         ...state,
         playlistError: action.payload,

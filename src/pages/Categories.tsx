@@ -3,7 +3,7 @@ import { CategoryCard } from "modules/category/components/CategoryCard";
 import { LinearProgress } from "modules/shared/components/LinearProgress";
 import React, { useEffect } from "react";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import { getCategories } from "store/category/actions";
+import { getCategories } from "modules/category/store/actions";
 import { AppState } from "store";
 import { PageHeadline } from "modules/shared/components/PageHeadline";
 

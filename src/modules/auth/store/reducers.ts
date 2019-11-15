@@ -1,31 +1,21 @@
-import { AUTH_SUCCESS, UserActionTypes } from "store/user/actionTypes";
+import { AUTH_SUCCESS_TYPE, UserActionTypes } from "modules/auth/store/actions";
 import { webStorage } from "modules/shared/utils/web-storage";
-
-export interface UserState {
-  accessToken: string | null;
-  tokenExp: number | null;
-}
+import { AuthState, initialState } from "modules/auth/store/state";
 
 const WEB_STORAGE_KEY = "redux-user-auth";
 
-const initialState: UserState = webStorage.getItem<UserState>(
-  WEB_STORAGE_KEY
-) || {
-  accessToken: null,
-  tokenExp: null
-};
-
 export const userReducer = (
-  state: UserState = initialState,
+  state: AuthState = initialState,
   action: UserActionTypes
-): UserState => {
+): AuthState => {
   switch (action.type) {
-    case AUTH_SUCCESS: {
+    case AUTH_SUCCESS_TYPE: {
       const date = new Date();
       const tokenExp = date.getTime() + action.payload.expires_in * 1000;
       const auth = { accessToken: action.payload.access_token, tokenExp };
 
-      webStorage.setItem<UserState>(WEB_STORAGE_KEY, auth);
+      // TODO saga
+      webStorage.setItem<AuthState>(WEB_STORAGE_KEY, auth);
 
       return { ...state, ...auth };
     }

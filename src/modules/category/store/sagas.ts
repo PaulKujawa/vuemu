@@ -6,9 +6,9 @@ import {
   GetCategoryAction,
   getCategorySuccess,
   getCategoryFailure,
-  GET_CATEGORIES,
-  GET_CATEGORY
-} from "store/category/actions";
+  GET_CATEGORIES_TYPE,
+  GET_CATEGORY_TYPE
+} from "modules/category/store/actions";
 import { Paginated } from "modules/shared/models/paging";
 import { Category } from "modules/category/models/category";
 
@@ -38,6 +38,6 @@ function* getCategorySaga(action: GetCategoryAction) {
 }
 
 export const categorySagas = [
-  takeLatest(GET_CATEGORIES, getCategoriesSaga),
-  takeLatest(GET_CATEGORY, getCategorySaga)
+  takeLatest(GET_CATEGORIES_TYPE, getCategoriesSaga),
+  takeLatest(GET_CATEGORY_TYPE, getCategorySaga)
 ];

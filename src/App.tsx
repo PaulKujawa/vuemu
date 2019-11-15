@@ -1,16 +1,38 @@
+import Container from "@material-ui/core/Container";
 import React from "react";
-import { ContainerDefault } from "modules/shared/components/ContainerDefault";
-import { ContainerStartPage } from "modules/shared/components/ContainerStartPage";
 import { Route, Switch } from "react-router-dom";
+import { GuardedRoute } from "modules/shared/components/GuardedRoute";
+import { NavBar } from "modules/shared/components/NavBar";
+import { Categories } from "pages/Categories";
+import { Category } from "pages/Category";
+import { Login } from "pages/Login";
+import { LoginCheck } from "pages/LoginCheck";
+import { StartPage } from "pages/StartPage";
 
 export const App = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <ContainerStartPage />
+        <StartPage />
       </Route>
       <Route>
-        <ContainerDefault />
+        <NavBar />
+
+        <Container maxWidth="lg">
+          <GuardedRoute path="/categories/:id">
+            <Category />
+          </GuardedRoute>
+          <GuardedRoute path="/categories">
+            <Categories />
+          </GuardedRoute>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/login-check">
+            <LoginCheck />
+          </Route>
+          {/* TODO 404 page */}
+        </Container>
       </Route>
     </Switch>
   );

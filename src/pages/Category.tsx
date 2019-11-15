@@ -6,8 +6,8 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { AppState } from "store";
-import { getCategory } from "store/category/actions";
-import { getPlaylists } from "store/playlist/actions";
+import { getCategory } from "modules/category/store/actions";
+import { getPlaylists } from "modules/playlist/store/actions";
 import { PageHeadline } from "modules/shared/components/PageHeadline";
 
 const useStyles = makeStyles(

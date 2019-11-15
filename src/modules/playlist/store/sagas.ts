@@ -6,10 +6,10 @@ import {
   GetPlaylistAction,
   getPlaylistSuccess,
   getPlaylistFailure,
-  GET_PLAYLISTS,
-  GET_PLAYLIST,
+  GET_PLAYLISTS_TYPE,
+  GET_PLAYLIST_TYPE,
   GetPlaylistsAction
-} from "store/playlist/actions";
+} from "modules/playlist/store/actions";
 import { PLAYLISTS_API } from "lib/http/palylists-api";
 import {
   PlaylistFull,
@@ -44,6 +44,6 @@ function* getPlaylistSaga(action: GetPlaylistAction) {
 }
 
 export const playlistSagas = [
-  takeLatest(GET_PLAYLISTS, getPlaylistsSaga),
-  takeLatest(GET_PLAYLIST, getPlaylistSaga)
+  takeLatest(GET_PLAYLISTS_TYPE, getPlaylistsSaga),
+  takeLatest(GET_PLAYLIST_TYPE, getPlaylistSaga)
 ];

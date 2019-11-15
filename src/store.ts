@@ -1,12 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import { categoryReducer } from "store/category/reducers";
-import { userReducer } from "store/user/reducers";
-import { searchTermReducer } from "store/searchTerm/reducers";
+import { categoryReducer } from "modules/category/store/reducers";
+import { userReducer } from "modules/auth/store/reducers";
 import createSagaMiddleware from "redux-saga";
 import { all } from "@redux-saga/core/effects";
-import { categorySagas } from "store/category/sagas";
-import { playlistReducer } from "store/playlist/reducers";
-import { playlistSagas } from "store/playlist/sagas";
+import { categorySagas } from "modules/category/store/sagas";
+import { playlistReducer } from "modules/playlist/store/reducers";
+import { playlistSagas } from "modules/playlist/store/sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 const composeEnhancer =
@@ -14,7 +13,6 @@ const composeEnhancer =
 
 const rootReducer = combineReducers({
   category: categoryReducer,
-  searchTerm: searchTermReducer,
   playlist: playlistReducer,
   user: userReducer
 });

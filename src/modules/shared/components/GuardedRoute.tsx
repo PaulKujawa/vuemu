@@ -1,8 +1,8 @@
+import { isAuthenticated } from "modules/auth/utils/auth";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Route, useLocation } from "react-router-dom";
 import { AppState } from "store";
-import { isAuthenticated } from "modules/auth/utils/auth";
 
 /*
  * see https://reacttraining.com/react-router/web/example/auth-workflow

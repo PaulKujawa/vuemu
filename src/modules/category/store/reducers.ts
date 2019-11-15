@@ -1,38 +1,17 @@
-import { Category } from "modules/category/models/category";
-import { Pagination } from "modules/shared/models/paging";
 import * as Actions from "./actions";
-
-export interface CategoryState {
-  categories: Category[];
-  categoriesError: any;
-  categoriesPagination: Pagination | null;
-  areCategoriesPending: boolean;
-  category: Category | null;
-  categoryError: any;
-  isCategoryPending: boolean;
-}
-
-const initialState: CategoryState = {
-  categories: [],
-  categoriesError: null,
-  categoriesPagination: null,
-  areCategoriesPending: false,
-  category: null,
-  categoryError: null,
-  isCategoryPending: false
-};
+import { CategoryState, initialState } from "modules/category/store/state";
 
 export const categoryReducer = (
   state: CategoryState = initialState,
   action: Actions.CategoryActionTypes
 ): CategoryState => {
   switch (action.type) {
-    case Actions.GET_CATEGORIES:
+    case Actions.GET_CATEGORIES_TYPE:
       return {
         ...state,
         areCategoriesPending: true
       };
-    case Actions.GET_CATEGORIES_SUCCESS: {
+    case Actions.GET_CATEGORIES_SUCCESS_TYPE: {
       const { items, ...pagination } = action.payload;
 
       return {
@@ -42,25 +21,25 @@ export const categoryReducer = (
         categoriesPagination: pagination
       };
     }
-    case Actions.GET_CATEGORIES_FAILURE:
+    case Actions.GET_CATEGORIES_FAILURE_TYPE:
       return {
         ...state,
         categoriesError: action.payload,
         areCategoriesPending: false
       };
-    case Actions.GET_CATEGORY: {
+    case Actions.GET_CATEGORY_TYPE: {
       return {
         ...state,
         isCategoryPending: true
       };
     }
-    case Actions.GET_CATEGORY_SUCCESS:
+    case Actions.GET_CATEGORY_SUCCESS_TYPE:
       return {
         ...state,
         category: action.payload,
         isCategoryPending: false
       };
-    case Actions.GET_CATEGORY_FAILURE:
+    case Actions.GET_CATEGORY_FAILURE_TYPE:
       return {
         ...state,
         categoryError: action.payload,
