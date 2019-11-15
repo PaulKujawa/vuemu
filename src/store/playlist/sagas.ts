@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "@redux-saga/core/effects";
-import { BROWSER_API } from "http/browse-api";
+import { BROWSER_API } from "lib/http/browse-api";
 import {
   getPlaylistsSuccess,
   getPlaylistsFailure,
@@ -10,9 +10,12 @@ import {
   GET_PLAYLIST,
   GetPlaylistsAction
 } from "store/playlist/actions";
-import { PLAYLISTS_API } from "http/palylists-api";
-import { PlaylistFull, PlaylistSimplified } from "models/playlist";
-import { Paginated } from "models/paging";
+import { PLAYLISTS_API } from "lib/http/palylists-api";
+import {
+  PlaylistFull,
+  PlaylistSimplified
+} from "modules/playlist/models/playlist";
+import { Paginated } from "modules/shared/models/paging";
 
 function* getPlaylistsSaga(action: GetPlaylistsAction) {
   try {

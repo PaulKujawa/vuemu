@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "@redux-saga/core/effects";
-import { BROWSER_API } from "http/browse-api";
+import { BROWSER_API } from "lib/http/browse-api";
 import {
   getCategoriesSuccess,
   getCategoriesFailure,
@@ -9,8 +9,8 @@ import {
   GET_CATEGORIES,
   GET_CATEGORY
 } from "store/category/actions";
-import { Paginated } from "models/paging";
-import { Category } from "models/category";
+import { Paginated } from "modules/shared/models/paging";
+import { Category } from "modules/category/models/category";
 
 function* getCategoriesSaga() {
   try {

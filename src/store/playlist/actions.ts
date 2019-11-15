@@ -1,5 +1,5 @@
-import { PlaylistSimplified } from "models/playlist";
-import { Paginated } from "models/paging";
+import { PlaylistSimplified } from "modules/playlist/models/playlist";
+import { Paginated } from "modules/shared/models/paging";
 import { AC } from "store/util";
 
 export const GET_PLAYLISTS = "[PLAYLIST] GET PLAYLISTS";

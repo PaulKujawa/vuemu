@@ -1,6 +1,6 @@
 import React from "react";
-import { ContainerDefault } from "components/ContainerDefault";
-import { ContainerStartPage } from "components/ContainerStartPage";
+import { ContainerDefault } from "modules/shared/components/ContainerDefault";
+import { ContainerStartPage } from "modules/shared/components/ContainerStartPage";
 import { Route, Switch } from "react-router-dom";
 
 export const App = () => {

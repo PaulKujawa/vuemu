@@ -1,5 +1,8 @@
-import { PlaylistSimplified, PlaylistFull } from "models/playlist";
-import { Pagination } from "models/paging";
+import {
+  PlaylistSimplified,
+  PlaylistFull
+} from "modules/playlist/models/playlist";
+import { Pagination } from "modules/shared/models/paging";
 import * as Actions from "./actions";
 
 export interface PlaylistState {

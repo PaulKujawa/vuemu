@@ -1,4 +1,4 @@
-import { AuthResponseSuccess } from "models/authentication";
+import { AuthResponseSuccess } from "modules/auth/models/auth-response";
 
 export const AUTH_SUCCESS = "[USER] AUTH SUCCESS";
 interface AuthenticateSuccessAction {

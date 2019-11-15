@@ -1,5 +1,5 @@
-import { Category } from "models/category";
-import { Paginated } from "models/paging";
+import { Category } from "modules/category/models/category";
+import { Paginated } from "modules/shared/models/paging";
 import { AC } from "store/util";
 
 export const GET_CATEGORIES = "[CATEGORY] GET CATEGORIES";

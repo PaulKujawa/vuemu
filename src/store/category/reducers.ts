@@ -1,5 +1,5 @@
-import { Category } from "models/category";
-import { Pagination } from "models/paging";
+import { Category } from "modules/category/models/category";
+import { Pagination } from "modules/shared/models/paging";
 import * as Actions from "./actions";
 
 export interface CategoryState {

@@ -1,5 +1,5 @@
 import { AUTH_SUCCESS, UserActionTypes } from "store/user/actionTypes";
-import { webStorage } from "utils/web-storage";
+import { webStorage } from "modules/shared/utils/web-storage";
 
 export interface UserState {
   accessToken: string | null;
