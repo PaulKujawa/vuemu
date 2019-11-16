@@ -22,8 +22,8 @@ export function getHeaders(additionalHeaders?: FetchHeaders): FetchHeaders {
   const state = store.getState();
 
   // TODO otherwise, I could already throw here to save the request
-  if (isAuthenticated(state.user)) {
-    headers.Authorization = `Bearer ${state.user.accessToken}`;
+  if (isAuthenticated(state.auth)) {
+    headers.Authorization = `Bearer ${state.auth.accessToken}`;
   }
 
   return { ...headers, ...additionalHeaders };

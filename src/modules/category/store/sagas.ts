@@ -1,14 +1,6 @@
 import { call, put, takeLatest } from "@redux-saga/core/effects";
 import { BROWSER_API } from "lib/http/browse-api";
-import {
-  getCategoriesSuccess,
-  getCategoriesFailure,
-  GetCategoryAction,
-  getCategorySuccess,
-  getCategoryFailure,
-  GET_CATEGORIES_TYPE,
-  GET_CATEGORY_TYPE
-} from "modules/category/store/actions";
+import * as Actions from "modules/category/store/actions";
 import { Paginated } from "modules/shared/models/paging";
 import { Category } from "modules/category/models/category";
 
@@ -18,26 +10,26 @@ function* getCategoriesSaga() {
       BROWSER_API.getCategories
     );
 
-    yield put(getCategoriesSuccess(categories));
+    yield put(Actions.getCategoriesSuccess(categories));
   } catch (err) {
-    yield put(getCategoriesFailure(err));
+    yield put(Actions.getCategoriesFailure(err));
   }
 }
 
-function* getCategorySaga(action: GetCategoryAction) {
+function* getCategorySaga(action: Actions.GetCategoryAction) {
   try {
     const category: Category = yield call(
       BROWSER_API.getCategory,
       action.payload
     );
 
-    yield put(getCategorySuccess(category));
+    yield put(Actions.getCategorySuccess(category));
   } catch (err) {
-    yield put(getCategoryFailure(err));
+    yield put(Actions.getCategoryFailure(err));
   }
 }
 
 export const categorySagas = [
-  takeLatest(GET_CATEGORIES_TYPE, getCategoriesSaga),
-  takeLatest(GET_CATEGORY_TYPE, getCategorySaga)
+  takeLatest(Actions.GET_CATEGORIES_TYPE, getCategoriesSaga),
+  takeLatest(Actions.GET_CATEGORY_TYPE, getCategorySaga)
 ];

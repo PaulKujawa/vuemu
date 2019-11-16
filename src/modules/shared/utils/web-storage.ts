@@ -1,13 +1,9 @@
 export const webStorage = {
   getItem<T = string>(id: string): T | undefined {
-    try {
-      const stored = localStorage.getItem(id);
+    const stored = localStorage.getItem(id);
 
-      if (stored) {
-        return JSON.parse(stored);
-      }
-    } catch (e) {
-      this.removeItem(id);
+    if (stored) {
+      return JSON.parse(stored);
     }
   },
   setItem<T>(id: string, value: T): void {

@@ -6,21 +6,21 @@ import { App } from "App";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import * as serviceWorker from "serviceWorker";
 import { store } from "store";
 
 const theme = createMuiTheme({ palette: { primary: teal, secondary: amber } });
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
+  <Provider store={store}>
+    <Router>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <App />
       </ThemeProvider>
-    </Provider>
-  </BrowserRouter>,
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 

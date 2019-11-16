@@ -1,12 +1,12 @@
-import { AUTH_SUCCESS_TYPE, UserActionTypes } from "modules/auth/store/actions";
+import { AUTH_SUCCESS_TYPE, AuthActionTypes } from "modules/auth/store/actions";
 import { webStorage } from "modules/shared/utils/web-storage";
 import { AuthState, initialState } from "modules/auth/store/state";
 
 const WEB_STORAGE_KEY = "redux-user-auth";
 
-export const userReducer = (
+export const authReducer = (
   state: AuthState = initialState,
-  action: UserActionTypes
+  action: AuthActionTypes
 ): AuthState => {
   switch (action.type) {
     case AUTH_SUCCESS_TYPE: {
