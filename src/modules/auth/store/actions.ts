@@ -1,38 +1,40 @@
-import { AuthResponseSuccess } from "modules/auth/models/auth-response";
 import { AC } from "modules/shared/utils/action-creator";
 import { AuthState } from "modules/auth/store/state";
 
-export const LOAD_AUTH_WEB_STORAGE_MISSING_TYPE =
-  "[AUTH] LOAD AUTH WEB STORAGE MISSING";
-export const loadAuthWebStorageMissing = () =>
-  AC(LOAD_AUTH_WEB_STORAGE_MISSING_TYPE, undefined);
-export type LoadAuthWebStorageMissingAction = ReturnType<
-  typeof loadAuthWebStorageMissing
+export const AUTH_VIA_STORAGE_MISSING_TYPE = "[AUTH] AUTH VIA STORAGE MISSING";
+export const authViaStorageMissing = () =>
+  AC(AUTH_VIA_STORAGE_MISSING_TYPE, undefined);
+export type AuthViaStorageMissingAction = ReturnType<
+  typeof authViaStorageMissing
 >;
 
-export const LOAD_AUTH_WEB_STORAGE_SUCCESS_TYPE =
-  "[AUTH] LOAD AUTH WEB STORAGE SUCCESS";
-export const loadAuthWebStorageSuccess = (auth: AuthState) =>
-  AC(LOAD_AUTH_WEB_STORAGE_SUCCESS_TYPE, auth);
-export type LoadAuthWebStorageSuccessAction = ReturnType<
-  typeof loadAuthWebStorageSuccess
+export const AUTH_VIA_STORAGE_SUCCESS_TYPE = "[AUTH] AUTH VIA STORAGE SUCCESS";
+export const authViaStorageSuccess = (auth: AuthState) =>
+  AC(AUTH_VIA_STORAGE_SUCCESS_TYPE, auth);
+export type AuthViaStorageSuccessAction = ReturnType<
+  typeof authViaStorageSuccess
 >;
 
-export const LOAD_AUTH_WEB_STORAGE_FAILURE_TYPE =
-  "[AUTH] LOAD AUTH WEB STORAGE FAILURE";
-export const loadAuthWebStorageFailure = (err: any) =>
-  AC(LOAD_AUTH_WEB_STORAGE_FAILURE_TYPE, err);
-export type LoadAuthWebStorageFailureAction = ReturnType<
-  typeof loadAuthWebStorageFailure
+export const AUTH_VIA_STORAGE_FAILURE_TYPE = "[AUTH] AUTH VIA STORAGE FAILURE";
+export const authViaStorageFailure = (err: any) =>
+  AC(AUTH_VIA_STORAGE_FAILURE_TYPE, err);
+export type AuthViaStorageFailureAction = ReturnType<
+  typeof authViaStorageFailure
 >;
 
-export const AUTH_SUCCESS_TYPE = "[AUTH] AUTHENTICATION SUCCESS";
-export const authenticate = (payload: AuthResponseSuccess) =>
-  AC(AUTH_SUCCESS_TYPE, payload);
-export type AuthenticateSuccessAction = ReturnType<typeof authenticate>;
+export const AUTH_VIA_LOGIN_TYPE = "[AUTH] AUTH VIA LOGIN";
+export const authViaLogin = (targetUrl?: string) =>
+  AC(AUTH_VIA_LOGIN_TYPE, targetUrl);
+export type AuthViaLoginAction = ReturnType<typeof authViaLogin>;
+
+export const AUTH_VIA_LOGIN_SUCCESS_TYPE = "[AUTH] AUTH VIA LOGIN SUCCESS";
+export const authViaLoginSuccess = (payload: AuthState) =>
+  AC(AUTH_VIA_LOGIN_SUCCESS_TYPE, payload);
+export type AuthViaLoginSuccessAction = ReturnType<typeof authViaLoginSuccess>;
 
 export type AuthActionTypes =
-  | LoadAuthWebStorageMissingAction
-  | LoadAuthWebStorageSuccessAction
-  | LoadAuthWebStorageFailureAction
-  | AuthenticateSuccessAction;
+  | AuthViaStorageMissingAction
+  | AuthViaStorageSuccessAction
+  | AuthViaStorageFailureAction
+  | AuthViaLoginAction
+  | AuthViaLoginSuccessAction;

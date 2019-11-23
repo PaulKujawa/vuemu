@@ -25,7 +25,7 @@ export const GuardedRoute = ({ children, ...rest }: Props) => {
   const redirect = (
     <Redirect
       to={{
-        pathname: "/login",
+        pathname: "/auth",
         state: { redirectedFrom: location }
       }}
     />

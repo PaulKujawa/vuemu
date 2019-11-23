@@ -5,8 +5,7 @@ import { GuardedRoute } from "modules/shared/components/GuardedRoute";
 import { NavBar } from "modules/shared/components/NavBar";
 import { Categories } from "pages/Categories";
 import { Category } from "pages/Category";
-import { Login } from "pages/Login";
-import { LoginCheck } from "pages/LoginCheck";
+import { Auth } from "pages/Auth";
 import { StartPage } from "pages/StartPage";
 import { useDispatch } from "react-redux";
 import { initialLoad } from "modules/nav/store/actions";
@@ -33,11 +32,8 @@ export const App = () => {
           <GuardedRoute path="/categories">
             <Categories />
           </GuardedRoute>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/login-check">
-            <LoginCheck />
+          <Route path="/auth">
+            <Auth />
           </Route>
           {/* TODO 404 page */}
         </Container>
