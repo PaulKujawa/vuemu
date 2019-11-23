@@ -7,20 +7,25 @@ import { categorySagas } from "modules/category/store/sagas";
 import { playlistReducer } from "modules/playlist/store/reducers";
 import { playlistSagas } from "modules/playlist/store/sagas";
 import { authSagas } from "modules/auth/store/sagas";
+import { createBrowserHistory } from "history";
+import { connectRouter, routerMiddleware } from "connected-react-router";
 
-const sagaMiddleware = createSagaMiddleware();
-const composeEnhancer =
-  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   category: categoryReducer,
   playlist: playlistReducer,
-  auth: authReducer
+  router: connectRouter(history)
 });
+
+const composeEnhancer =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const sagaMiddleware = createSagaMiddleware();
 
 export const store = createStore(
   rootReducer,
-  composeEnhancer(applyMiddleware(sagaMiddleware))
+  composeEnhancer(applyMiddleware(sagaMiddleware, routerMiddleware(history)))
 );
 
 sagaMiddleware.run(function*() {

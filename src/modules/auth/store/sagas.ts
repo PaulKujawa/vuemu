@@ -1,6 +1,6 @@
 import { put, takeLatest } from "@redux-saga/core/effects";
+import { push, LOCATION_CHANGE } from "connected-react-router";
 import * as Actions from "modules/auth/store/actions";
-import * as NavActions from "modules/nav/store/actions";
 import { webStorage } from "modules/shared/utils/web-storage";
 import { AuthState } from "modules/auth/store/state";
 import { buildQueryParams } from "lib/http/utils";
@@ -42,7 +42,7 @@ function authViaLoginSaga({ payload }: Actions.AuthViaLoginAction) {
   window.location.replace("https://accounts.spotify.com/authorize?" + query);
 }
 
-function authViaLoginSuccessSaga({
+function* authViaLoginSuccessSaga({
   payload
 }: Actions.AuthViaLoginSuccessAction) {
   webStorage.setItem<AuthState>(WEB_STORAGE_AUTH_OBJ_KEY, payload);
@@ -53,11 +53,11 @@ function authViaLoginSuccessSaga({
     webStorage.removeItem(WEB_STORAGE_AUTH_TARGET_KEY);
   }
 
-  // TODO navigate to preAuthTarget || "/categories"
+  yield put(push(preAuthTarget || "/categories"));
 }
 
 export const authSagas = [
-  takeLatest(NavActions.INITIAL_LOAD_TYPE, authViaStorageSaga),
+  takeLatest(LOCATION_CHANGE, authViaStorageSaga),
   takeLatest(Actions.AUTH_VIA_STORAGE_FAILURE_TYPE, authViaStorageFailureSaga),
   takeLatest(Actions.AUTH_VIA_LOGIN_TYPE, authViaLoginSaga),
   takeLatest(Actions.AUTH_VIA_LOGIN_SUCCESS_TYPE, authViaLoginSuccessSaga)
