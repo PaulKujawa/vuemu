@@ -3,7 +3,8 @@ import { Paginated } from "modules/shared/models/paging";
 import { AC } from "modules/shared/utils/action-creator";
 
 export const GET_CATEGORIES_TYPE = "[CATEGORY] GET CATEGORIES";
-export const getCategories = () => AC(GET_CATEGORIES_TYPE, undefined);
+export const getCategories = (offset: number) =>
+  AC(GET_CATEGORIES_TYPE, offset);
 export type GetCategoriesAction = ReturnType<typeof getCategories>;
 
 export const GET_CATEGORIES_SUCCESS_TYPE = "[CATEGORY] GET CATEGORIES SUCCESS";

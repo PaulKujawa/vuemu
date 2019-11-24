@@ -16,7 +16,7 @@ export const categoryReducer = (
 
       return {
         ...state,
-        categories: items,
+        categories: state.categories.concat(items),
         areCategoriesPending: false,
         categoriesPagination: pagination
       };

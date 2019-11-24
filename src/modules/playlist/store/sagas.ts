@@ -8,11 +8,12 @@ import {
 } from "modules/playlist/models/playlist";
 import { Paginated } from "modules/shared/models/paging";
 
-function* getPlaylistsSaga(action: Actions.GetPlaylistsAction) {
+function* getPlaylistsSaga({ payload }: Actions.GetPlaylistsAction) {
   try {
     const playlists: Paginated<PlaylistSimplified> = yield call(
       BROWSER_API.getPlaylists,
-      action.payload
+      payload.categoryId,
+      payload.offset
     );
 
     yield put(Actions.getPlaylistsSuccess(playlists));
@@ -21,11 +22,11 @@ function* getPlaylistsSaga(action: Actions.GetPlaylistsAction) {
   }
 }
 
-function* getPlaylistSaga(action: Actions.GetPlaylistAction) {
+function* getPlaylistSaga({ payload }: Actions.GetPlaylistAction) {
   try {
     const playlist: PlaylistFull = yield call(
       PLAYLISTS_API.getPlaylist,
-      action.payload
+      payload
     );
 
     yield put(Actions.getPlaylistSuccess(playlist));

@@ -4,10 +4,11 @@ import * as Actions from "modules/category/store/actions";
 import { Paginated } from "modules/shared/models/paging";
 import { Category } from "modules/category/models/category";
 
-function* getCategoriesSaga() {
+function* getCategoriesSaga({ payload }: Actions.GetCategoriesAction) {
   try {
     const categories: Paginated<Category> = yield call(
-      BROWSER_API.getCategories
+      BROWSER_API.getCategories,
+      payload
     );
 
     yield put(Actions.getCategoriesSuccess(categories));
@@ -16,12 +17,9 @@ function* getCategoriesSaga() {
   }
 }
 
-function* getCategorySaga(action: Actions.GetCategoryAction) {
+function* getCategorySaga({ payload }: Actions.GetCategoryAction) {
   try {
-    const category: Category = yield call(
-      BROWSER_API.getCategory,
-      action.payload
-    );
+    const category: Category = yield call(BROWSER_API.getCategory, payload);
 
     yield put(Actions.getCategorySuccess(category));
   } catch (err) {

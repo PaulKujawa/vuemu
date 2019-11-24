@@ -4,8 +4,8 @@ import { Category } from "modules/category/models/category";
 import { Paginated } from "modules/shared/models/paging";
 import { PlaylistSimplified } from "modules/playlist/models/playlist";
 
-async function getCategories(): Promise<Paginated<Category>> {
-  const query = buildQueryParams({ limit: 50 });
+async function getCategories(offset: number): Promise<Paginated<Category>> {
+  const query = buildQueryParams({ offset });
 
   const data = await httpGet<{ categories: Paginated<Category> }>(
     `/browse/categories?${query}`
@@ -20,10 +20,13 @@ function getCategory(id: string): Promise<Category> {
 }
 
 async function getPlaylists(
-  categoryId: string
+  categoryId: string,
+  offset: number
 ): Promise<Paginated<PlaylistSimplified>> {
+  const query = buildQueryParams({ offset });
+
   const data = await httpGet<{ playlists: Paginated<PlaylistSimplified> }>(
-    `/browse/categories/${categoryId}/playlists`
+    `/browse/categories/${categoryId}/playlists?${query}`
   );
 
   return data.playlists;

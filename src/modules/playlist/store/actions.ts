@@ -3,8 +3,8 @@ import { Paginated } from "modules/shared/models/paging";
 import { AC } from "modules/shared/utils/action-creator";
 
 export const GET_PLAYLISTS_TYPE = "[PLAYLIST] GET PLAYLISTS";
-export const getPlaylists = (categoryId: string) =>
-  AC(GET_PLAYLISTS_TYPE, categoryId);
+export const getPlaylists = (categoryId: string, offset: number) =>
+  AC(GET_PLAYLISTS_TYPE, { categoryId, offset });
 export type GetPlaylistsAction = ReturnType<typeof getPlaylists>;
 
 export const GET_PLAYLISTS_SUCCESS_TYPE = "[PLAYLIST] GET PLAYLISTS SUCCESS";

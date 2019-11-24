@@ -16,7 +16,7 @@ export const playlistReducer = (
 
       return {
         ...state,
-        playlists: items,
+        playlists: state.playlists.concat(items),
         arePlaylistsPending: false,
         playlistsPagination: pagination
       };
