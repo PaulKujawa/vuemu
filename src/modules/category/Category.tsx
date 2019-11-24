@@ -1,7 +1,7 @@
 import { Grid, makeStyles, createStyles } from "@material-ui/core";
-import { PlaylistCard } from "modules/playlist/components/PlaylistCard";
-import { LinearProgress } from "modules/shared/components/LinearProgress";
+import { PlaylistCard } from "modules/category/components/PlaylistCard";
 import { getCategory } from "modules/category/store/actions";
+import { LinearProgress } from "modules/shared/components/LinearProgress";
 import { getPlaylists } from "modules/playlist/store/actions";
 import { PageHeadline } from "modules/shared/components/PageHeadline";
 import { nextBatchOffset, nextBatchExists } from "modules/shared/utils/paging";

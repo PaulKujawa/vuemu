@@ -6,27 +6,6 @@ export const categoryReducer = (
   action: Actions.CategoryActionTypes
 ): CategoryState => {
   switch (action.type) {
-    case Actions.GET_CATEGORIES_TYPE:
-      return {
-        ...state,
-        areCategoriesPending: true
-      };
-    case Actions.GET_CATEGORIES_SUCCESS_TYPE: {
-      const { items, ...pagination } = action.payload;
-
-      return {
-        ...state,
-        categories: state.categories.concat(items),
-        areCategoriesPending: false,
-        categoriesPagination: pagination
-      };
-    }
-    case Actions.GET_CATEGORIES_FAILURE_TYPE:
-      return {
-        ...state,
-        categoriesError: action.payload,
-        areCategoriesPending: false
-      };
     case Actions.GET_CATEGORY_TYPE: {
       return {
         ...state,

@@ -3,10 +3,10 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { GuardedRoute } from "modules/shared/components/GuardedRoute";
 import { NavBar } from "modules/shared/components/NavBar";
-import { Categories } from "pages/Categories";
-import { Category } from "pages/Category";
-import { Auth } from "pages/Auth";
-import { StartPage } from "pages/StartPage";
+import { Categories } from "modules/categories/Categories";
+import { Category } from "modules/category/Category";
+import { Auth } from "modules/auth/Auth";
+import { StartPage } from "modules/startpage/StartPage";
 
 export const App = () => {
   return (

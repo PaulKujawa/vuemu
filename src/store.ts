@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { categoriesReducer } from "modules/categories/store/reducers";
 import { categoryReducer } from "modules/category/store/reducers";
 import { authReducer } from "modules/auth/store/reducers";
 import createSagaMiddleware from "redux-saga";
@@ -14,6 +15,7 @@ export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  categories: categoriesReducer,
   category: categoryReducer,
   playlist: playlistReducer,
   router: connectRouter(history)

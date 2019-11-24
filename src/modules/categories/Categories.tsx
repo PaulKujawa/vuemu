@@ -1,6 +1,6 @@
 import { createStyles, Grid, makeStyles } from "@material-ui/core";
-import { CategoryCard } from "modules/category/components/CategoryCard";
-import { getCategories } from "modules/category/store/actions";
+import { CategoryCard } from "modules/categories/components/CategoryCard";
+import { getCategories } from "modules/categories/store/actions";
 import { LinearProgress } from "modules/shared/components/LinearProgress";
 import { PageHeadline } from "modules/shared/components/PageHeadline";
 import { nextBatchOffset, nextBatchExists } from "modules/shared/utils/paging";
@@ -22,10 +22,10 @@ export const Categories = () => {
   const dispatch = useDispatch();
 
   const { categories, error, pagination } = useSelector(
-    ({ category }: AppState) => ({
-      categories: category.categories,
-      error: category.categoriesError,
-      pagination: category.categoriesPagination
+    ({ categories }: AppState) => ({
+      categories: categories.categories,
+      error: categories.categoriesError,
+      pagination: categories.categoriesPagination
     }),
     shallowEqual
   );
