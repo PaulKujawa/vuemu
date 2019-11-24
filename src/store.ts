@@ -10,6 +10,7 @@ import { playlistSagas } from "modules/playlist/store/sagas";
 import { authSagas } from "modules/auth/store/sagas";
 import { createBrowserHistory } from "history";
 import { connectRouter, routerMiddleware } from "connected-react-router";
+import { categoriesSagas } from "modules/categories/store/sagas";
 
 export const history = createBrowserHistory();
 
@@ -31,7 +32,12 @@ export const store = createStore(
 );
 
 sagaMiddleware.run(function*() {
-  yield all([...authSagas, ...categorySagas, ...playlistSagas]);
+  yield all([
+    ...authSagas,
+    ...categoriesSagas,
+    ...categorySagas,
+    ...playlistSagas
+  ]);
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

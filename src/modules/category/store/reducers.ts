@@ -46,7 +46,13 @@ export const categoryReducer = (
         playlistsError: action.payload,
         arePlaylistsPending: false
       };
-
+    case Actions.RESET_PLAYLISTS_TYPE:
+      return {
+        ...state,
+        playlists: initialState.playlists,
+        playlistsError: initialState.playlistsError,
+        playlistsPagination: initialState.playlistsPagination
+      };
     default:
       return state;
   }

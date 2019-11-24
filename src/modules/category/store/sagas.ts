@@ -8,6 +8,7 @@ function* getCategorySaga({ payload }: Actions.GetCategoryAction) {
     const category: Category = yield call(BROWSER_API.getCategory, payload);
 
     yield put(Actions.getCategorySuccess(category));
+    yield put(Actions.resetPlaylists());
   } catch (err) {
     yield put(Actions.getCategoryFailure(err));
   }

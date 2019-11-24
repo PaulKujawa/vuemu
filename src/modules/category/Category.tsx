@@ -64,7 +64,6 @@ export const Category = () => {
       <PageHeadline title={`${category!.name} playlists`} />
 
       <InfiniteScroll
-        pageStart={0}
         loadMore={loadPlaylists}
         hasMore={nextBatchExists(pagination)}
         loader={<LinearProgress key={0} />}

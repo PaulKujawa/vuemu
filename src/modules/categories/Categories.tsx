@@ -42,7 +42,6 @@ export const Categories = () => {
     <React.Fragment>
       <PageHeadline title="Browse by category" />
       <InfiniteScroll
-        pageStart={0}
         loadMore={loadCategories}
         hasMore={nextBatchExists(pagination)}
         loader={<LinearProgress key={0} />}
