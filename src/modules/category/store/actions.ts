@@ -1,4 +1,4 @@
-import { Category } from "lib/types/category";
+import { Category, Paginated, PlaylistSimplified } from "lib/types";
 import { AC } from "modules/shared/utils/action-creator";
 
 export const GET_CATEGORY_TYPE = "[CATEGORY] GET CATEGORY";
@@ -15,7 +15,25 @@ export const getCategoryFailure = (payload: any) =>
   AC(GET_CATEGORY_FAILURE_TYPE, payload);
 export type GetCategoryFailureAction = ReturnType<typeof getCategoryFailure>;
 
+export const GET_PLAYLISTS_TYPE = "[PLAYLIST] GET PLAYLISTS";
+export const getPlaylists = (categoryId: string, offset: number) =>
+  AC(GET_PLAYLISTS_TYPE, { categoryId, offset });
+export type GetPlaylistsAction = ReturnType<typeof getPlaylists>;
+
+export const GET_PLAYLISTS_SUCCESS_TYPE = "[PLAYLIST] GET PLAYLISTS SUCCESS";
+export const getPlaylistsSuccess = (payload: Paginated<PlaylistSimplified>) =>
+  AC(GET_PLAYLISTS_SUCCESS_TYPE, payload);
+export type GetPlaylistsSuccessAction = ReturnType<typeof getPlaylistsSuccess>;
+
+export const GET_PLAYLISTS_FAILURE_TYPE = "[PLAYLIST] GET PLAYLISTS FAILURE";
+export const getPlaylistsFailure = (payload: any) =>
+  AC(GET_PLAYLISTS_FAILURE_TYPE, payload);
+export type GetPlaylistsFailureAction = ReturnType<typeof getPlaylistsFailure>;
+
 export type CategoryActionTypes =
   | GetCategoryAction
   | GetCategorySuccessAction
-  | GetCategoryFailureAction;
+  | GetCategoryFailureAction
+  | GetPlaylistsAction
+  | GetPlaylistsSuccessAction
+  | GetPlaylistsFailureAction;

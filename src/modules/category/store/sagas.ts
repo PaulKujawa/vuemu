@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from "@redux-saga/core/effects";
 import { BROWSER_API } from "lib/http/browse-api";
 import * as Actions from "modules/category/store/actions";
-import { Category } from "lib/types/category";
+import { Category, Paginated, PlaylistSimplified } from "lib/types";
 
 function* getCategorySaga({ payload }: Actions.GetCategoryAction) {
   try {
@@ -13,6 +13,21 @@ function* getCategorySaga({ payload }: Actions.GetCategoryAction) {
   }
 }
 
+function* getPlaylistsSaga({ payload }: Actions.GetPlaylistsAction) {
+  try {
+    const playlists: Paginated<PlaylistSimplified> = yield call(
+      BROWSER_API.getPlaylists,
+      payload.categoryId,
+      payload.offset
+    );
+
+    yield put(Actions.getPlaylistsSuccess(playlists));
+  } catch (err) {
+    yield put(Actions.getPlaylistsFailure(err));
+  }
+}
+
 export const categorySagas = [
-  takeLatest(Actions.GET_CATEGORY_TYPE, getCategorySaga)
+  takeLatest(Actions.GET_CATEGORY_TYPE, getCategorySaga),
+  takeLatest(Actions.GET_PLAYLISTS_TYPE, getPlaylistsSaga)
 ];

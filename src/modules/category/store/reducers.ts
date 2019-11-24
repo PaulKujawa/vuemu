@@ -25,6 +25,28 @@ export const categoryReducer = (
         isCategoryPending: false
       };
 
+    case Actions.GET_PLAYLISTS_TYPE:
+      return {
+        ...state,
+        arePlaylistsPending: true
+      };
+    case Actions.GET_PLAYLISTS_SUCCESS_TYPE: {
+      const { items, ...pagination } = action.payload;
+
+      return {
+        ...state,
+        playlists: state.playlists.concat(items),
+        arePlaylistsPending: false,
+        playlistsPagination: pagination
+      };
+    }
+    case Actions.GET_PLAYLISTS_FAILURE_TYPE:
+      return {
+        ...state,
+        playlistsError: action.payload,
+        arePlaylistsPending: false
+      };
+
     default:
       return state;
   }

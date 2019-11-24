@@ -1,8 +1,7 @@
 import { Grid, makeStyles, createStyles } from "@material-ui/core";
 import { PlaylistCard } from "modules/category/components/PlaylistCard";
-import { getCategory } from "modules/category/store/actions";
+import { getCategory, getPlaylists } from "modules/category/store/actions";
 import { LinearProgress } from "modules/shared/components/LinearProgress";
-import { getPlaylists } from "modules/playlist/store/actions";
 import { PageHeadline } from "modules/shared/components/PageHeadline";
 import { nextBatchOffset, nextBatchExists } from "modules/shared/utils/paging";
 import React, { useEffect } from "react";
@@ -34,10 +33,10 @@ export const Category = () => {
   );
 
   const { playlists, playlistsError, pagination } = useSelector(
-    ({ playlist }: AppState) => ({
-      playlists: playlist.playlists,
-      playlistsError: playlist.playlistsError,
-      pagination: playlist.playlistsPagination
+    ({ category }: AppState) => ({
+      playlists: category.playlists,
+      playlistsError: category.playlistsError,
+      pagination: category.playlistsPagination
     }),
     shallowEqual
   );

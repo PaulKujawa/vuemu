@@ -1,6 +1,4 @@
-import { ExternalUrl } from "lib/types/external-url";
-import { Followers } from "lib/types/followers";
-import { Image } from "lib/types/image";
+import { ExternalUrl, Followers, Image } from "lib/types";
 
 export interface User {
   display_name: string | null;

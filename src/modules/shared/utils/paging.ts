@@ -1,4 +1,4 @@
-import { Pagination } from "lib/types/paging";
+import { Pagination } from "lib/types";
 
 export function nextBatchOffset(pagination: Pagination | null): number {
   if (!pagination) {

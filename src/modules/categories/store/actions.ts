@@ -1,5 +1,4 @@
-import { Category } from "lib/types/category";
-import { Paginated } from "lib/types/paging";
+import { Category, Paginated } from "lib/types";
 import { AC } from "modules/shared/utils/action-creator";
 
 export const GET_CATEGORIES_TYPE = "[CATEGORIES] GET CATEGORIES";

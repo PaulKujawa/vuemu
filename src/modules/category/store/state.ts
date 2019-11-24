@@ -1,13 +1,21 @@
-import { Category } from "lib/types/category";
+import { Category, Pagination, PlaylistSimplified } from "lib/types";
 
 export interface CategoryState {
   category: Category | null;
   categoryError: any;
   isCategoryPending: boolean;
+  playlists: PlaylistSimplified[];
+  playlistsError: any;
+  playlistsPagination: Pagination | null;
+  arePlaylistsPending: boolean;
 }
 
 export const initialState: CategoryState = {
   category: null,
   categoryError: null,
-  isCategoryPending: false
+  isCategoryPending: false,
+  playlists: [],
+  playlistsError: null,
+  arePlaylistsPending: false,
+  playlistsPagination: null
 };

@@ -1,5 +1,4 @@
-import { Category } from "lib/types/category";
-import { Pagination } from "lib/types/paging";
+import { Category, Pagination } from "lib/types";
 
 export interface CategoriesState {
   categories: Category[];

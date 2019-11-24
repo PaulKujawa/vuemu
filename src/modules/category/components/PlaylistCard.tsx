@@ -1,12 +1,12 @@
-import React from "react";
 import {
   Card,
   CardActionArea,
   CardContent,
   Typography
 } from "@material-ui/core";
+import { PlaylistSimplified } from "lib/types";
 import { ImageWithPlaceholder } from "modules/shared/components/ImageWithPlaceholder";
-import { PlaylistSimplified } from "lib/types/playlist";
+import React from "react";
 
 interface Props {
   playlist: PlaylistSimplified;

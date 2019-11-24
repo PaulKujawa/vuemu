@@ -1,6 +1,4 @@
-import { ExternalUrl } from "lib/types/external-url";
-import { Image } from "lib/types/image";
-import { User } from "lib/types/user";
+import { ExternalUrl, Image, User } from "lib/types";
 
 export interface PlaylistSimplified {
   collaborative: boolean;
