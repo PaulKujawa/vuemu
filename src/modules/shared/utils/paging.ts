@@ -1,4 +1,4 @@
-import { Pagination } from "modules/shared/models/paging";
+import { Pagination } from "lib/types/paging";
 
 export function nextBatchOffset(pagination: Pagination | null): number {
   if (!pagination) {

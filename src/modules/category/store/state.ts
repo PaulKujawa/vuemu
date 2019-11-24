@@ -1,5 +1,5 @@
-import { Category } from "modules/category/models/category";
-import { Pagination } from "modules/shared/models/paging";
+import { Category } from "lib/types/category";
+import { Pagination } from "lib/types/paging";
 
 export interface CategoryState {
   categories: Category[];

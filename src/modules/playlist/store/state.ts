@@ -1,8 +1,5 @@
-import {
-  PlaylistSimplified,
-  PlaylistFull
-} from "modules/playlist/models/playlist";
-import { Pagination } from "modules/shared/models/paging";
+import { PlaylistSimplified, PlaylistFull } from "lib/types/playlist";
+import { Pagination } from "lib/types/paging";
 
 export interface PlaylistState {
   playlists: PlaylistSimplified[];

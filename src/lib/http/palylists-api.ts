@@ -1,4 +1,4 @@
-import { PlaylistFull } from "modules/playlist/models/playlist";
+import { PlaylistFull } from "lib/types/playlist";
 import { httpGet } from "lib/http/api";
 
 function getPlaylist(playlistId: string): Promise<PlaylistFull> {

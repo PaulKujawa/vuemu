@@ -6,7 +6,7 @@ import {
   Typography
 } from "@material-ui/core";
 import { ImageWithPlaceholder } from "modules/shared/components/ImageWithPlaceholder";
-import { Category } from "modules/category/models/category";
+import { Category } from "lib/types/category";
 import { AdapterLink } from "modules/shared/components/AdapterLink";
 
 interface Props {

@@ -6,7 +6,7 @@ import {
   Typography
 } from "@material-ui/core";
 import { ImageWithPlaceholder } from "modules/shared/components/ImageWithPlaceholder";
-import { PlaylistSimplified } from "modules/playlist/models/playlist";
+import { PlaylistSimplified } from "lib/types/playlist";
 
 interface Props {
   playlist: PlaylistSimplified;

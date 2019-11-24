@@ -2,11 +2,8 @@ import { call, put, takeLatest } from "@redux-saga/core/effects";
 import { BROWSER_API } from "lib/http/browse-api";
 import * as Actions from "modules/playlist/store/actions";
 import { PLAYLISTS_API } from "lib/http/palylists-api";
-import {
-  PlaylistFull,
-  PlaylistSimplified
-} from "modules/playlist/models/playlist";
-import { Paginated } from "modules/shared/models/paging";
+import { PlaylistFull, PlaylistSimplified } from "lib/types/playlist";
+import { Paginated } from "lib/types/paging";
 
 function* getPlaylistsSaga({ payload }: Actions.GetPlaylistsAction) {
   try {

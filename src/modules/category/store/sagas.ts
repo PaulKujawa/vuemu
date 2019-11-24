@@ -1,8 +1,8 @@
 import { call, put, takeLatest } from "@redux-saga/core/effects";
 import { BROWSER_API } from "lib/http/browse-api";
 import * as Actions from "modules/category/store/actions";
-import { Paginated } from "modules/shared/models/paging";
-import { Category } from "modules/category/models/category";
+import { Paginated } from "lib/types/paging";
+import { Category } from "lib/types/category";
 
 function* getCategoriesSaga({ payload }: Actions.GetCategoriesAction) {
   try {

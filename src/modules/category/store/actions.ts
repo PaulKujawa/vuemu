@@ -1,5 +1,5 @@
-import { Category } from "modules/category/models/category";
-import { Paginated } from "modules/shared/models/paging";
+import { Category } from "lib/types/category";
+import { Paginated } from "lib/types/paging";
 import { AC } from "modules/shared/utils/action-creator";
 
 export const GET_CATEGORIES_TYPE = "[CATEGORY] GET CATEGORIES";

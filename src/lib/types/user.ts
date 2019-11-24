@@ -1,6 +1,6 @@
-import { ExternalUrl } from "modules/shared/models/external-url";
-import { Followers } from "modules/playlist/models/followers";
-import { Image } from "modules/shared/models/image";
+import { ExternalUrl } from "lib/types/external-url";
+import { Followers } from "lib/types/followers";
+import { Image } from "lib/types/image";
 
 export interface User {
   display_name: string | null;

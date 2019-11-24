@@ -1,6 +1,6 @@
-import { ExternalUrl } from "modules/shared/models/external-url";
-import { Image } from "modules/shared/models/image";
-import { User } from "modules/playlist/models/user";
+import { ExternalUrl } from "lib/types/external-url";
+import { Image } from "lib/types/image";
+import { User } from "lib/types/user";
 
 export interface PlaylistSimplified {
   collaborative: boolean;
