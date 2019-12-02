@@ -3,7 +3,7 @@ import { BROWSER_API } from "lib/http/browse-api";
 import * as Actions from "modules/category/store/actions";
 import { Category, Paginated, PlaylistSimplified } from "lib/types";
 
-function* getCategorySaga({ payload }: Actions.GetCategoryAction) {
+export function* getCategorySaga({ payload }: Actions.GetCategoryAction) {
   try {
     const category: Category = yield call(BROWSER_API.getCategory, payload);
 

@@ -22,22 +22,28 @@ const rootReducer = combineReducers({
   router: connectRouter(history)
 });
 
-const composeEnhancer =
-  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const sagaMiddleware = createSagaMiddleware();
-
-export const store = createStore(
-  rootReducer,
-  composeEnhancer(applyMiddleware(sagaMiddleware, routerMiddleware(history)))
-);
-
-sagaMiddleware.run(function*() {
+function* rootSagas() {
   yield all([
     ...authSagas,
     ...categoriesSagas,
     ...categorySagas,
     ...playlistSagas
   ]);
+}
+
+const composeEnhancer =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const sagaMiddleware = createSagaMiddleware({
+  onError: () => {
+    /* TODO send uncaught errors to sentry too */
+  }
 });
+
+export const store = createStore(
+  rootReducer,
+  composeEnhancer(applyMiddleware(sagaMiddleware, routerMiddleware(history)))
+);
+
+sagaMiddleware.run(rootSagas);
 
 export type AppState = ReturnType<typeof rootReducer>;
