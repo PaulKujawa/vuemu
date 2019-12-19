@@ -18,8 +18,8 @@ interface Props {
 
 export const GuardedRoute = ({ children, ...rest }: Props) => {
   const location = useLocation();
-  const authenticated = useSelector(({ auth }: AppState) =>
-    isAuthenticated(auth)
+  const isLoggedIn = useSelector(({ auth }: AppState) =>
+    isAuthenticated(auth.authToken)
   );
 
   const redirect = (
@@ -31,7 +31,5 @@ export const GuardedRoute = ({ children, ...rest }: Props) => {
     />
   );
 
-  return (
-    <Route {...rest} render={() => (authenticated ? children : redirect)} />
-  );
+  return <Route {...rest} render={() => (isLoggedIn ? children : redirect)} />;
 };

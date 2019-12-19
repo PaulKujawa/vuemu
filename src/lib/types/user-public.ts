@@ -1,6 +1,6 @@
 import { ExternalUrl, Followers, Image } from "lib/types";
 
-export interface User {
+export interface UserPublic {
   display_name: string | null;
   external_urls: ExternalUrl;
   followers: Followers;

@@ -17,21 +17,15 @@ export function getUrl(path: string): string {
   return `https://api.spotify.com/v1/${_path}`;
 }
 
+// TODO makes it impure. do not access store from within util function.
 export function getHeaders(additionalHeaders?: FetchHeaders): FetchHeaders {
   const headers: FetchHeaders = { Accept: "application/json" };
-  const state = store.getState();
+  const { authToken } = store.getState().auth;
 
   // TODO otherwise, I could already throw here to save the request
-  if (isAuthenticated(state.auth)) {
-    headers.Authorization = `Bearer ${state.auth.accessToken}`;
+  if (isAuthenticated(authToken)) {
+    headers.Authorization = `Bearer ${authToken!.accessToken}`;
   }
 
   return { ...headers, ...additionalHeaders };
 }
-
-// ignoreErrors?: boolean | number[];
-// if (request.ignoreErrors !== true) logError(err);
-// function logError(error: FetchResponseError, whitelist: number[] = []): void {
-//   if (!error.status || !whitelist.includes(error.status)) {
-//     window.console.warn("sentry:", error.message);
-//   }

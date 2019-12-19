@@ -1,9 +1,13 @@
+import { UserPrivate, AuthToken } from "lib/types";
+
 export interface AuthState {
-  accessToken: string | null;
-  tokenExp: number | null;
+  authToken: AuthToken | null;
+  user: UserPrivate | null;
+  userError: any;
 }
 
 export const initialState: AuthState = {
-  accessToken: null,
-  tokenExp: null
+  authToken: null,
+  user: null,
+  userError: null
 };

@@ -1,4 +1,4 @@
-import { ExternalUrl, Image, User } from "lib/types";
+import { ExternalUrl, Image, UserPublic } from "lib/types";
 
 export interface PlaylistSimplified {
   collaborative: boolean;
@@ -7,7 +7,7 @@ export interface PlaylistSimplified {
   id: string;
   images: Image[];
   name: string;
-  owner: User;
+  owner: UserPublic;
   public: boolean | null;
   snapshot_id: string;
   tracks: { href: string; total: number };

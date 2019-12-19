@@ -12,7 +12,6 @@ async function getCategories(offset: number): Promise<Paginated<Category>> {
   return data.categories;
 }
 
-// TODO ignoreErrors: [404]
 function getCategory(id: string): Promise<Category> {
   return httpGet<Category>(`/browse/categories/${id}`);
 }
