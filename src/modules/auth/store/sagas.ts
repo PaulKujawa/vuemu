@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from "@redux-saga/core/effects";
+import { call, put, select, takeLatest } from "@redux-saga/core/effects";
 import { push, LOCATION_CHANGE } from "connected-react-router";
 import * as Actions from "modules/auth/store/actions";
 import { webStorage } from "modules/shared/utils/web-storage";
@@ -6,6 +6,8 @@ import { buildQueryParams } from "lib/http/utils";
 import { AuthRequest } from "modules/auth/models/auth-request";
 import { UserPrivate, AuthToken } from "lib/types";
 import { ME_API } from "lib/http/me-api";
+import { SENTRY } from "lib/sentry";
+import { AppState } from "store";
 
 const WEB_STORAGE_AUTH_OBJ_KEY = "redux-user-auth";
 const WEB_STORAGE_AUTH_TARGET_KEY = "auth-redirect";
@@ -60,10 +62,17 @@ function* authViaLoginSuccessSaga({
 function* getUserSaga() {
   try {
     const currentUser: UserPrivate = yield call(ME_API.getCurrentUser);
+
     yield put(Actions.getUserSuccess(currentUser));
   } catch (err) {
     yield put(Actions.getUserFailure(err));
   }
+}
+
+function* getUserSuccessSaga() {
+  const { user } = (({ auth }: AppState) => auth)(yield select());
+
+  SENTRY.logUser(user!);
 }
 
 export const authSagas = [
@@ -77,5 +86,6 @@ export const authSagas = [
       Actions.AUTH_VIA_STORAGE_SUCCESS_TYPE
     ],
     getUserSaga
-  )
+  ),
+  takeLatest(Actions.GET_USER_SUCCESS_TYPE, getUserSuccessSaga)
 ];

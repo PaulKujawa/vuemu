@@ -15,6 +15,6 @@ export interface UserPrivate {
   id: string;
   images: Image[];
   // product: string;
-  type: string;
+  type: "user";
   uri: string;
 }
