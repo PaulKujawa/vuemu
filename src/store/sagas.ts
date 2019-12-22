@@ -8,7 +8,7 @@ import { SENTRY } from "lib/sentry";
 
 export const sagaMiddleware = createSagaMiddleware({
   // handle errors not caught by causing Saga
-  onError: SENTRY.logException
+  onError: SENTRY.captureException
 });
 
 export function* rootSagas() {

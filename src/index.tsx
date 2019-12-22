@@ -9,7 +9,9 @@ import { Provider } from "react-redux";
 import { ConnectedRouter as Router } from "connected-react-router";
 import * as serviceWorker from "serviceWorker";
 import { store, browserHistory } from "store";
+import { SENTRY } from "lib/sentry";
 
+SENTRY.init();
 const theme = createMuiTheme({ palette: { primary: teal, secondary: amber } });
 
 ReactDOM.render(

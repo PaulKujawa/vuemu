@@ -59,6 +59,10 @@ export const Category = () => {
   const loadPlaylists = () =>
     dispatch(getPlaylists(id!, nextBatchOffset(pagination)));
 
+  const onClick = () => {
+    throw Error("demo bug for sentry");
+  };
+
   return (
     <React.Fragment>
       <PageHeadline title={`${category!.name} playlists`} />
@@ -68,7 +72,7 @@ export const Category = () => {
         hasMore={nextBatchExists(pagination)}
         loader={<LinearProgress key={0} />}
       >
-        <div className={classes.root}>
+        <div className={classes.root} onClick={onClick}>
           <Grid container spacing={2}>
             {playlists.map(playlist => (
               <Grid item xs={6} sm={4} md={3} key={playlist.id}>

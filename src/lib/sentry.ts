@@ -1,30 +1,46 @@
 import {
-  init,
-  captureException,
-  captureMessage,
-  setUser
+  init as sentryInit,
+  captureException as sentryCaptureException,
+  captureMessage as sentryCaptureMessage,
+  setUser as sentrySetUser
 } from "@sentry/browser";
 import { UserPrivate } from "lib/types";
 
-init({ dsn: "https://cb77dedfa0c54eeaa2ad87cfb10a1e86@sentry.io/1862430" });
+function init() {
+  if (process.env.NODE_ENV !== "production") {
+    return;
+  }
+
+  if (!process.env.REACT_APP_VERSION) {
+    console.error("Env variable REACT_APP_VERSION is missing!");
+    return;
+  }
+
+  sentryInit({
+    dsn: "https://cb77dedfa0c54eeaa2ad87cfb10a1e86@sentry.io/1862430",
+    environment: process.env.NODE_ENV,
+    release: process.env.REACT_APP_VERSION
+  });
+}
 
 function logUser(user: UserPrivate) {
-  setUser({
+  sentrySetUser({
     username: user.display_name,
     id: user.id
   });
 }
 
-function logException(error: Error) {
-  captureException(error);
+function captureException(error: Error) {
+  sentryCaptureException(error);
 }
 
-function logMessage(message: string) {
-  captureMessage(message);
+function captureMessage(message: string) {
+  sentryCaptureMessage(message);
 }
 
 export const SENTRY = {
+  init,
   logUser,
-  logException,
-  logMessage
+  captureException,
+  captureMessage
 };
