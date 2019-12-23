@@ -4,10 +4,8 @@ import { makeStyles } from "@material-ui/styles";
 interface Props {
   url: string;
   color?: string;
+  alt?: string;
 }
-
-// `backgroundImage` is typed to accept `string` only ¯\_(ツ)_/¯
-const getStylesImageUrl: any = ({ url }: Props) => `url("${url}")`;
 
 const useStyles = makeStyles({
   container: {
@@ -17,7 +15,7 @@ const useStyles = makeStyles({
     position: "absolute",
     height: "100%",
     width: "100%",
-    backgroundImage: getStylesImageUrl,
+    backgroundImage: ({ url }: Props) => `url("${url}")`,
     backgroundSize: "cover",
     backgroundPosition: "center"
   }
@@ -31,7 +29,7 @@ export const ImageWithPlaceholder = (props: Props) => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.image}></div>
+      <div className={classes.image} aria-label={props.alt}></div>
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1 1">
         <rect fill={props.color || "#131618"} height="1" width="1" />
       </svg>

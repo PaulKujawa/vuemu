@@ -2,6 +2,7 @@ import { ExternalUrl, Image, UserPublic } from "lib/types";
 
 export interface PlaylistSimplified {
   collaborative: boolean;
+  description: string;
   external_urls: ExternalUrl;
   href: string;
   id: string;

@@ -61,7 +61,7 @@ export const Category = () => {
 
   return (
     <React.Fragment>
-      <PageHeadline title={`${category!.name} playlists`} />
+      <PageHeadline title={category!.name} subtitle="Popular playlists" />
 
       <InfiniteScroll
         loadMore={loadPlaylists}
@@ -71,7 +71,7 @@ export const Category = () => {
         <div className={classes.root}>
           <Grid container spacing={2}>
             {playlists.map(playlist => (
-              <Grid item xs={6} sm={4} md={3} key={playlist.id}>
+              <Grid item xs={12} sm={4} md={3} key={playlist.id}>
                 <PlaylistCard playlist={playlist} />
               </Grid>
             ))}

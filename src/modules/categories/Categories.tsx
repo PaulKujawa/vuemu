@@ -40,7 +40,7 @@ export const Categories = () => {
 
   return (
     <React.Fragment>
-      <PageHeadline title="Browse by category" />
+      <PageHeadline title="Browse" subtitle="Genres & Moods" />
       <InfiniteScroll
         loadMore={loadCategories}
         hasMore={nextBatchExists(pagination)}

@@ -25,7 +25,7 @@ async function createReleaseAndUpload() {
     });
 
     console.log("Sentry: associate commits");
-    cli.releases.setCommits(release, { auto: true });
+    await cli.releases.setCommits(release, { auto: true });
 
     console.log("Sentry: finalizing release");
     await cli.releases.finalize(release);
