@@ -1,9 +1,6 @@
+// SentryCLI needs env variable SENTRY_AUTH_TOKEN to be present
 const SentryCli = require("@sentry/cli");
-
-// load SENTRY_AUTH_TOKEN
-require("dotenv").config();
-
-// process.env.REACT_APP_VERSION works only in CRA
+// alternative import https://create-react-app.dev/docs/adding-custom-environment-variables/#expanding-environment-variables-in-env
 const { version } = require("./package.json");
 
 async function createReleaseAndUpload() {
