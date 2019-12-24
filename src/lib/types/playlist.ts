@@ -6,6 +6,7 @@ import {
   Paginated,
   Followers
 } from "lib/types";
+import { PlaylistTrackDto } from "lib/types/playlist-track";
 
 interface Playlist {
   collaborative: boolean;
@@ -26,7 +27,11 @@ export interface PlaylistSimplified extends Playlist {
   tracks: { href: string; total: number };
 }
 
-export interface PlaylistFull extends Playlist {
+export interface PlaylistFullDto extends Playlist {
   followers: Followers;
+  tracks: Paginated<PlaylistTrackDto>;
+}
+
+export interface PlaylistFull extends PlaylistFullDto {
   tracks: Paginated<PlaylistTrack>;
 }

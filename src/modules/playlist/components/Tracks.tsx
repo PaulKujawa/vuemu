@@ -32,15 +32,17 @@ export const Tracks = ({ playlistTracks }: Props) => {
 
   return (
     <List className={classes.root}>
-      {playlistTracks.items.map(playlistTrack => (
-        <ListItem button key={playlistTrack.track.id}>
-          <ListItemIcon>
-            <MusicNote />
-          </ListItemIcon>
-          <TrackDescription track={playlistTrack.track} />
-          <Box ml={4}>{formatDuration(playlistTrack.track.duration_ms)}</Box>
-        </ListItem>
-      ))}
+      {playlistTracks.items.map((playlistTrack: PlaylistTrack) => {
+        return (
+          <ListItem button key={playlistTrack.track.id}>
+            <ListItemIcon>
+              <MusicNote />
+            </ListItemIcon>
+            <TrackDescription track={playlistTrack.track} />
+            <Box ml={4}>{formatDuration(playlistTrack.track.duration_ms)}</Box>
+          </ListItem>
+        );
+      })}
     </List>
   );
 };
