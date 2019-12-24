@@ -27,7 +27,7 @@ export const CategoryCard = ({ category }: Props) => {
 
   return (
     <Card>
-      <CardActionArea component={AdapterLink} to={"/categories/" + category.id}>
+      <CardActionArea component={AdapterLink} to={`/categories/${category.id}`}>
         {/* CardMedia has no placeholder support but would otherwise work with `height: 100%` */}
         <ImageWithPlaceholder url={category.icons[0].url} />
         <div className={classes.title}>

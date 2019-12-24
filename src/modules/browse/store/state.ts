@@ -1,13 +1,13 @@
 import { Category, Pagination } from "lib/types";
 
-export interface CategoriesState {
+export interface BrowseState {
   categories: Category[];
   categoriesError: any;
   categoriesPagination: Pagination | null;
   areCategoriesPending: boolean;
 }
 
-export const initialState: CategoriesState = {
+export const initialState: BrowseState = {
   categories: [],
   categoriesError: null,
   categoriesPagination: null,

@@ -1,6 +1,6 @@
 import { createStyles, Grid, makeStyles } from "@material-ui/core";
-import { CategoryCard } from "modules/categories/components/CategoryCard";
-import { getCategories } from "modules/categories/store/actions";
+import { CategoryCard } from "modules/browse/components/CategoryCard";
+import { getCategories } from "modules/browse/store/actions";
 import { LinearProgress } from "modules/shared/components/LinearProgress";
 import { PageHeadline } from "modules/shared/components/PageHeadline";
 import { nextBatchOffset, nextBatchExists } from "modules/shared/utils/paging";
@@ -17,15 +17,15 @@ const useStyles = makeStyles(
   })
 );
 
-export const Categories = () => {
+export const Browse = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const { categories, error, pagination } = useSelector(
-    ({ categories }: AppState) => ({
-      categories: categories.categories,
-      error: categories.categoriesError,
-      pagination: categories.categoriesPagination
+    ({ browse }: AppState) => ({
+      categories: browse.categories,
+      error: browse.categoriesError,
+      pagination: browse.categoriesPagination
     }),
     shallowEqual
   );

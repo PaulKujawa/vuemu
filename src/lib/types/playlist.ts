@@ -1,8 +1,15 @@
-import { ExternalUrl, Image, UserPublic } from "lib/types";
+import {
+  ExternalUrl,
+  Image,
+  UserPublic,
+  PlaylistTrack,
+  Paginated,
+  Followers
+} from "lib/types";
 
-export interface PlaylistSimplified {
+interface Playlist {
   collaborative: boolean;
-  description: string;
+  description: string | null;
   external_urls: ExternalUrl;
   href: string;
   id: string;
@@ -11,10 +18,15 @@ export interface PlaylistSimplified {
   owner: UserPublic;
   public: boolean | null;
   snapshot_id: string;
-  tracks: { href: string; total: number };
   type: "playlist";
   uri: string;
 }
 
-// TODO actual properties
-export interface PlaylistFull extends PlaylistSimplified {}
+export interface PlaylistSimplified extends Playlist {
+  tracks: { href: string; total: number };
+}
+
+export interface PlaylistFull extends Playlist {
+  followers: Followers;
+  tracks: Paginated<PlaylistTrack>;
+}

@@ -9,20 +9,20 @@ export const playlistReducer = (
     case Actions.GET_PLAYLIST_TYPE: {
       return {
         ...state,
-        playlistPending: true
+        isPlaylistPending: true
       };
     }
     case Actions.GET_PLAYLIST_SUCCESS_TYPE:
       return {
         ...state,
         playlist: action.payload,
-        playlistPending: false
+        isPlaylistPending: false
       };
     case Actions.GET_PLAYLIST_FAILURE_TYPE:
       return {
         ...state,
         playlistError: action.payload,
-        playlistPending: false
+        isPlaylistPending: false
       };
 
     default:

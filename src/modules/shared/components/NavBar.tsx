@@ -26,7 +26,7 @@ export const NavBar = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link href="/categories" color="inherit" underline="none">
+            <Link href="/browse" color="inherit" underline="none">
               vuemu
             </Link>
           </Typography>

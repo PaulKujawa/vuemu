@@ -1,10 +1,10 @@
 import * as Actions from "./actions";
-import { CategoriesState, initialState } from "modules/categories/store/state";
+import { BrowseState, initialState } from "modules/browse/store/state";
 
-export const categoriesReducer = (
-  state: CategoriesState = initialState,
-  action: Actions.CategoriesActionTypes
-): CategoriesState => {
+export const browseReducer = (
+  state: BrowseState = initialState,
+  action: Actions.BrowseActionTypes
+): BrowseState => {
   switch (action.type) {
     case Actions.GET_CATEGORIES_TYPE:
       return {

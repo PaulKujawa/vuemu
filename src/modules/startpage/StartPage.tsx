@@ -48,7 +48,7 @@ export const StartPage = () => {
           variant="outlined"
           color="inherit"
           component={AdapterLink}
-          to="/categories"
+          to="/browse"
         >
           Connect with Spotify
         </Button>
