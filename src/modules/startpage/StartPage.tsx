@@ -1,31 +1,22 @@
-import { Typography, Button } from "@material-ui/core";
+import { Typography, Button, Theme } from "@material-ui/core";
 import { makeStyles, createStyles } from "@material-ui/styles";
 import { AdapterLink } from "modules/shared/components/AdapterLink";
-import bgImage from "modules/startpage/static/start-page-bg.jpg";
+import { SvgContainer } from "modules/startpage/components/svg-container";
 import React from "react";
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      color: "white"
-    },
-    image: {
-      height: "100vh",
-      width: "100%",
-      backgroundImage: `url("${bgImage}")`,
-      backgroundSize: "cover",
-      backgroundPosition: "center center"
-    },
     contentContainer: {
       position: "absolute",
-      top: "5rem",
-      bottom: "5rem",
+      top: 0,
       left: 0,
+      height: "100%",
       width: "100%",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "space-between",
-      alignItems: "center"
+      justifyContent: "space-around",
+      alignItems: "center",
+      color: theme.palette.primary.main
     },
     title: {
       userSelect: "none"
@@ -37,9 +28,9 @@ export const StartPage = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      {/* TODO serve image in different sizes and inline SVG as placeholder */}
-      <div className={classes.image}></div>
+    <React.Fragment>
+      <SvgContainer />
+
       <div className={classes.contentContainer}>
         <Typography variant="h1" className={classes.title}>
           vuemu
@@ -53,6 +44,6 @@ export const StartPage = () => {
           Connect with Spotify
         </Button>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
