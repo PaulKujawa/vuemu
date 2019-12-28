@@ -10,6 +10,26 @@ const useStyles = makeStyles(() =>
       "margin-left": "auto",
       "margin-right": "auto",
       padding: "1rem 0"
+    },
+    "@keyframes fading-notes": {
+      "0%": {
+        opacity: 0
+      },
+      "100%": {
+        opacity: 1
+      }
+    },
+    note1: {
+      animation: "$fading-notes 1.5s 1s infinite alternate ease-in backwards"
+    },
+    note2: {
+      animation: "$fading-notes 2s 2s infinite alternate ease-in backwards"
+    },
+    note3: {
+      animation: "$fading-notes 2.5s 0s infinite alternate ease-in backwards"
+    },
+    note4: {
+      animation: "$fading-notes 2s 1.5s infinite alternate ease-in backwards"
     }
   })
 );
@@ -17,7 +37,8 @@ const useStyles = makeStyles(() =>
 export const SvgContainer = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const color = theme.palette.primary.main;
+  const primaryColor = theme.palette.primary.main;
+  const darkGrey = "#2f2e41";
   const viewBox = useMediaQuery(theme.breakpoints.up("md"))
     ? "0 0 888 690"
     : "350 0 400 690";
@@ -31,7 +52,7 @@ export const SvgContainer = () => {
       >
         <ellipse id="floor" cx="450" cy="675" rx="420" ry="15" fill="#d0cde1" />
 
-        <g id="rightTree" fill="#d0cde1" stroke-width="0.5">
+        <g id="rightTree" fill="#d0cde1" strokeWidth="0.5">
           <path d="M811,669 l4,-168 l2 168" />
           <path d="M815.5,566 l20,-29 l-20,25" />
           <path d="M815,585 l-22,-38 l22,32" />
@@ -41,7 +62,7 @@ export const SvgContainer = () => {
           <path d="M815,668 l20,-30 l-20,25" />
         </g>
 
-        <g id="leftTree" fill="#575a89" stroke-width="0.5">
+        <g id="leftTree" fill="#575a89" strokeWidth="0.5">
           <path d="M154,680 l14.5,-503 l1 503" />
           <path d="M165.5,370 l60,-88 l-60,73" />
           <path d="M165,415 l-60,-108 l60,90" />
@@ -59,60 +80,60 @@ export const SvgContainer = () => {
                  q30 -40 20 10
                  q40 -20 10 20
                  q-30 30 -60 0"
-            fill={color}
+            fill={primaryColor}
           />
         </g>
 
-        <g id="note1">
-          <circle cx="654.5" cy="73" r="9" fill={color} />
+        <g className={classes.note1}>
+          <circle cx="634.5" cy="73" r="9" fill={primaryColor} />
           <polyline
-            points="662,72 655,29 690,18 697,58"
+            points="642,72 635,29 670,18 677,58"
             fill="none"
-            stroke={color}
-            stroke-width="3"
+            stroke={primaryColor}
+            strokeWidth="3"
           />
-          <circle cx="690" cy="61" r="9" fill={color} />
+          <circle cx="670" cy="61" r="9" fill={primaryColor} />
         </g>
 
-        <g id="note2">
-          <circle cx="743" cy="105" r="9" fill={color} />
+        <g className={classes.note2}>
+          <circle cx="713" cy="105" r="9" fill={primaryColor} />
           <line
-            x1="745"
+            x1="715"
             y1="70"
-            x2="750.5"
+            x2="720.5"
             y2="105"
-            stroke={color}
-            stroke-width="3"
+            stroke={primaryColor}
+            strokeWidth="3"
           />
         </g>
 
-        <g id="note3">
-          <circle cx="784.5" cy="62" r="9" fill={color} />
+        <g className={classes.note3}>
+          <circle cx="759.5" cy="52" r="9" fill={primaryColor} />
           <line
-            x1="792"
-            y1="60"
-            x2="787"
-            y2="96"
-            stroke={color}
-            stroke-width="3"
+            x1="767"
+            y1="50"
+            x2="762"
+            y2="86"
+            stroke={primaryColor}
+            strokeWidth="3"
           />
         </g>
 
-        <g id="note4">
-          <circle cx="839.5" cy="88" r="9" fill={color} />
+        <g className={classes.note4}>
+          <circle cx="809.5" cy="88" r="9" fill={primaryColor} />
           <polyline
-            points="847,87 840,44 875,33 882,73"
+            points="817,87 810,44 845,33 852,73"
             fill="none"
-            stroke={color}
-            stroke-width="3"
+            stroke={primaryColor}
+            strokeWidth="3"
           />
-          <circle cx="875" cy="76" r="9" fill={color} />
+          <circle cx="845" cy="76" r="9" fill={primaryColor} />
         </g>
 
         <g id="woman">
           <polygon
             id="leftJoint"
-            points="473.448 554.881 488.023 576.744 509.886 559.74 495.311 541.52 473.448 554.881"
+            points="473,554 488,576 509,559 495,541 473,554"
             fill="#ffb8b8"
           />
 
@@ -120,12 +141,12 @@ export const SvgContainer = () => {
             id="leftShoe"
             d="M646.83879,669.7106s-20.8743.97029-14.9902,12.00457,10.47435,73.29644,27.26835,69.68887,32.02057-22.69049,31.834-35.82712-2.28893-18.83415-2.28893-18.83415-4.50326-8.69557-1.50522-11.09648,4.1301-17.5777-3.01044-22.19295S656.36785,652.73,656.36785,652.73,654.27791,671.62637,646.83879,669.7106Z"
             transform="translate(-156 -104.69743)"
-            fill="#2f2e41"
+            fill={darkGrey}
           />
 
           <polygon
             id="rightJoint"
-            points="501.384 605.895 496.525 632.616 522.032 635.045 522.032 614.397 501.384 605.895"
+            points="501,605 496,632 522,635 522,614 501,605"
             fill="#ffb8b8"
           />
 
@@ -133,28 +154,28 @@ export const SvgContainer = () => {
             id="leftLeg"
             d="M605.15581,348.63984s-13.36065,44.94036-17.00447,71.66166c0,0-72.87626,98.383-59.51561,140.89411s52.228,127.53347,52.228,127.53347,65.58864-26.7213,78.94929-41.29655l-48.58418-69.23245s7.28763-8.50223-3.64381-13.36065-1.21461-10.93144-1.21461-10.93144,20.64828-69.23245,41.29655-76.52008l71.66166-14.57525s-4.85842-103.24138-21.86288-121.46045C697.46574,341.35221,612.44343,342.56682,605.15581,348.63984Z"
             transform="translate(-156 -104.69743)"
-            fill="#2f2e41"
+            fill={darkGrey}
           />
 
           <path
             id="rightShoe"
             d="M663.45682,726.38182s-12.146-17.00447-18.21907-6.073S589.366,768.893,601.512,781.039s36.43814,14.57525,47.36958,7.28762,14.57525-12.146,14.57525-12.146,4.85842-8.50223,8.50223-7.28763,17.00446-6.073,17.00446-14.57525-6.073-29.15051-6.073-29.15051S665.886,733.66944,663.45682,726.38182Z"
             transform="translate(-156 -104.69743)"
-            fill="#2f2e41"
+            fill={darkGrey}
           />
 
           <path
             id="rightLeg"
             d="M645.23775,468.88568l17.00446,146.96713s-9.71683,41.29655-12.146,72.87627,0,30.36511,0,30.36511,54.6572,21.86288,64.374,7.28763,4.85842-263.56916,4.85842-263.56916l-29.1505-26.7213Z"
             transform="translate(-156 -104.69743)"
-            fill="#2f2e41"
+            fill={darkGrey}
           />
 
           <path
             id="hair"
             d="M615.58635,140.78914c12.60928-29.75165,44.707-35.37054,44.707-35.37054s30.90545-8.2449,56.71559,31.02107c24.05712,36.59912,55.08021,70.88925,15.73675,85.49774l-10.3926-21.82606-1.24675,25.11827a160.17971,160.17971,0,0,1-17.3201,2.62842c-43.63952,4.43335-84.77656,11.80475-85.53844-3.96629C617.235,202.92639,603.4537,169.41618,615.58635,140.78914Z"
             transform="translate(-156 -104.69743)"
-            fill="#2f2e41"
+            fill={darkGrey}
           />
 
           <circle
@@ -196,7 +217,7 @@ export const SvgContainer = () => {
           <polygon
             id="hairFringe"
             points="466.716 25.283 498.883 8.433 543.306 15.326 552.496 55.919 529.618 55.039 523.226 40.126 523.226 54.793 512.67 54.387 506.542 30.644 502.713 55.919 465.184 55.153 466.716 25.283"
-            fill="#2f2e41"
+            fill={darkGrey}
           />
 
           <ellipse
@@ -207,47 +228,26 @@ export const SvgContainer = () => {
             ry="11.33626"
             fill="#ffb8b8"
           />
-          <circle
-            id="headphone1"
-            cx="547.14923"
-            cy="59.49231"
-            r="4.42089"
-            fill="#fff"
-          />
-          <ellipse
-            id="headphone2"
-            cx="549.04748"
-            cy="58.82659"
-            rx="0.71865"
-            ry="2.15595"
-            fill="#2f2e41"
-          />
-          <path
-            id="headphone3"
-            d="M704.93305,177.0218h0a1.131,1.131,0,0,1-1.131-1.131l-1.131-9.04832h3.39312v9.04832A1.131,1.131,0,0,1,704.93305,177.0218Z"
-            transform="translate(-156 -104.69743)"
-            fill="#fff"
-          />
+
+          <g id="headphone">
+            <circle cx="547" cy="59.3" r="4.4" fill="#fff" />
+            <ellipse cx="549" cy="59" rx="0.7" ry="2" fill={darkGrey} />
+            <path d="M546,62 h4 v10 q-1 0.5 -2 0Z" fill="#fff" />
+          </g>
 
           <polygon
-            points="460.723 148.149 449.254 197.85 476.016 197.85 454.989 193.071 460.723 148.149"
+            id="leftArmShadow"
+            points="460.7,148.1 449.2,197.8 476.0,197.8 454.9,193.0 460.7,148.1"
             opacity="0.1"
           />
 
-          <g>
+          <g id="phone">
             <path
-              id="phone"
               d="M754.89425,334.94933l-.25428-.22917,6.27805-6.966a5.42748,5.42748,0,0,0-.39814-7.66529L745.76157,306.788a5.42746,5.42746,0,0,0-7.66528.39813l-34.44188,38.21576a5.42747,5.42747,0,0,0,.39814,7.66529l14.75831,13.30089a5.42746,5.42746,0,0,0,7.66528-.39813l23.695-26.29132.25428.22917Z"
               transform="translate(-156 -104.69743)"
               fill="#3f3d56"
             />
-            <circle
-              id="phoneCamera"
-              cx="587.31626"
-              cy="219.89765"
-              r="3.49759"
-              fill={color}
-            />
+            <circle cx="587" cy="219" r="3.5" fill={primaryColor} />
           </g>
 
           <path
