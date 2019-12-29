@@ -9,7 +9,7 @@ import { Grid } from "@material-ui/core";
 import { PlaylistSummary } from "modules/playlist/components/PlaylistSummary";
 import { Tracks } from "modules/playlist/components/Tracks";
 
-export const Playlist = () => {
+export default () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 

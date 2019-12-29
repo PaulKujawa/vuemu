@@ -17,7 +17,7 @@ const useStyles = makeStyles(
   })
 );
 
-export const Browse = () => {
+export default () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -49,7 +49,7 @@ export const Browse = () => {
         <div className={classes.root}>
           <Grid container spacing={2}>
             {categories.map(category => (
-              <Grid item xs={6} sm={4} md={3} key={category.id}>
+              <Grid item xs={12} sm={4} md={3} key={category.id}>
                 <CategoryCard category={category} />
               </Grid>
             ))}
