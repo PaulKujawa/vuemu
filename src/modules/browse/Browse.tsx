@@ -3,7 +3,7 @@ import { CategoryCard } from "modules/browse/components/CategoryCard";
 import { getCategories } from "modules/browse/store/actions";
 import { LinearProgress } from "modules/shared/components/LinearProgress";
 import { PageHeadline } from "modules/shared/components/PageHeadline";
-import { nextBatchOffset, nextBatchExists } from "modules/shared/utils/paging";
+import { getNextBatchOffset, hasNextBatch } from "modules/shared/utils/paging";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
@@ -36,14 +36,14 @@ export default () => {
   }
 
   const loadCategories = () =>
-    dispatch(getCategories(nextBatchOffset(pagination)));
+    dispatch(getCategories(getNextBatchOffset(pagination)));
 
   return (
     <React.Fragment>
       <PageHeadline title="Browse" subtitle="Genres & Moods" />
       <InfiniteScroll
         loadMore={loadCategories}
-        hasMore={nextBatchExists(pagination)}
+        hasMore={hasNextBatch(pagination)}
         loader={<LinearProgress key={0} />}
       >
         <div className={classes.root}>

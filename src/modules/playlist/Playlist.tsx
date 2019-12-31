@@ -39,7 +39,7 @@ export default () => {
 
   return (
     <React.Fragment>
-      <PageHeadline title={playlist!.name} subtitle="Popular playlists" />
+      <PageHeadline title={playlist.name} subtitle="Popular playlists" />
 
       <Grid container spacing={4}>
         <Grid item xs={12} sm={4}>

@@ -1,6 +1,6 @@
 import { Pagination } from "lib/types";
 
-export function nextBatchOffset(pagination: Pagination | null): number {
+export function getNextBatchOffset(pagination: Pagination | null): number {
   if (!pagination) {
     return 0;
   }
@@ -8,6 +8,6 @@ export function nextBatchOffset(pagination: Pagination | null): number {
   return pagination.offset + pagination.limit;
 }
 
-export function nextBatchExists(pagination: Pagination | null): boolean {
+export function hasNextBatch(pagination: Pagination | null): boolean {
   return !pagination || !!pagination.next;
 }

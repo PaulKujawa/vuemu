@@ -8,8 +8,7 @@ import { Auth } from "modules/auth/Auth";
 import { StartPage } from "modules/startpage/StartPage";
 import { LinearProgress } from "modules/shared/components/LinearProgress";
 
-// SSR incompatible!
-// see https://reactjs.org/docs/code-splitting.html#reactlazy
+// SSR incompatible! see https://reactjs.org/docs/code-splitting.html#reactlazy
 const Browse = React.lazy(() =>
   import(/* webpackChunkName: "browse" */ "modules/browse/Browse")
 );

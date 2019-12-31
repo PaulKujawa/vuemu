@@ -3,12 +3,13 @@ import { PlaylistCard } from "modules/category/components/PlaylistCard";
 import { getCategory, getPlaylists } from "modules/category/store/actions";
 import { LinearProgress } from "modules/shared/components/LinearProgress";
 import { PageHeadline } from "modules/shared/components/PageHeadline";
-import { nextBatchOffset, nextBatchExists } from "modules/shared/utils/paging";
+import { getNextBatchOffset, hasNextBatch } from "modules/shared/utils/paging";
 import React, { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AppState } from "store";
+import { NoContentPlaceholder } from "modules/shared/NoContentPlaceholder";
 
 const useStyles = makeStyles(
   createStyles({
@@ -32,11 +33,11 @@ export const Category = () => {
     shallowEqual
   );
 
-  const { playlists, playlistsError, pagination } = useSelector(
+  const { playlists, playlistsError, playlistsPagination } = useSelector(
     ({ category }: AppState) => ({
       playlists: category.playlists,
       playlistsError: category.playlistsError,
-      pagination: category.playlistsPagination
+      playlistsPagination: category.playlistsPagination
     }),
     shallowEqual
   );
@@ -57,15 +58,15 @@ export const Category = () => {
   }
 
   const loadPlaylists = () =>
-    dispatch(getPlaylists(id!, nextBatchOffset(pagination)));
+    dispatch(getPlaylists(id!, getNextBatchOffset(playlistsPagination)));
 
   return (
     <React.Fragment>
-      <PageHeadline title={category!.name} subtitle="Popular playlists" />
+      <PageHeadline title={category.name} subtitle="Popular playlists" />
 
       <InfiniteScroll
         loadMore={loadPlaylists}
-        hasMore={nextBatchExists(pagination)}
+        hasMore={hasNextBatch(playlistsPagination)}
         loader={<LinearProgress key={0} />}
       >
         <div className={classes.root}>
@@ -76,6 +77,10 @@ export const Category = () => {
               </Grid>
             ))}
           </Grid>
+
+          {!playlists.length && (
+            <NoContentPlaceholder message="This category has no playlists." />
+          )}
         </div>
       </InfiniteScroll>
     </React.Fragment>
