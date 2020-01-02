@@ -31,7 +31,7 @@ export const getPlaylistsFailure = (payload: any) =>
 export type GetPlaylistsFailureAction = ReturnType<typeof getPlaylistsFailure>;
 
 export const RESET_PLAYLISTS_TYPE = "[PLAYLIST] RESET PLAYLISTS";
-export const resetPlaylists = () => AC(RESET_PLAYLISTS_TYPE, undefined);
+export const resetPlaylists = () => AC(RESET_PLAYLISTS_TYPE);
 export type ResetPlaylistsAction = ReturnType<typeof resetPlaylists>;
 
 export type CategoryActionTypes =

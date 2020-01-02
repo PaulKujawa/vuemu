@@ -2,8 +2,7 @@ import { AC } from "modules/shared/utils/action-creator";
 import { UserPrivate, AuthToken } from "lib/types";
 
 export const AUTH_VIA_STORAGE_MISSING_TYPE = "[AUTH] AUTH VIA STORAGE MISSING";
-export const authViaStorageMissing = () =>
-  AC(AUTH_VIA_STORAGE_MISSING_TYPE, undefined);
+export const authViaStorageMissing = () => AC(AUTH_VIA_STORAGE_MISSING_TYPE);
 export type AuthViaStorageMissingAction = ReturnType<
   typeof authViaStorageMissing
 >;
@@ -33,7 +32,7 @@ export const authViaLoginSuccess = (payload: AuthToken) =>
 export type AuthViaLoginSuccessAction = ReturnType<typeof authViaLoginSuccess>;
 
 export const GET_USER_TYPE = "[AUTH] GET USER";
-export const getUser = () => AC(GET_USER_TYPE, undefined);
+export const getUser = () => AC(GET_USER_TYPE);
 export type GetUserAction = ReturnType<typeof getUser>;
 
 export const GET_USER_SUCCESS_TYPE = "[AUTH] GET USER SUCCESS";
