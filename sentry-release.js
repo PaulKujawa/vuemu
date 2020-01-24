@@ -1,16 +1,10 @@
-// SentryCLI needs env variable SENTRY_AUTH_TOKEN to be present
+/*
+ * SentryCLI needs env variable SENTRY_AUTH_TOKEN to be present
+ */
 const SentryCli = require("@sentry/cli");
-// alternative import https://create-react-app.dev/docs/adding-custom-environment-variables/#expanding-environment-variables-in-env
-const { version } = require("./package.json");
+const { version: release } = require("./package.json");
 
 async function createReleaseAndUpload() {
-  const release = version;
-
-  if (!release) {
-    console.error("Sentry: REACT_APP_VERSION is not set");
-    return;
-  }
-
   const cli = new SentryCli();
 
   try {

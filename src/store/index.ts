@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { routerMiddleware } from "connected-react-router";
 import { rootSagas, sagaMiddleware } from "store/sagas";
 import { browserHistory, rootReducer } from "store/reducers";
+import { SENTRY } from "lib/sentry";
 
 export { browserHistory };
 
@@ -11,7 +12,11 @@ const composeEnhancer =
 export const store = createStore(
   rootReducer,
   composeEnhancer(
-    applyMiddleware(sagaMiddleware, routerMiddleware(browserHistory))
+    applyMiddleware(
+      sagaMiddleware,
+      routerMiddleware(browserHistory),
+      SENTRY.middleware
+    )
   )
 );
 
