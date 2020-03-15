@@ -13,3 +13,28 @@ jobs:
           temporaryPublicStorage: true
           urls: |
             https://vuemu.netlify.com
+
+
+# name: Build project and Run Lighthouse CI
+# # https://help.github.com/en/actions/reference/events-that-trigger-workflows
+# on: [push]
+# # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobs
+# jobs:
+#   lhci:
+#     name: Lighthouse CI
+#     runs-on: ubuntu-latest
+#     # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idsteps
+#     steps:
+#       - uses: actions/checkout@v1
+#       - name: Use Node.js 10.x
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: 10.x
+#       - name: npm install, build
+#         run: |
+#           npm install
+#           npm run build
+#       - name: run Lighthouse CI
+#         run: |
+#           npm install -g @lhci/cli@0.3.x
+#           lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed!"
