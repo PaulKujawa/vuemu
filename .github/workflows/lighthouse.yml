@@ -11,4 +11,5 @@ jobs:
         with:
           urls: |
             https://vuemu.netlify.com
+          budgetPath: ./lighthouse-budgets.json
           temporaryPublicStorage: true
