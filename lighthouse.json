@@ -1,9 +1,7 @@
 {
   "ci": {
     "assert": {
-      "assertions": {
-        "categories:performance": ["warn", {"minScore": 95}],
-      }
+      "preset": "lighthouse:recommended"
     }
   }
 }
