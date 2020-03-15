@@ -16,7 +16,8 @@ jobs:
 #            PR_NUMBER is only available on 'pull_request' and Nelify would have to build first
 #            https://deploy-preview-$PR_NUMBER--vuemu.netlify.com/
         env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+            LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+#           PR_NUMBER: ${{ github.event.pull_request.number }}
 
 #     steps:
 #       - uses: actions/checkout@v1
