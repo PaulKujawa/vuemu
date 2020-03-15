@@ -1,5 +1,6 @@
 [
   {
+    "path": "/*",
     "resourceSizes": [
       {
         "resourceType": "script",
