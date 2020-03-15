@@ -12,7 +12,6 @@ jobs:
         with:
           budgetPath: ./lighthouse-budget.json
           configPath: ./lighthouse.json
-          runs: 3
           temporaryPublicStorage: true
           urls: |
             https://vuemu.netlify.com
