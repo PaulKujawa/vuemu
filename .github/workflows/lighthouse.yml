@@ -12,6 +12,8 @@ jobs:
         with:
           budgetPath: ./lighthouse-budget.json
           configPath: ./lighthouse.json
+          runs: 3
+          temporaryPublicStorage: true
           urls: |
             https://vuemu.netlify.com
 #            PR_NUMBER is only available on 'pull_request' and Nelify would have to build first
