@@ -5,11 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-        
-      - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v2
+      - uses: treosh/lighthouse-ci-action@v2
         with:
           budgetPath: ./lighthouse-budget.json
+          configPath: ./lighthouse.json
           runs: 3
           temporaryPublicStorage: true
           urls: |
