@@ -1,11 +1,8 @@
 name: Lighthouse
-# https://help.github.com/en/actions/reference/events-that-trigger-workflows
 on: push
-# https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobs
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
-    # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idsteps
     steps: 
       - uses: actions/checkout@v1
       - uses: treosh/lighthouse-ci-action@v2
