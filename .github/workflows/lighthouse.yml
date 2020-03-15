@@ -9,7 +9,8 @@ jobs:
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v2
         with:
+          budgetPath: ./lighthouse-budget.json
+          runs: 3
+          temporaryPublicStorage: true
           urls: |
             https://vuemu.netlify.com
-          budgetPath: ./lighthouse-budget.json
-          temporaryPublicStorage: true
