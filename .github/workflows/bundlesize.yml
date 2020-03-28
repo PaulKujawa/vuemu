@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           version: "10.x"
-      - run: yarn i
+      - run: yarn install
       - run: yarn run build
       - run: yarn run test-bundlesize
         env:
