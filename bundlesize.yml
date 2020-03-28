@@ -1,0 +1,17 @@
+name: Bundlesize
+
+on: [pull_request]
+
+jobs:
+  bundlesize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          version: "10.x"
+      - run: yarn i
+      - run: yarn run build
+      - run: yarn run test-bundlesize
+        env:
+          BUNDLESIZE_GITHUB_TOKEN: ${{ secrets.BUNDLESIZE_GITHUB_TOKEN }}
