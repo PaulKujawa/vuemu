@@ -6,16 +6,16 @@ import { authViaLoginSuccess, authViaLogin } from "modules/auth/store/actions";
 import { parseQuery } from "modules/shared/utils/parse-query";
 
 export const Auth = () => {
-  const { state: locationState, hash } = useLocation();
+  const location = useLocation<{ redirectedFrom: string }>();
   const dispatch = useDispatch();
 
-  const authResponse = parseQuery<AuthResponse>(hash);
+  const authResponse = parseQuery<AuthResponse>(location.hash);
 
   if ("access_token" in authResponse) {
     const auth = mapAuthResponseSuccess(authResponse);
     dispatch(authViaLoginSuccess(auth));
   } else {
-    dispatch(authViaLogin(locationState && locationState.redirectedFrom));
+    dispatch(authViaLogin(location.state && location.state.redirectedFrom));
   }
 
   return null;
