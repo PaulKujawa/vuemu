@@ -23,7 +23,7 @@ function init() {
     dsn: "https://cb77dedfa0c54eeaa2ad87cfb10a1e86@sentry.io/1862430",
     environment: process.env.NODE_ENV,
     release: process.env.REACT_APP_VERSION,
-    whitelistUrls: ["vuemu.netlify.com"]
+    whitelistUrls: ["localhost:3000", "vuemu.netlify.com"]
   });
 }
 
