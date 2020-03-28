@@ -5,7 +5,7 @@ import {
   ExternalId
 } from "lib/types";
 
-export interface TrackFull {
+export interface Track {
   album: AlbumSimplified;
   artists: ArtistSimplified[];
   available_markets: string[];
@@ -16,14 +16,14 @@ export interface TrackFull {
   external_urls: ExternalUrl;
   href: string;
   id: string;
-  is_playable: boolean;
-  linked_from: object;
-  restrictions: object;
+  is_local: boolean;
+  is_playable?: boolean;
+  linked_from?: object;
+  restrictions?: object;
   name: string;
   popularity: number; // 0 .. 100
   preview_url: string;
   track_number: number;
   type: string;
   uri: string;
-  is_local: boolean;
 }

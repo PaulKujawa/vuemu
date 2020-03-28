@@ -2,6 +2,8 @@ export * from "./album";
 export * from "./artist";
 export * from "./auth-token";
 export * from "./category";
+export * from "./context";
+export * from "./currently-playing";
 export * from "./external-id";
 export * from "./external-url";
 export * from "./followers";

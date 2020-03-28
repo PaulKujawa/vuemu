@@ -14,6 +14,7 @@
     "@types/react-infinite-scroller": "^1.2.1",
     "@types/react-redux": "^7.1.2",
     "@types/react-router-dom": "^5.1.0",
+    "bundlesize": "^0.18.0",
     "connected-react-router": "^6.6.0",
     "dotenv": "^8.2.0",
     "eslint-config-prettier": "^6.2.0",
@@ -34,6 +35,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test-bundlesize": "bundlesize",
     "sentry": "node sentry-release.js",
     "deploy": "npm run build && npm run sentry",
     "lint": "eslint \"src/**/*.{js,jsx,tsx}\" --quiet",
@@ -41,14 +43,6 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "prettier",
-      "prettier/react"
-    ]
-  },
-  "prettier": {},
   "browserslist": {
     "production": [
       ">0.2%",
@@ -60,5 +54,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "bundlesize": [
+    {
+      "path": "./build/static/js/@(browse|main|playlist).*.chunk.js",
+      "maxSize": "10 kB"
+    },
+    {
+      "path": "./build/static/js/4.*.chunk.js",
+      "maxSize": "120 kB"
+    }
+  ],
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "prettier",
+      "prettier/react"
+    ]
+  },
+  "prettier": {}
 }

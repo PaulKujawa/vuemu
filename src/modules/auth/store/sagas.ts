@@ -5,7 +5,7 @@ import { webStorage } from "modules/shared/utils/web-storage";
 import { buildQueryParams } from "lib/http/utils";
 import { AuthRequest } from "modules/auth/models/auth-request";
 import { UserPrivate, AuthToken } from "lib/types";
-import { ME_API } from "lib/http/me-api";
+import { ME_API } from "lib/http/user-api";
 import { SENTRY } from "lib/sentry";
 import { AppState } from "store";
 
@@ -39,6 +39,7 @@ function authViaLoginSaga({ payload }: Actions.AuthViaLoginAction) {
   const query = buildQueryParams<AuthRequest>({
     redirect_uri: window.location.origin + "/auth",
     client_id: "06ea71fe4011445093a4e6acfb6ff784",
+    scope: "user-read-playback-state user-modify-playback-state",
     response_type: "token"
   });
 

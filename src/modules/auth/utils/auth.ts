@@ -2,7 +2,7 @@ import { AuthToken } from "lib/types";
 import { AuthResponseSuccess } from "modules/auth/models/auth-response";
 
 // impure
-function isAuthTokenStillValid(tokenExpiration: number): boolean {
+export function isAuthTokenStillValid(tokenExpiration: number): boolean {
   const date = new Date();
   const now = date.getTime();
 
@@ -16,8 +16,4 @@ export function mapAuthResponseSuccess(dto: AuthResponseSuccess): AuthToken {
   const tokenExp = date.getTime() + dto.expires_in * 1000;
 
   return { accessToken: dto.access_token, tokenExp };
-}
-
-export function isAuthenticated(authToken: AuthToken | null): boolean {
-  return authToken !== null && isAuthTokenStillValid(authToken.tokenExp);
 }
