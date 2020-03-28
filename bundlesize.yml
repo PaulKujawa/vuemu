@@ -1,6 +1,6 @@
 name: Bundlesize
 
-on: [pull_request]
+on: [push]
 
 jobs:
   bundlesize:
