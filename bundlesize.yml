@@ -1,6 +1,6 @@
 name: Bundlesize
 
-on: [push]
+on: push
 
 jobs:
   bundlesize:
