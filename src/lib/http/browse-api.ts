@@ -1,4 +1,4 @@
-import { httpGet } from "lib/http/api";
+import { httpGet } from "lib/http/api-methods";
 import { buildQueryParams } from "lib/http/utils";
 import { Category, Paginated, PlaylistSimplified } from "lib/types";
 
@@ -9,11 +9,13 @@ async function getCategories(offset: number): Promise<Paginated<Category>> {
     `/browse/categories?${query}`
   );
 
-  return data.categories;
+  return data!.categories;
 }
 
-function getCategory(id: string): Promise<Category> {
-  return httpGet<Category>(`/browse/categories/${id}`);
+async function getCategory(id: string): Promise<Category> {
+  const category = await httpGet<Category>(`/browse/categories/${id}`);
+
+  return category!;
 }
 
 async function getPlaylists(
@@ -26,7 +28,7 @@ async function getPlaylists(
     `/browse/categories/${categoryId}/playlists?${query}`
   );
 
-  return data.playlists;
+  return data!.playlists;
 }
 
 export const BROWSER_API = {

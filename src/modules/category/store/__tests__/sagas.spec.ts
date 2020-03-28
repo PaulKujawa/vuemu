@@ -8,25 +8,25 @@ const action = getCategory("42");
 
 describe("getCategorySaga", () => {
   it("should do a network call, dispatch the category, and reset the playlists", () => {
-    const iterator = getCategorySaga(action);
+    const it = getCategorySaga(action);
 
-    expect(iterator.next().value).toEqual(call(BROWSER_API.getCategory, "42"));
+    expect(it.next().value).toEqual(call(BROWSER_API.getCategory, "42"));
 
     const category = {} as any;
-    expect(iterator.next(category).value).toEqual(
+    expect(it.next(category).value).toEqual(
       put(Actions.getCategorySuccess(category))
     );
 
-    expect(iterator.next().value).toEqual(put(Actions.resetPlaylists()));
+    expect(it.next().value).toEqual(put(Actions.resetPlaylists()));
   });
 
   it("should catch an error and dispatch it", () => {
-    const iterator = getCategorySaga(action);
+    const it = getCategorySaga(action);
 
-    expect(iterator.next().value).toEqual(call(BROWSER_API.getCategory, "42"));
+    expect(it.next().value).toEqual(call(BROWSER_API.getCategory, "42"));
 
     const error = {};
-    expect(iterator.throw(error).value).toEqual(
+    expect(it.throw(error).value).toEqual(
       put(Actions.getCategoryFailure(error))
     );
   });

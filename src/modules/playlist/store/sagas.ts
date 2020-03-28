@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "@redux-saga/core/effects";
-import { PLAYLISTS_API } from "lib/http/palylists-api";
+import { PLAYLISTS_API } from "lib/http/playlists-api";
 import { PlaylistFullDto } from "lib/types";
 import * as Actions from "modules/playlist/store/actions";
 import { mapPlaylistFullDto } from "modules/playlist/utils/track";

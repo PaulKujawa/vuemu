@@ -3,17 +3,17 @@ import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 import { GuardedRoute } from "modules/shared/components/GuardedRoute";
 import { NavBar } from "modules/shared/components/NavBar";
-import { Category } from "modules/category/Category";
-import { Auth } from "modules/auth/Auth";
-import { StartPage } from "modules/startpage/StartPage";
+import { Category } from "pages/Category";
+import { Auth } from "pages/Auth";
+import { StartPage } from "pages/StartPage";
 import { LinearProgress } from "modules/shared/components/LinearProgress";
 
 // SSR incompatible! see https://reactjs.org/docs/code-splitting.html#reactlazy
 const Browse = React.lazy(() =>
-  import(/* webpackChunkName: "browse" */ "modules/browse/Browse")
+  import(/* webpackChunkName: "browse" */ "pages/Browse")
 );
 const Playlist = React.lazy(() =>
-  import(/* webpackChunkName: "playlist" */ "modules/playlist/Playlist")
+  import(/* webpackChunkName: "playlist" */ "pages/Playlist")
 );
 
 export const App = () => {

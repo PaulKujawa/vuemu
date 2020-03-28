@@ -13,7 +13,8 @@ export interface AlbumSimplified {
   name: string;
   release_date: string;
   release_date_precision: "year" | "month" | "day";
-  restrictions: object;
+  // restrictions: object;
+  total_tracks: number;
   type: "album";
   uri: string;
 }

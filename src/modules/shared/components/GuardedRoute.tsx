@@ -1,4 +1,4 @@
-import { isAuthenticated } from "modules/auth/utils/auth";
+import { isAuthTokenStillValid } from "modules/auth/utils/auth";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Route, useLocation } from "react-router-dom";
@@ -18,8 +18,9 @@ interface Props {
 
 export const GuardedRoute = ({ children, ...rest }: Props) => {
   const location = useLocation();
-  const isLoggedIn = useSelector(({ auth }: AppState) =>
-    isAuthenticated(auth.authToken)
+  const isLoggedIn = useSelector(
+    ({ auth }: AppState) =>
+      !!auth.authToken && isAuthTokenStillValid(auth.authToken.tokenExp)
   );
 
   const redirect = (

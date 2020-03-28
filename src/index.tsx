@@ -11,7 +11,10 @@ import * as serviceWorker from "serviceWorker";
 import { store, browserHistory } from "store";
 import { SENTRY } from "lib/sentry";
 
+// Sentry hooks itself into window.onerror and thereby catches errors during rendering.
+// For more an explicit handling the life-cycle-method `getDerivedStateFromError` could be used.
 SENTRY.init();
+
 const theme = createMuiTheme({ palette: { primary: teal, secondary: amber } });
 
 ReactDOM.render(
