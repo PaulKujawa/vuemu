@@ -11,14 +11,14 @@ import { PlaylistTrackDto } from "lib/types/playlist-track";
 interface Playlist {
   collaborative: boolean;
   description: string | null;
-  external_urls: ExternalUrl;
+  externalUrls: ExternalUrl;
   href: string;
   id: string;
   images: Image[];
   name: string;
   owner: UserPublic;
   public: boolean | null;
-  snapshot_id: string;
+  snapshotId: string;
   type: "playlist";
   uri: string;
 }

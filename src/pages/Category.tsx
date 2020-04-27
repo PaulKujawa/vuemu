@@ -9,7 +9,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AppState } from "store";
-import { NoContentPlaceholder } from "modules/shared/NoContentPlaceholder";
+import { NoContentPlaceholder } from "modules/shared/components/NoContentPlaceholder";
 
 const useStyles = makeStyles(
   createStyles({

@@ -7,9 +7,9 @@ import { ExternalUrl, Image, Followers } from "lib/types";
 */
 export interface UserPrivate {
   // country: string;
-  display_name: string;
+  displayName: string;
   // email: string;
-  external_urls: ExternalUrl;
+  externalUrls: ExternalUrl;
   followers: Followers;
   href: string;
   id: string;
@@ -20,8 +20,8 @@ export interface UserPrivate {
 }
 
 export interface UserPublic {
-  display_name: string | null;
-  external_urls: ExternalUrl;
+  displayName: string | null;
+  externalUrls: ExternalUrl;
   followers: Followers;
   href: string;
   id: string;

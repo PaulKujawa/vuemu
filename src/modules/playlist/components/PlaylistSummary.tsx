@@ -32,7 +32,7 @@ export const PlaylistSummary = ({ playlist }: Props) => {
         Created by
       </Typography>
       <Typography variant="subtitle2" component="span">
-        {` ${playlist.owner.display_name}`}
+        {` ${playlist.owner.displayName}`}
       </Typography>
     </Box>
   );

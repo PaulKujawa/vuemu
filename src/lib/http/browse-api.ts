@@ -1,11 +1,11 @@
-import { httpGet } from "lib/http/api-methods";
+import { fetchClient } from "lib/http/api-methods";
 import { buildQueryParams } from "lib/http/utils";
 import { Category, Paginated, PlaylistSimplified } from "lib/types";
 
 async function getCategories(offset: number): Promise<Paginated<Category>> {
   const query = buildQueryParams({ offset });
 
-  const data = await httpGet<{ categories: Paginated<Category> }>(
+  const data = await fetchClient.getData<{ categories: Paginated<Category> }>(
     `/browse/categories?${query}`
   );
 
@@ -13,7 +13,9 @@ async function getCategories(offset: number): Promise<Paginated<Category>> {
 }
 
 async function getCategory(id: string): Promise<Category> {
-  const category = await httpGet<Category>(`/browse/categories/${id}`);
+  const category = await fetchClient.getData<Category>(
+    `/browse/categories/${id}`
+  );
 
   return category!;
 }
@@ -24,9 +26,9 @@ async function getPlaylists(
 ): Promise<Paginated<PlaylistSimplified>> {
   const query = buildQueryParams({ offset });
 
-  const data = await httpGet<{ playlists: Paginated<PlaylistSimplified> }>(
-    `/browse/categories/${categoryId}/playlists?${query}`
-  );
+  const data = await fetchClient.getData<{
+    playlists: Paginated<PlaylistSimplified>;
+  }>(`/browse/categories/${categoryId}/playlists?${query}`);
 
   return data!.playlists;
 }

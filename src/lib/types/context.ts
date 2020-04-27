@@ -1,7 +1,7 @@
 import { ExternalUrl } from "lib/types";
 
 export interface Context {
-  external_urls: ExternalUrl;
+  externalUrls: ExternalUrl;
   href: string;
   type: "playlist";
   uri: string;

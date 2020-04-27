@@ -5,10 +5,10 @@ import { UserPublic, Track } from "lib/types";
  * `track` being null makes no sense but happens. Spotify skips such songs themselves.
  */
 export interface PlaylistTrackDto {
-  added_at: Date;
-  added_by: UserPublic;
-  is_local: boolean;
-  primary_color: string | null;
+  addedAt: Date;
+  addedBy: UserPublic;
+  isLocal: boolean;
+  primaryColor: string | null;
   track: Track | null;
   // video_thumbnail: { url: null } | null;
 }

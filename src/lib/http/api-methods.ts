@@ -1,26 +1,86 @@
+import camelcaseKeysDeep from "camelcase-keys-deep";
+import decamelizeKeysDeep from "decamelize-keys-deep";
 import { composeApiUrl } from "lib/http/utils";
-import { store } from "store";
 
-export async function httpGet<DTO>(path: string): Promise<DTO | null> {
-  const url = composeApiUrl(path);
-  const { authToken } = store.getState().auth;
+const FetchClient = () => {
+  let authToken: string | null = null;
 
-  const res = await fetch(url, {
-    headers: {
+  const getHeaders = () => {
+    const headers: { [header: string]: string } = {
       Accept: "application/json",
-      Authorization: `Bearer ${authToken?.accessToken || ""}`
+      "Content-Type": "application/json"
+    };
+
+    if (authToken) {
+      headers.Authorization = `Bearer ${authToken}`;
     }
-  });
 
-  if (res.status === 204) {
-    return null;
-  }
+    return headers;
+  };
 
-  const data = await res.json();
+  const getResponseBody = async function<DTO>(
+    response: Response
+  ): Promise<DTO | null> {
+    if (!response.ok) {
+      throw new Error(String(response.status));
+    }
 
-  if (!res.ok) {
-    throw data;
-  }
+    if (response.status === 204) {
+      return null;
+    }
 
-  return data;
-}
+    const result = await response.json();
+
+    return camelcaseKeysDeep(result);
+  };
+
+  return {
+    setAuthToken(value: string) {
+      authToken = value;
+    },
+    async getData<DTO = unknown>(path: string): Promise<DTO | null> {
+      const response = await fetch(composeApiUrl(path), {
+        headers: getHeaders()
+      });
+
+      return getResponseBody<DTO>(response);
+    },
+
+    async postData<DTO = unknown>(
+      path: string,
+      payload: any
+    ): Promise<DTO | null> {
+      const response = await fetch(composeApiUrl(path), {
+        method: "POST",
+        headers: getHeaders(),
+        body: JSON.stringify(decamelizeKeysDeep(payload))
+      });
+
+      return getResponseBody<DTO>(response);
+    },
+
+    async putData<DTO = unknown>(
+      path: string,
+      payload: any
+    ): Promise<DTO | null> {
+      const response = await fetch(composeApiUrl(path), {
+        method: "PUT",
+        headers: getHeaders(),
+        body: JSON.stringify(decamelizeKeysDeep(payload))
+      });
+
+      return getResponseBody<DTO>(response);
+    },
+
+    async deleteData<DTO = unknown>(path: string): Promise<DTO | null> {
+      const response = await fetch(composeApiUrl(path), {
+        method: "DELETE",
+        headers: getHeaders()
+      });
+
+      return getResponseBody<DTO>(response);
+    }
+  };
+};
+
+export const fetchClient = FetchClient();

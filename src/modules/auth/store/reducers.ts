@@ -6,8 +6,8 @@ export const authReducer = (
   action: Actions.AuthActionTypes
 ): AuthState => {
   switch (action.type) {
-    case Actions.AUTH_VIA_LOGIN_SUCCESS_TYPE:
-    case Actions.AUTH_VIA_STORAGE_SUCCESS_TYPE:
+    case Actions.LOGIN_SUCCESS_TYPE:
+    case Actions.LOAD_AUTH_TOKEN_SUCCESS_TYPE:
       return {
         ...state,
         authToken: action.payload

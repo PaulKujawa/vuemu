@@ -1,24 +1,24 @@
 import { CurrentlyPlaying } from "lib/types";
-import { httpGet } from "lib/http/api-methods";
+import { fetchClient } from "lib/http/api-methods";
 
 function getCurrentlyPlayingTrack(): Promise<CurrentlyPlaying | null> {
-  return httpGet<CurrentlyPlaying>(`/me/player/currently-playing`);
+  return fetchClient.getData<CurrentlyPlaying>(`/me/player/currently-playing`);
 }
 
 function play(): Promise<null> {
-  return httpGet(`/me/player/play`);
+  return fetchClient.getData(`/me/player/play`);
 }
 
 function pause(): Promise<null> {
-  return httpGet(`/me/player/pause`);
+  return fetchClient.getData(`/me/player/pause`);
 }
 
 function previous(): Promise<null> {
-  return httpGet(`/me/player/previous`);
+  return fetchClient.getData(`/me/player/previous`);
 }
 
 function next(): Promise<null> {
-  return httpGet(`/me/player/previous`);
+  return fetchClient.getData(`/me/player/previous`);
 }
 
 export const PLAYER_API = {

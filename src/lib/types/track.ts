@@ -8,22 +8,22 @@ import {
 export interface Track {
   album: AlbumSimplified;
   artists: ArtistSimplified[];
-  available_markets: string[];
-  disc_number: number;
-  duration_ms: number;
+  availableMarkets: string[];
+  discNumber: number;
+  durationMs: number;
   explicit: boolean;
-  external_ids: ExternalId;
-  external_urls: ExternalUrl;
+  externalIds: ExternalId;
+  externalUrls: ExternalUrl;
   href: string;
   id: string;
-  is_local: boolean;
-  is_playable?: boolean;
-  linked_from?: object;
+  isLocal: boolean;
+  isPlayable?: boolean;
+  linkedFrom?: object;
   restrictions?: object;
   name: string;
   popularity: number; // 0 .. 100
-  preview_url: string;
-  track_number: number;
+  previewUrl: string;
+  trackNumber: number;
   type: string;
   uri: string;
 }

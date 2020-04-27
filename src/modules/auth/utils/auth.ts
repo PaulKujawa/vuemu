@@ -1,15 +1,13 @@
 import { AuthToken } from "lib/types";
 import { AuthResponseSuccess } from "modules/auth/models/auth-response";
 
-// impure
-export function isAuthTokenStillValid(tokenExpiration: number): boolean {
+export function isAuthTokenExpired(tokenExpiration: number): boolean {
   const date = new Date();
   const now = date.getTime();
 
-  return now < tokenExpiration;
+  return tokenExpiration < now;
 }
 
-// impure
 export function mapAuthResponseSuccess(dto: AuthResponseSuccess): AuthToken {
   const date = new Date();
 

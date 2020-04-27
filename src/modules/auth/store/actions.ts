@@ -1,35 +1,30 @@
 import { AC } from "modules/shared/utils/action-creator";
 import { UserPrivate, AuthToken } from "lib/types";
+import { Location } from "history";
 
-export const AUTH_VIA_STORAGE_MISSING_TYPE = "[AUTH] AUTH VIA STORAGE MISSING";
-export const authViaStorageMissing = () => AC(AUTH_VIA_STORAGE_MISSING_TYPE);
-export type AuthViaStorageMissingAction = ReturnType<
-  typeof authViaStorageMissing
+export const LOAD_AUTH_TOKEN_SUCCESS_TYPE = "[AUTH] LOAD AUTH TOKEN SUCCESS";
+export const loadAuthTokenSuccess = (auth: AuthToken) =>
+  AC(LOAD_AUTH_TOKEN_SUCCESS_TYPE, auth);
+export type LoadAuthTokenSuccessAction = ReturnType<
+  typeof loadAuthTokenSuccess
 >;
 
-export const AUTH_VIA_STORAGE_SUCCESS_TYPE = "[AUTH] AUTH VIA STORAGE SUCCESS";
-export const authViaStorageSuccess = (auth: AuthToken) =>
-  AC(AUTH_VIA_STORAGE_SUCCESS_TYPE, auth);
-export type AuthViaStorageSuccessAction = ReturnType<
-  typeof authViaStorageSuccess
+export const LOAD_AUTH_TOKEN_FAILURE_TYPE = "[AUTH] LOAD AUTH TOKEN FAILURE";
+export const loadAuthTokenFailure = (err: any) =>
+  AC(LOAD_AUTH_TOKEN_FAILURE_TYPE, err);
+export type LoadAuthTokenFailureAction = ReturnType<
+  typeof loadAuthTokenFailure
 >;
 
-export const AUTH_VIA_STORAGE_FAILURE_TYPE = "[AUTH] AUTH VIA STORAGE FAILURE";
-export const authViaStorageFailure = (err: any) =>
-  AC(AUTH_VIA_STORAGE_FAILURE_TYPE, err);
-export type AuthViaStorageFailureAction = ReturnType<
-  typeof authViaStorageFailure
->;
+export const LOGIN_TYPE = "[AUTH] LOGIN";
+export const login = (targetLocation?: Location) =>
+  AC(LOGIN_TYPE, targetLocation);
+export type LoginAction = ReturnType<typeof login>;
 
-export const AUTH_VIA_LOGIN_TYPE = "[AUTH] AUTH VIA LOGIN";
-export const authViaLogin = (targetUrl?: string) =>
-  AC(AUTH_VIA_LOGIN_TYPE, targetUrl);
-export type AuthViaLoginAction = ReturnType<typeof authViaLogin>;
-
-export const AUTH_VIA_LOGIN_SUCCESS_TYPE = "[AUTH] AUTH VIA LOGIN SUCCESS";
-export const authViaLoginSuccess = (payload: AuthToken) =>
-  AC(AUTH_VIA_LOGIN_SUCCESS_TYPE, payload);
-export type AuthViaLoginSuccessAction = ReturnType<typeof authViaLoginSuccess>;
+export const LOGIN_SUCCESS_TYPE = "[AUTH] LOGIN SUCCESS";
+export const loginSuccess = (payload: AuthToken) =>
+  AC(LOGIN_SUCCESS_TYPE, payload);
+export type LoginSuccessAction = ReturnType<typeof loginSuccess>;
 
 export const GET_USER_TYPE = "[AUTH] GET USER";
 export const getUser = () => AC(GET_USER_TYPE);
@@ -45,11 +40,10 @@ export const getUserFailure = (err: any) => AC(GET_USER_FAILURE_TYPE, err);
 export type GetUserFailureAction = ReturnType<typeof getUserFailure>;
 
 export type AuthActionTypes =
-  | AuthViaStorageMissingAction
-  | AuthViaStorageSuccessAction
-  | AuthViaStorageFailureAction
-  | AuthViaLoginAction
-  | AuthViaLoginSuccessAction
+  | LoadAuthTokenSuccessAction
+  | LoadAuthTokenFailureAction
+  | LoginAction
+  | LoginSuccessAction
   | GetUserAction
   | GetUserSuccessAction
   | GetUserFailureAction;

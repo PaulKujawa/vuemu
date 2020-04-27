@@ -1,7 +1,7 @@
 import { ExternalUrl } from "lib/types";
 
 export interface ArtistSimplified {
-  external_urls: ExternalUrl;
+  externalUrls: ExternalUrl;
   href: string;
   id: string;
   name: string;

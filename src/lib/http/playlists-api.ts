@@ -1,8 +1,10 @@
 import { PlaylistFull } from "lib/types";
-import { httpGet } from "lib/http/api-methods";
+import { fetchClient } from "lib/http/api-methods";
 
 async function getPlaylist(playlistId: string): Promise<PlaylistFull> {
-  const playlist = await httpGet<PlaylistFull>(`/playlists/${playlistId}`);
+  const playlist = await fetchClient.getData<PlaylistFull>(
+    `/playlists/${playlistId}`
+  );
 
   return playlist!;
 }
