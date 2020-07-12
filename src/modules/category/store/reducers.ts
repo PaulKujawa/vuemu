@@ -1,36 +1,35 @@
-import * as Actions from "./actions";
-import { CategoryState, initialState } from "modules/category/store/state";
+import { CategoryState, initialState, CategoryActions } from ".";
 
 export const categoryReducer = (
   state: CategoryState = initialState,
-  action: Actions.CategoryActionTypes
+  action: CategoryActions.CategoryActionTypes
 ): CategoryState => {
   switch (action.type) {
-    case Actions.GET_CATEGORY_TYPE: {
+    case CategoryActions.GET_CATEGORY_TYPE: {
       return {
         ...state,
         isCategoryPending: true
       };
     }
-    case Actions.GET_CATEGORY_SUCCESS_TYPE:
+    case CategoryActions.GET_CATEGORY_SUCCESS_TYPE:
       return {
         ...state,
         category: action.payload,
         isCategoryPending: false
       };
-    case Actions.GET_CATEGORY_FAILURE_TYPE:
+    case CategoryActions.GET_CATEGORY_FAILURE_TYPE:
       return {
         ...state,
         categoryError: action.payload,
         isCategoryPending: false
       };
 
-    case Actions.GET_PLAYLISTS_TYPE:
+    case CategoryActions.GET_PLAYLISTS_TYPE:
       return {
         ...state,
         arePlaylistsPending: true
       };
-    case Actions.GET_PLAYLISTS_SUCCESS_TYPE: {
+    case CategoryActions.GET_PLAYLISTS_SUCCESS_TYPE: {
       const { items, ...pagination } = action.payload;
 
       return {
@@ -40,13 +39,13 @@ export const categoryReducer = (
         playlistsPagination: pagination
       };
     }
-    case Actions.GET_PLAYLISTS_FAILURE_TYPE:
+    case CategoryActions.GET_PLAYLISTS_FAILURE_TYPE:
       return {
         ...state,
         playlistsError: action.payload,
         arePlaylistsPending: false
       };
-    case Actions.RESET_PLAYLISTS_TYPE:
+    case CategoryActions.RESET_PLAYLISTS_TYPE:
       return {
         ...state,
         playlists: initialState.playlists,

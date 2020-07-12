@@ -1,5 +1,5 @@
-import { AC } from "modules/shared/utils/action-creator";
-import { UserPrivate, AuthToken } from "lib/types";
+import { AC } from "modules/shared";
+import { UserPrivate, AuthToken } from "values";
 import { Location } from "history";
 
 export const LOAD_AUTH_TOKEN_SUCCESS_TYPE = "[AUTH] LOAD AUTH TOKEN SUCCESS";

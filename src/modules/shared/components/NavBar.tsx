@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Typography, Link } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { NavBarSearchInput } from "modules/shared/components/NavBarSearchInput";
+import { NavBarSearchInput } from "modules/shared";
 import React from "react";
 
 const useStyles = makeStyles((theme: Theme) =>

@@ -1,5 +1,5 @@
-import { Category, Paginated } from "lib/types";
-import { AC } from "modules/shared/utils/action-creator";
+import { Category, Paginated } from "values";
+import { AC } from "modules/shared";
 
 export const GET_CATEGORIES_TYPE = "[BROWSE] GET CATEGORIES";
 export const getCategories = (offset: number) =>

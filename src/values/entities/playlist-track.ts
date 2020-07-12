@@ -1,4 +1,4 @@
-import { UserPublic, Track } from "lib/types";
+import { UserPublic, Track } from ".";
 
 /*
  * `video_thumbnail` is not documented and seems to be never set

@@ -1,10 +1,10 @@
 import { call, put, takeLatest } from "@redux-saga/core/effects";
 import { PLAYLISTS_API } from "lib/http/playlists-api";
-import { PlaylistFullDto } from "lib/types";
-import * as Actions from "modules/playlist/store/actions";
-import { mapPlaylistFullDto } from "modules/playlist/utils/track";
+import { PlaylistFullDto } from "values";
+import { mapPlaylistFullDto } from "../";
+import { PlaylistActions } from ".";
 
-function* getPlaylistSaga({ payload }: Actions.GetPlaylistAction) {
+function* getPlaylistSaga({ payload }: PlaylistActions.GetPlaylistAction) {
   try {
     const playlistDto: PlaylistFullDto = yield call(
       PLAYLISTS_API.getPlaylist,
@@ -13,12 +13,12 @@ function* getPlaylistSaga({ payload }: Actions.GetPlaylistAction) {
 
     const playlist = mapPlaylistFullDto(playlistDto);
 
-    yield put(Actions.getPlaylistSuccess(playlist));
+    yield put(PlaylistActions.getPlaylistSuccess(playlist));
   } catch (err) {
-    yield put(Actions.getPlaylistFailure(err));
+    yield put(PlaylistActions.getPlaylistFailure(err));
   }
 }
 
 export const playlistSagas = [
-  takeLatest(Actions.GET_PLAYLIST_TYPE, getPlaylistSaga)
+  takeLatest(PlaylistActions.GET_PLAYLIST_TYPE, getPlaylistSaga)
 ];

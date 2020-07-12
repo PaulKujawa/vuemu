@@ -1,4 +1,4 @@
-import { Context, Track } from "lib/types";
+import { Context, Track } from ".";
 
 export interface CurrentlyPlaying {
   context: Context;

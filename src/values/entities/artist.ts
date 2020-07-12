@@ -1,4 +1,4 @@
-import { ExternalUrl } from "lib/types";
+import { ExternalUrl } from ".";
 
 export interface ArtistSimplified {
   externalUrls: ExternalUrl;

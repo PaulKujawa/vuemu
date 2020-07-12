@@ -1,17 +1,16 @@
-import * as Actions from "./actions";
-import { BrowseState, initialState } from "modules/browse/store/state";
+import { BrowseActions, BrowseState, initialState } from ".";
 
 export const browseReducer = (
   state: BrowseState = initialState,
-  action: Actions.BrowseActionTypes
+  action: BrowseActions.BrowseActionTypes
 ): BrowseState => {
   switch (action.type) {
-    case Actions.GET_CATEGORIES_TYPE:
+    case BrowseActions.GET_CATEGORIES_TYPE:
       return {
         ...state,
         areCategoriesPending: true
       };
-    case Actions.GET_CATEGORIES_SUCCESS_TYPE: {
+    case BrowseActions.GET_CATEGORIES_SUCCESS_TYPE: {
       const { items, ...pagination } = action.payload;
 
       return {
@@ -21,7 +20,7 @@ export const browseReducer = (
         categoriesPagination: pagination
       };
     }
-    case Actions.GET_CATEGORIES_FAILURE_TYPE:
+    case BrowseActions.GET_CATEGORIES_FAILURE_TYPE:
       return {
         ...state,
         categoriesError: action.payload,

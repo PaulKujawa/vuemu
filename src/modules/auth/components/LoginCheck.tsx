@@ -1,9 +1,7 @@
-import { mapAuthResponseSuccess } from "modules/auth/utils/auth";
-import { AuthResponse } from "modules/auth/models/auth-response";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginSuccess } from "modules/auth/store/actions";
-import { parseQuery } from "modules/shared/utils/parse-query";
+import { parseQuery } from "modules/shared";
+import { AuthResponse, AuthActions, mapAuthResponseSuccess } from "..";
 
 export const LoginCheck = () => {
   const dispatch = useDispatch();
@@ -13,7 +11,7 @@ export const LoginCheck = () => {
 
   if ("access_token" in authResponse) {
     const auth = mapAuthResponseSuccess(authResponse);
-    dispatch(loginSuccess(auth));
+    dispatch(AuthActions.loginSuccess(auth));
   }
 
   // TODO handle failed or rather denied authentication

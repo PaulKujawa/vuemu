@@ -1,25 +1,24 @@
-import * as Actions from "modules/auth/store/actions";
-import { AuthState, initialState } from "modules/auth/store/state";
+import { AuthState, initialState, AuthActions } from ".";
 
 export const authReducer = (
   state: AuthState = initialState,
-  action: Actions.AuthActionTypes
+  action: AuthActions.AuthActionTypes
 ): AuthState => {
   switch (action.type) {
-    case Actions.LOGIN_SUCCESS_TYPE:
-    case Actions.LOAD_AUTH_TOKEN_SUCCESS_TYPE:
+    case AuthActions.LOGIN_SUCCESS_TYPE:
+    case AuthActions.LOAD_AUTH_TOKEN_SUCCESS_TYPE:
       return {
         ...state,
         authToken: action.payload
       };
 
-    case Actions.GET_USER_SUCCESS_TYPE:
+    case AuthActions.GET_USER_SUCCESS_TYPE:
       return {
         ...state,
         user: action.payload
       };
 
-    case Actions.GET_USER_FAILURE_TYPE:
+    case AuthActions.GET_USER_FAILURE_TYPE:
       return {
         ...state,
         userError: action.payload

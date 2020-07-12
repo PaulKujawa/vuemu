@@ -1,6 +1,6 @@
 import { fetchClient } from "lib/http/api-methods";
-import { buildQueryParams } from "lib/http/utils";
-import { Category, Paginated, PlaylistSimplified } from "lib/types";
+import { Category, Paginated, PlaylistSimplified } from "values";
+import { buildQueryParams } from "modules/shared";
 
 async function getCategories(offset: number): Promise<Paginated<Category>> {
   const query = buildQueryParams({ offset });

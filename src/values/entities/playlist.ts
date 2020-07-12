@@ -4,9 +4,9 @@ import {
   UserPublic,
   PlaylistTrack,
   Paginated,
-  Followers
-} from "lib/types";
-import { PlaylistTrackDto } from "lib/types/playlist-track";
+  Followers,
+  PlaylistTrackDto
+} from ".";
 
 interface Playlist {
   collaborative: boolean;

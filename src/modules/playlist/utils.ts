@@ -3,7 +3,7 @@ import {
   PlaylistTrackDto,
   PlaylistFullDto,
   PlaylistFull
-} from "lib/types";
+} from "values";
 
 function filterLinkedPlaylistTracks(
   tracks: PlaylistTrackDto[]

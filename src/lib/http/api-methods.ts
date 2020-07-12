@@ -1,6 +1,6 @@
 import camelcaseKeysDeep from "camelcase-keys-deep";
 import decamelizeKeysDeep from "decamelize-keys-deep";
-import { composeApiUrl } from "lib/http/utils";
+import { composeApiUrl } from "modules/shared";
 
 const FetchClient = () => {
   let authToken: string | null = null;
@@ -31,7 +31,7 @@ const FetchClient = () => {
 
     const result = await response.json();
 
-    return camelcaseKeysDeep(result);
+    return camelcaseKeysDeep(result) as DTO;
   };
 
   return {

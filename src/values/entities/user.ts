@@ -1,4 +1,4 @@
-import { ExternalUrl, Image, Followers } from "lib/types";
+import { ExternalUrl, Image, Followers } from ".";
 
 /* 
   commented out fields require additional Auth Scopes

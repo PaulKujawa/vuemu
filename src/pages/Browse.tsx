@@ -1,10 +1,12 @@
-import { createStyles, Grid, makeStyles } from "@material-ui/core";
-import { CategoryCard } from "modules/browse/components/CategoryCard";
-import { getCategories } from "modules/browse/store/actions";
-import { LinearProgress } from "modules/shared/components/LinearProgress";
-import { PageHeadline } from "modules/shared/components/PageHeadline";
-import { getNextBatchOffset, hasNextBatch } from "modules/shared/utils/paging";
 import React from "react";
+import { createStyles, Grid, makeStyles } from "@material-ui/core";
+import { CategoryCard, BrowseActions } from "modules/browse";
+import {
+  getNextBatchOffset,
+  hasNextBatch,
+  PageHeadline,
+  LinearProgress
+} from "modules/shared";
 import InfiniteScroll from "react-infinite-scroller";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { AppState } from "store";
@@ -36,7 +38,7 @@ export default () => {
   }
 
   const loadCategories = () =>
-    dispatch(getCategories(getNextBatchOffset(pagination)));
+    dispatch(BrowseActions.getCategories(getNextBatchOffset(pagination)));
 
   return (
     <React.Fragment>

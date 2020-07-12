@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, makeStyles, createStyles, Typography } from "@material-ui/core";
-import { ImageWithPlaceholder } from "modules/shared/components/ImageWithPlaceholder";
-import { PlaylistFull } from "lib/types";
+import { ImageWithPlaceholder } from "modules/shared";
+import { PlaylistFull } from "values";
 
 interface Props {
   playlist: PlaylistFull;

@@ -1,4 +1,4 @@
-import { Image } from "lib/types";
+import { Image } from ".";
 
 export interface Category {
   href: string;

@@ -5,9 +5,8 @@ import {
   Typography,
   makeStyles
 } from "@material-ui/core";
-import { ImageWithPlaceholder } from "modules/shared/components/ImageWithPlaceholder";
-import { Category } from "lib/types";
-import { AdapterLink } from "modules/shared/components/AdapterLink";
+import { AdapterLink, ImageWithPlaceholder } from "modules/shared";
+import { Category } from "values";
 
 interface Props {
   category: Category;

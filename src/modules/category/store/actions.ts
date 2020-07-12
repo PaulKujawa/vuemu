@@ -1,5 +1,5 @@
-import { Category, Paginated, PlaylistSimplified } from "lib/types";
-import { AC } from "modules/shared/utils/action-creator";
+import { Category, Paginated, PlaylistSimplified } from "values";
+import { AC } from "modules/shared";
 
 export const GET_CATEGORY_TYPE = "[CATEGORY] GET CATEGORY";
 export const getCategory = (id: string) => AC(GET_CATEGORY_TYPE, id);

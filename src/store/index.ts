@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import { routerMiddleware } from "connected-react-router";
 import { rootSagas, sagaMiddleware } from "store/sagas";
-import { browserHistory, rootReducer } from "store/reducers";
 import { SENTRY } from "lib/sentry";
+import { browserHistory, rootReducer } from "./reducers";
 
 export { browserHistory };
 

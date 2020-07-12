@@ -1,9 +1,4 @@
-import {
-  AlbumSimplified,
-  ArtistSimplified,
-  ExternalUrl,
-  ExternalId
-} from "lib/types";
+import { AlbumSimplified, ArtistSimplified, ExternalUrl, ExternalId } from ".";
 
 export interface Track {
   album: AlbumSimplified;

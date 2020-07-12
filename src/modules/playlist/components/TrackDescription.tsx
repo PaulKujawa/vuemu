@@ -1,4 +1,4 @@
-import { Track } from "lib/types";
+import { Track } from "values";
 import { Typography, ListItemText, Box } from "@material-ui/core";
 import React from "react";
 

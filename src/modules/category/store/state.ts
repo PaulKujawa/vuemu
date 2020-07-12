@@ -1,4 +1,4 @@
-import { Category, Pagination, PlaylistSimplified } from "lib/types";
+import { Category, Pagination, PlaylistSimplified } from "values";
 
 export interface CategoryState {
   category: Category | null;

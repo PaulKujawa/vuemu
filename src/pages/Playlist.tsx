@@ -2,12 +2,9 @@ import React, { useEffect } from "react";
 import { AppState } from "store";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPlaylist } from "modules/playlist/store/actions";
-import { LinearProgress } from "modules/shared/components/LinearProgress";
-import { PageHeadline } from "modules/shared/components/PageHeadline";
+import { PlaylistSummary, Tracks, PlaylistActions } from "modules/playlist";
+import { LinearProgress, PageHeadline } from "modules/shared";
 import { Grid } from "@material-ui/core";
-import { PlaylistSummary } from "modules/playlist/components/PlaylistSummary";
-import { Tracks } from "modules/playlist/components/Tracks";
 
 export default () => {
   const { id } = useParams();
@@ -24,7 +21,7 @@ export default () => {
 
   useEffect(() => {
     if (id) {
-      dispatch(getPlaylist(id));
+      dispatch(PlaylistActions.getPlaylist(id));
     }
   }, [id, dispatch]);
 

@@ -1,4 +1,4 @@
-import { UserPrivate, AuthToken } from "lib/types";
+import { UserPrivate, AuthToken } from "values";
 
 export interface AuthState {
   authToken: AuthToken | null;

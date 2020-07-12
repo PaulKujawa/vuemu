@@ -1,5 +1,4 @@
-import { ArtistSimplified, ExternalUrl } from "lib/types";
-import { Image } from "lib/types/image";
+import { Image, ArtistSimplified, ExternalUrl } from ".";
 
 export interface AlbumSimplified {
   albumGroup?: "album" | "single" | "compilation" | "appears_on";
@@ -13,7 +12,7 @@ export interface AlbumSimplified {
   name: string;
   releaseDate: string;
   releaseDatePrecision: "year" | "month" | "day";
-  restrictions: object;
+  // restrictions: object;
   totalTracks: number;
   type: "album";
   uri: string;

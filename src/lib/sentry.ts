@@ -8,7 +8,7 @@ import {
   withScope,
   Severity
 } from "@sentry/browser";
-import { UserPrivate } from "lib/types";
+import { UserPrivate } from "values";
 import createSentryMiddleware from "redux-sentry-middleware";
 
 function init() {

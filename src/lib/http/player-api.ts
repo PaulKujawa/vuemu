@@ -1,4 +1,4 @@
-import { CurrentlyPlaying } from "lib/types";
+import { CurrentlyPlaying } from "values";
 import { fetchClient } from "lib/http/api-methods";
 
 function getCurrentlyPlayingTrack(): Promise<CurrentlyPlaying | null> {

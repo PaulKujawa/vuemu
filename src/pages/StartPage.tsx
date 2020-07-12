@@ -1,7 +1,7 @@
 import { Typography, Button, Theme } from "@material-ui/core";
 import { makeStyles, createStyles } from "@material-ui/styles";
-import { AdapterLink } from "modules/shared/components/AdapterLink";
-import { SvgContainer } from "modules/startpage/components/svg-container";
+import { AdapterLink } from "modules/shared";
+import { SvgContainer } from "modules/startpage";
 import React from "react";
 
 const useStyles = makeStyles((theme: Theme) =>

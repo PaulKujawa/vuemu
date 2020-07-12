@@ -1,5 +1,5 @@
 import { fetchClient } from "lib/http/api-methods";
-import { UserPrivate } from "lib/types";
+import { UserPrivate } from "values";
 
 async function getCurrentUser(): Promise<UserPrivate> {
   return (await fetchClient.getData<UserPrivate>(`/me`))!;

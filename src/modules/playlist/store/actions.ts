@@ -1,5 +1,5 @@
-import { PlaylistFull } from "lib/types";
-import { AC } from "modules/shared/utils/action-creator";
+import { PlaylistFull } from "values";
+import { AC } from "modules/shared";
 
 export const GET_PLAYLIST_TYPE = "[PLAYLIST] GET PLAYLIST";
 export const getPlaylist = (id: string) => AC(GET_PLAYLIST_TYPE, id);

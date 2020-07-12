@@ -1,4 +1,4 @@
-import { PlaylistFull } from "lib/types";
+import { PlaylistFull } from "values";
 import { fetchClient } from "lib/http/api-methods";
 
 async function getPlaylist(playlistId: string): Promise<PlaylistFull> {

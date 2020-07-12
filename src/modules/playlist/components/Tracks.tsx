@@ -1,3 +1,4 @@
+import React from "react";
 import {
   makeStyles,
   createStyles,
@@ -7,11 +8,10 @@ import {
   Box
 } from "@material-ui/core";
 import MusicNoteOutlinedIcon from "@material-ui/icons/MusicNoteOutlined";
-import { Paginated, PlaylistTrack } from "lib/types";
-import { formatDuration } from "modules/playlist/utils/track";
-import { TrackDescription } from "modules/playlist/components/TrackDescription";
-import { NoContentPlaceholder } from "modules/shared/components/NoContentPlaceholder";
-import React from "react";
+import { Paginated, PlaylistTrack } from "values";
+import { NoContentPlaceholder } from "modules/shared";
+import { formatDuration } from "../";
+import { TrackDescription } from ".";
 
 interface Props {
   playlistTracks: Paginated<PlaylistTrack>;

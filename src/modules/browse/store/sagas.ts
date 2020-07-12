@@ -1,21 +1,21 @@
 import { call, put, takeLatest } from "@redux-saga/core/effects";
 import { BROWSER_API } from "lib/http/browse-api";
-import * as Actions from "modules/browse/store/actions";
-import { Category, Paginated } from "lib/types";
+import { Category, Paginated } from "values";
+import { BrowseActions } from ".";
 
-function* getCategoriesSaga({ payload }: Actions.GetCategoriesAction) {
+function* getCategoriesSaga({ payload }: BrowseActions.GetCategoriesAction) {
   try {
     const categories: Paginated<Category> = yield call(
       BROWSER_API.getCategories,
       payload
     );
 
-    yield put(Actions.getCategoriesSuccess(categories));
+    yield put(BrowseActions.getCategoriesSuccess(categories));
   } catch (err) {
-    yield put(Actions.getCategoriesFailure(err));
+    yield put(BrowseActions.getCategoriesFailure(err));
   }
 }
 
 export const browseSagas = [
-  takeLatest(Actions.GET_CATEGORIES_TYPE, getCategoriesSaga)
+  takeLatest(BrowseActions.GET_CATEGORIES_TYPE, getCategoriesSaga)
 ];

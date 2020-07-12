@@ -1,9 +1,9 @@
-import { isAuthTokenExpired } from "modules/auth/utils/auth";
+import { isAuthTokenExpired } from "modules/auth/utils";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, useLocation } from "react-router-dom";
 import { AppState } from "store";
-import { login } from "modules/auth/store/actions";
+import { AuthActions } from "modules/auth";
 
 /*
  * see https://reacttraining.com/react-router/web/example/auth-workflow
@@ -27,7 +27,7 @@ export const GuardedRoute = ({ children, ...rest }: Props) => {
   );
 
   if (!isLoggedIn) {
-    dispatch(login(location));
+    dispatch(AuthActions.login(location));
     return null;
   }
 

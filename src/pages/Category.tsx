@@ -1,15 +1,17 @@
 import { Grid, makeStyles, createStyles } from "@material-ui/core";
-import { PlaylistCard } from "modules/category/components/PlaylistCard";
-import { getCategory, getPlaylists } from "modules/category/store/actions";
-import { LinearProgress } from "modules/shared/components/LinearProgress";
-import { PageHeadline } from "modules/shared/components/PageHeadline";
-import { getNextBatchOffset, hasNextBatch } from "modules/shared/utils/paging";
+import { PlaylistCard, CategoryActions } from "modules/category";
+import {
+  NoContentPlaceholder,
+  getNextBatchOffset,
+  hasNextBatch,
+  LinearProgress,
+  PageHeadline
+} from "modules/shared";
 import React, { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AppState } from "store";
-import { NoContentPlaceholder } from "modules/shared/components/NoContentPlaceholder";
 
 const useStyles = makeStyles(
   createStyles({
@@ -44,7 +46,7 @@ export const Category = () => {
 
   useEffect(() => {
     if (id) {
-      dispatch(getCategory(id));
+      dispatch(CategoryActions.getCategory(id));
     }
   }, [id, dispatch]);
 
@@ -58,7 +60,9 @@ export const Category = () => {
   }
 
   const loadPlaylists = () =>
-    dispatch(getPlaylists(id!, getNextBatchOffset(playlistsPagination)));
+    dispatch(
+      CategoryActions.getPlaylists(id!, getNextBatchOffset(playlistsPagination))
+    );
 
   return (
     <React.Fragment>

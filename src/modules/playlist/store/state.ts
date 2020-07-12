@@ -1,4 +1,4 @@
-import { PlaylistFull } from "lib/types";
+import { PlaylistFull } from "values";
 
 export interface PlaylistState {
   playlist: PlaylistFull | null;

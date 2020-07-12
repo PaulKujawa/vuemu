@@ -1,5 +1,5 @@
-import { AuthToken } from "lib/types";
-import { AuthResponseSuccess } from "modules/auth/models/auth-response";
+import { AuthToken } from "values";
+import { AuthResponseSuccess } from "./models";
 
 export function isAuthTokenExpired(tokenExpiration: number): boolean {
   const date = new Date();

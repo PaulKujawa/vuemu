@@ -1,12 +1,10 @@
 import Container from "@material-ui/core/Container";
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
-import { GuardedRoute } from "modules/shared/components/GuardedRoute";
-import { NavBar } from "modules/shared/components/NavBar";
+import { GuardedRoute, NavBar, LinearProgress } from "modules/shared";
 import { Category } from "pages/Category";
 import { Auth } from "pages/Auth";
 import { StartPage } from "pages/StartPage";
-import { LinearProgress } from "modules/shared/components/LinearProgress";
 
 // SSR incompatible! see https://reactjs.org/docs/code-splitting.html#reactlazy
 const Browse = React.lazy(() =>

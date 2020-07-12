@@ -1,10 +1,8 @@
-import { getCategorySaga } from "modules/category/store/sagas";
-import { getCategory } from "modules/category/store/actions";
 import { call, put } from "@redux-saga/core/effects";
 import { BROWSER_API } from "lib/http/browse-api";
-import * as Actions from "modules/category/store/actions";
+import { getCategorySaga, CategoryActions } from "..";
 
-const action = getCategory("42");
+const action = CategoryActions.getCategory("42");
 
 describe("getCategorySaga", () => {
   it("should do a network call, dispatch the category, and reset the playlists", () => {
@@ -14,10 +12,10 @@ describe("getCategorySaga", () => {
 
     const category = {} as any;
     expect(it.next(category).value).toEqual(
-      put(Actions.getCategorySuccess(category))
+      put(CategoryActions.getCategorySuccess(category))
     );
 
-    expect(it.next().value).toEqual(put(Actions.resetPlaylists()));
+    expect(it.next().value).toEqual(put(CategoryActions.resetPlaylists()));
   });
 
   it("should catch an error and dispatch it", () => {
@@ -27,7 +25,7 @@ describe("getCategorySaga", () => {
 
     const error = {};
     expect(it.throw(error).value).toEqual(
-      put(Actions.getCategoryFailure(error))
+      put(CategoryActions.getCategoryFailure(error))
     );
   });
 });

@@ -1,4 +1,4 @@
-import { Category, Pagination } from "lib/types";
+import { Category, Pagination } from "values";
 
 export interface BrowseState {
   categories: Category[];
