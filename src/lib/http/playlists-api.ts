@@ -1,5 +1,5 @@
 import { PlaylistFull } from "values";
-import { fetchClient } from "lib/http/api-methods";
+import { fetchClient } from "./api-methods";
 
 async function getPlaylist(playlistId: string): Promise<PlaylistFull> {
   const playlist = await fetchClient.getData<PlaylistFull>(

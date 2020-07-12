@@ -6,7 +6,11 @@ import {
   Typography
 } from "@material-ui/core";
 import { PlaylistSimplified } from "values";
-import { AdapterLink, ImageWithPlaceholder } from "modules/shared";
+import {
+  AdapterLink,
+  ImageWithPlaceholder,
+  stripHtmlTags
+} from "modules/shared";
 
 interface Props {
   playlist: PlaylistSimplified;
@@ -22,7 +26,9 @@ export const PlaylistCard = ({ playlist }: Props) => {
           alt={playlist.name}
         />
         <CardContent>
-          <Typography variant="body1">{playlist.description}</Typography>
+          <Typography variant="body1">
+            {playlist.description && stripHtmlTags(playlist.description)}
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>

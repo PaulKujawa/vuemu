@@ -1,9 +1,14 @@
 import camelcaseKeysDeep from "camelcase-keys-deep";
 import decamelizeKeysDeep from "decamelize-keys-deep";
-import { composeApiUrl } from "modules/shared";
 
 const FetchClient = () => {
   let authToken: string | null = null;
+
+  const composeApiUrl = (path: string): string => {
+    const _path = path.startsWith("/") ? path.substring(1) : path;
+
+    return `https://api.spotify.com/v1/${_path}`;
+  };
 
   const getHeaders = () => {
     const headers: { [header: string]: string } = {

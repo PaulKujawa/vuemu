@@ -17,18 +17,17 @@ export function buildQueryParams<T>(queryParams: T): string {
   return encodeURI(query);
 }
 
-export function composeApiUrl(path: string): string {
-  const _path = path.startsWith("/") ? path.substring(1) : path;
-
-  return `https://api.spotify.com/v1/${_path}`;
-}
-
 export function getNextBatchOffset(pagination: Pagination | null): number {
   if (!pagination) {
     return 0;
   }
 
   return pagination.offset + pagination.limit;
+}
+
+export function stripHtmlTags(text: string): string {
+  // see https://stackoverflow.com/a/5002161/8466350
+  return text.replace(/<\/?[^>]+(>|$)/g, "");
 }
 
 export function hasNextBatch(pagination: Pagination | null): boolean {

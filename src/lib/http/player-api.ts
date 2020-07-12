@@ -1,5 +1,5 @@
 import { CurrentlyPlaying } from "values";
-import { fetchClient } from "lib/http/api-methods";
+import { fetchClient } from "./api-methods";
 
 function getCurrentlyPlayingTrack(): Promise<CurrentlyPlaying | null> {
   return fetchClient.getData<CurrentlyPlaying>(`/me/player/currently-playing`);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, makeStyles, createStyles, Typography } from "@material-ui/core";
-import { ImageWithPlaceholder } from "modules/shared";
+import { ImageWithPlaceholder, stripHtmlTags } from "modules/shared";
 import { PlaylistFull } from "values";
 
 interface Props {
@@ -25,7 +25,9 @@ export const PlaylistSummary = ({ playlist }: Props) => {
       <ImageWithPlaceholder url={playlist.images[0].url} alt={playlist.name} />
       {/* </Box> */}
       <Box my={2}>
-        <Typography variant="subtitle1">{playlist.description}</Typography>
+        <Typography variant="subtitle1">
+          {playlist.description && stripHtmlTags(playlist.description)}
+        </Typography>
       </Box>
       <Typography variant="subtitle2">{playlist.tracks.total} Songs</Typography>
       <Typography variant="caption" component="span">
