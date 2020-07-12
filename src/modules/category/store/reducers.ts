@@ -6,36 +6,26 @@ export const categoryReducer = (
 ): CategoryState => {
   switch (action.type) {
     case CategoryActions.GET_CATEGORY_TYPE: {
-      return {
-        ...state,
-        isCategoryPending: true
-      };
+      return { ...state, isCategoryLoading: true };
     }
     case CategoryActions.GET_CATEGORY_SUCCESS_TYPE:
-      return {
-        ...state,
-        category: action.payload,
-        isCategoryPending: false
-      };
+      return { ...state, category: action.payload, isCategoryLoading: false };
     case CategoryActions.GET_CATEGORY_FAILURE_TYPE:
       return {
         ...state,
         categoryError: action.payload,
-        isCategoryPending: false
+        isCategoryLoading: false
       };
 
     case CategoryActions.GET_PLAYLISTS_TYPE:
-      return {
-        ...state,
-        arePlaylistsPending: true
-      };
+      return { ...state, arePlaylistsLoading: true };
     case CategoryActions.GET_PLAYLISTS_SUCCESS_TYPE: {
       const { items, ...pagination } = action.payload;
 
       return {
         ...state,
         playlists: state.playlists.concat(items),
-        arePlaylistsPending: false,
+        arePlaylistsLoading: false,
         playlistsPagination: pagination
       };
     }
@@ -43,7 +33,7 @@ export const categoryReducer = (
       return {
         ...state,
         playlistsError: action.payload,
-        arePlaylistsPending: false
+        arePlaylistsLoading: false
       };
     case CategoryActions.RESET_PLAYLISTS_TYPE:
       return {

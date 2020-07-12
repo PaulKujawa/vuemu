@@ -6,17 +6,14 @@ export const browseReducer = (
 ): BrowseState => {
   switch (action.type) {
     case BrowseActions.GET_CATEGORIES_TYPE:
-      return {
-        ...state,
-        areCategoriesPending: true
-      };
+      return { ...state, areCategoriesLoading: true };
     case BrowseActions.GET_CATEGORIES_SUCCESS_TYPE: {
       const { items, ...pagination } = action.payload;
 
       return {
         ...state,
         categories: state.categories.concat(items),
-        areCategoriesPending: false,
+        areCategoriesLoading: false,
         categoriesPagination: pagination
       };
     }
@@ -24,7 +21,7 @@ export const browseReducer = (
       return {
         ...state,
         categoriesError: action.payload,
-        areCategoriesPending: false
+        areCategoriesLoading: false
       };
     default:
       return state;

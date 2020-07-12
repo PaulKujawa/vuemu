@@ -17,9 +17,13 @@ import {
   formatDuration,
   timeBetweenThenAndNo
 } from "modules/shared";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { PlayerActions } from "modules/player";
+import { AppState } from "store";
 
 interface Props {
   playlistTracks: Paginated<PlaylistTrack>;
+  playlistUri: string;
 }
 
 const useStyles = makeStyles(
@@ -35,8 +39,14 @@ const useStyles = makeStyles(
   })
 );
 
-export const PlaylistTrackList = ({ playlistTracks }: Props) => {
+export const PlaylistTrackList = ({ playlistTracks, playlistUri }: Props) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
+
+  const playing = useSelector(
+    ({ player }: AppState) => player.currentlyPlaying,
+    shallowEqual
+  );
 
   /*
    * too long artist list looks bad, `noWrap` even worse, and columns can't be reliably sized:
@@ -61,13 +71,26 @@ export const PlaylistTrackList = ({ playlistTracks }: Props) => {
         <TableHead>
           <TableRow>
             {["Title", "Artist", "Album", "Changed", "Duration"].map(label => (
-              <TableCell>{label}</TableCell>
+              <TableCell key={label}>{label}</TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {playlistTracks.items.map(item => (
-            <TableRow className={classes.row} hover key={item.track.id}>
+          {playlistTracks.items.map((item, idx) => (
+            <TableRow
+              className={classes.row}
+              selected={item.track.id === playing?.item.id}
+              hover
+              onClick={() => {
+                dispatch(
+                  PlayerActions.play({
+                    contextUri: playlistUri,
+                    offset: { position: idx }
+                  })
+                );
+              }}
+              key={item.track.id}
+            >
               <TableCell component="th" scope="row">
                 {item.track.name}
               </TableCell>

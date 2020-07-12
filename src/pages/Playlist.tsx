@@ -9,16 +9,17 @@ import {
 } from "modules/playlist";
 import { LinearProgress } from "modules/shared";
 import { Grid, Box } from "@material-ui/core";
+import { PlayerActions } from "modules/player";
 
 export default () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { playlist, playlistError, isPlaylistPending } = useSelector(
+  const { playlist, playlistError, isPlaylistLoading } = useSelector(
     ({ playlist }: AppState) => ({
       playlist: playlist.playlist,
       playlistError: playlist.playlistError,
-      isPlaylistPending: playlist.isPlaylistPending
+      isPlaylistLoading: playlist.isPlaylistLoading
     }),
     shallowEqual
   );
@@ -26,6 +27,7 @@ export default () => {
   useEffect(() => {
     if (id) {
       dispatch(PlaylistActions.getPlaylist(id));
+      dispatch(PlayerActions.getCurrentlyPlaying());
     }
   }, [id, dispatch]);
 
@@ -34,7 +36,7 @@ export default () => {
     return <div>error :/</div>;
   }
 
-  if (!playlist || isPlaylistPending) {
+  if (!playlist || isPlaylistLoading) {
     return <LinearProgress />;
   }
 
@@ -46,7 +48,10 @@ export default () => {
         </Grid>
 
         <Grid item xs={12}>
-          <PlaylistTrackList playlistTracks={playlist.tracks} />
+          <PlaylistTrackList
+            playlistTracks={playlist.tracks}
+            playlistUri={playlist.uri}
+          />
         </Grid>
       </Grid>
     </Box>

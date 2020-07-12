@@ -6,6 +6,7 @@ import { playlistSagas } from "modules/playlist";
 import { authSagas } from "modules/auth";
 import { browseSagas } from "modules/browse";
 import { trackingSagas } from "modules/tracking";
+import { playerSagas } from "modules/player";
 
 export const sagaMiddleware = createSagaMiddleware({
   // handle errors not caught by Saga
@@ -17,6 +18,7 @@ export function* rootSagas() {
     ...authSagas,
     ...browseSagas,
     ...categorySagas,
+    ...playerSagas,
     ...playlistSagas,
     ...trackingSagas
   ]);

@@ -6,24 +6,16 @@ export const playlistReducer = (
 ): PlaylistState => {
   switch (action.type) {
     case PlaylistActions.GET_PLAYLIST_TYPE: {
-      return {
-        ...state,
-        isPlaylistPending: true
-      };
+      return { ...state, isPlaylistLoading: true };
     }
     case PlaylistActions.GET_PLAYLIST_SUCCESS_TYPE:
-      return {
-        ...state,
-        playlist: action.payload,
-        isPlaylistPending: false
-      };
+      return { ...state, playlist: action.payload, isPlaylistLoading: false };
     case PlaylistActions.GET_PLAYLIST_FAILURE_TYPE:
       return {
         ...state,
         playlistError: action.payload,
-        isPlaylistPending: false
+        isPlaylistLoading: false
       };
-
     default:
       return state;
   }

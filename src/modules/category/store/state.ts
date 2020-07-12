@@ -3,19 +3,19 @@ import { Category, Pagination, PlaylistSimplified } from "values";
 export interface CategoryState {
   category: Category | null;
   categoryError: any;
-  isCategoryPending: boolean;
+  isCategoryLoading: boolean;
   playlists: PlaylistSimplified[];
   playlistsError: any;
   playlistsPagination: Pagination | null;
-  arePlaylistsPending: boolean;
+  arePlaylistsLoading: boolean;
 }
 
 export const initialState: CategoryState = {
   category: null,
   categoryError: null,
-  isCategoryPending: false,
+  isCategoryLoading: false,
   playlists: [],
   playlistsError: null,
-  arePlaylistsPending: false,
+  arePlaylistsLoading: false,
   playlistsPagination: null
 };

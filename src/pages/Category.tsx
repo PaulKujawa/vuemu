@@ -26,11 +26,11 @@ export const Category = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { category, categoryError, isIsCategoryPending } = useSelector(
+  const { category, categoryError, isIsCategoryLoading } = useSelector(
     ({ category }: AppState) => ({
       category: category.category,
       categoryError: category.categoryError,
-      isIsCategoryPending: category.isCategoryPending
+      isIsCategoryLoading: category.isCategoryLoading
     }),
     shallowEqual
   );
@@ -55,7 +55,7 @@ export const Category = () => {
     return <div>error :/</div>;
   }
 
-  if (!category || isIsCategoryPending) {
+  if (!category || isIsCategoryLoading) {
     return <LinearProgress />;
   }
 
