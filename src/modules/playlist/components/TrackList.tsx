@@ -79,7 +79,7 @@ export const PlaylistTrackList = ({ playlistTracks, playlistUri }: Props) => {
           {playlistTracks.items.map((item, idx) => (
             <TableRow
               className={classes.row}
-              selected={item.track.id === playing?.item.id}
+              selected={item.track.id === playing?.item?.id}
               hover
               onClick={() => {
                 dispatch(

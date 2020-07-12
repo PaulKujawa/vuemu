@@ -31,7 +31,7 @@ export const NavBar = () => {
             </Link>
           </Typography>
 
-          <NavBarSearchInput />
+          {/* <NavBarSearchInput /> */}
         </Toolbar>
       </AppBar>
     </div>
