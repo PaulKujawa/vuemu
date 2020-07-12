@@ -23,7 +23,7 @@ export const NavBar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             <Link href="/browse" color="inherit" underline="none">

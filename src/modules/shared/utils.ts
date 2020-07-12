@@ -1,3 +1,4 @@
+import { format as dateFnsFormat, formatDistanceToNow } from "date-fns";
 import { Action, Pagination } from "values";
 
 export function AC<T extends string, P>(type: T, payload: P): Action<T, P>;
@@ -43,6 +44,23 @@ export function parseQuery<T extends object>(hash: string): T {
       acc[key] = value;
       return acc;
     }, {});
+}
+
+export function formatDuration(ms: number): string {
+  const sec = Math.floor(ms / 1000);
+  const minutes = Math.floor(sec / 60);
+  const seconds = `0${sec % 60}`.slice(-2);
+
+  return `${minutes}:${seconds}`;
+}
+
+export function formatDate(date: Date) {
+  return dateFnsFormat(date, "dd/MM/yyyy");
+  // return dayjs().format("{YYYY} MM-DDTHH:mm:ss SSS [Z] A");
+}
+
+export function timeBetweenThenAndNo(date: Date) {
+  return formatDistanceToNow(date);
 }
 
 export const webStorage = {

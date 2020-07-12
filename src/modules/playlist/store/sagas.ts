@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from "@redux-saga/core/effects";
 import { PLAYLISTS_API } from "lib/http/playlists-api";
 import { PlaylistFullDto } from "values";
-import { mapPlaylistFullDto } from "../";
+import { playlistService } from "..";
 import { PlaylistActions } from ".";
 
 function* getPlaylistSaga({ payload }: PlaylistActions.GetPlaylistAction) {
@@ -11,7 +11,7 @@ function* getPlaylistSaga({ payload }: PlaylistActions.GetPlaylistAction) {
       payload
     );
 
-    const playlist = mapPlaylistFullDto(playlistDto);
+    const playlist = playlistService.mapPlaylistFullDto(playlistDto);
 
     yield put(PlaylistActions.getPlaylistSuccess(playlist));
   } catch (err) {

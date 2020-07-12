@@ -24,7 +24,10 @@ interface Playlist {
 }
 
 export interface PlaylistSimplified extends Playlist {
-  tracks: { href: string; total: number };
+  tracks: {
+    href: string;
+    total: number;
+  };
 }
 
 export interface PlaylistFullDto extends Playlist {
@@ -32,6 +35,7 @@ export interface PlaylistFullDto extends Playlist {
   tracks: Paginated<PlaylistTrackDto>;
 }
 
-export interface PlaylistFull extends PlaylistFullDto {
+export interface PlaylistFull extends Playlist {
+  followers: Followers;
   tracks: Paginated<PlaylistTrack>;
 }

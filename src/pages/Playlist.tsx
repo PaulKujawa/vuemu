@@ -2,9 +2,13 @@ import React, { useEffect } from "react";
 import { AppState } from "store";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { PlaylistSummary, Tracks, PlaylistActions } from "modules/playlist";
-import { LinearProgress, PageHeadline } from "modules/shared";
-import { Grid } from "@material-ui/core";
+import {
+  PlaylistSummary,
+  PlaylistTrackList,
+  PlaylistActions
+} from "modules/playlist";
+import { LinearProgress } from "modules/shared";
+import { Grid, Box } from "@material-ui/core";
 
 export default () => {
   const { id } = useParams();
@@ -35,18 +39,16 @@ export default () => {
   }
 
   return (
-    <React.Fragment>
-      <PageHeadline title={playlist.name} subtitle="Popular playlists" />
-
+    <Box mt={3}>
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12}>
           <PlaylistSummary playlist={playlist} />
         </Grid>
 
-        <Grid item xs={12} sm={8}>
-          <Tracks playlistTracks={playlist.tracks} />
+        <Grid item xs={12}>
+          <PlaylistTrackList playlistTracks={playlist.tracks} />
         </Grid>
       </Grid>
-    </React.Fragment>
+    </Box>
   );
 };

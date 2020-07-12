@@ -1,5 +1,5 @@
 import React from "react";
-import { createStyles, Grid, makeStyles } from "@material-ui/core";
+import { createStyles, Grid, makeStyles, Box } from "@material-ui/core";
 import { CategoryCard, BrowseActions } from "modules/browse";
 import {
   getNextBatchOffset,
@@ -41,7 +41,7 @@ export default () => {
     dispatch(BrowseActions.getCategories(getNextBatchOffset(pagination)));
 
   return (
-    <React.Fragment>
+    <Box mt={3}>
       <PageHeadline title="Browse" subtitle="Genres & Moods" />
       <InfiniteScroll
         loadMore={loadCategories}
@@ -58,6 +58,6 @@ export default () => {
           </Grid>
         </div>
       </InfiniteScroll>
-    </React.Fragment>
+    </Box>
   );
 };

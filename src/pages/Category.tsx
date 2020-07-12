@@ -1,4 +1,4 @@
-import { Grid, makeStyles, createStyles } from "@material-ui/core";
+import { Grid, makeStyles, createStyles, Box } from "@material-ui/core";
 import { PlaylistCard, CategoryActions } from "modules/category";
 import {
   NoContentPlaceholder,
@@ -65,7 +65,7 @@ export const Category = () => {
     );
 
   return (
-    <React.Fragment>
+    <Box mt={3}>
       <PageHeadline title={category.name} subtitle="Popular playlists" />
 
       <InfiniteScroll
@@ -87,6 +87,6 @@ export const Category = () => {
           )}
         </div>
       </InfiniteScroll>
-    </React.Fragment>
+    </Box>
   );
 };

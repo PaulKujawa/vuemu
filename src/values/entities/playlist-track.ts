@@ -5,7 +5,7 @@ import { UserPublic, Track } from ".";
  * `track` being null makes no sense but happens. Spotify skips such songs themselves.
  */
 export interface PlaylistTrackDto {
-  addedAt: Date;
+  addedAt: string; // Date
   addedBy: UserPublic;
   isLocal: boolean;
   primaryColor: string | null;
@@ -13,6 +13,11 @@ export interface PlaylistTrackDto {
   // video_thumbnail: { url: null } | null;
 }
 
-export interface PlaylistTrack extends PlaylistTrackDto {
+export interface PlaylistTrack {
+  addedAt: Date;
+  addedBy: UserPublic;
+  isLocal: boolean;
+  primaryColor: string | null;
   track: Track;
+  // video_thumbnail: { url: null } | null;
 }

@@ -25,11 +25,13 @@ export const PlaylistCard = ({ playlist }: Props) => {
           url={playlist.images[0].url}
           alt={playlist.name}
         />
-        <CardContent>
-          <Typography variant="body1">
-            {playlist.description && stripHtmlTags(playlist.description)}
-          </Typography>
-        </CardContent>
+        {playlist.description && (
+          <CardContent>
+            <Typography variant="body1">
+              {stripHtmlTags(playlist.description)}
+            </Typography>
+          </CardContent>
+        )}
       </CardActionArea>
     </Card>
   );

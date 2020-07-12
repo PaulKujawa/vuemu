@@ -8,15 +8,14 @@ interface Props {
 
 export const PageHeadline = ({ title, subtitle }: Props) => {
   return (
-    <Box mt={3} mb={5}>
-      <Typography variant="h3" component="h1">
+    <Box>
+      <Typography variant="h3" component="h1" gutterBottom>
         {title}
       </Typography>
 
-      <Typography variant="subtitle1" component="h2">
+      <Typography variant="subtitle1" component="h2" gutterBottom>
         {subtitle}
       </Typography>
-      <hr />
     </Box>
   );
 };
