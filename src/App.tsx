@@ -1,7 +1,7 @@
 import Container from "@material-ui/core/Container";
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
-import { GuardedRoute, NavBar, LinearProgress } from "modules/shared";
+import { GuardedRoute, NavBar, LinearProgress } from "components";
 import { Category } from "pages/Category";
 import { Auth } from "pages/Auth";
 import { StartPage } from "pages/StartPage";

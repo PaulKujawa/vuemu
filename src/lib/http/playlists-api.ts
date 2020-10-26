@@ -1,8 +1,8 @@
-import { PlaylistFull } from "values";
+import { PlaylistFullDto } from "values";
 import { fetchClient } from "./api-methods";
 
-async function getPlaylist(playlistId: string): Promise<PlaylistFull> {
-  const playlist = await fetchClient.getData<PlaylistFull>(
+async function getPlaylist(playlistId: string): Promise<PlaylistFullDto> {
+  const playlist = await fetchClient.getData<PlaylistFullDto>(
     `/playlists/${playlistId}`
   );
 

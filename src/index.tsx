@@ -9,7 +9,8 @@ import { Provider } from "react-redux";
 import { ConnectedRouter as Router } from "connected-react-router";
 import * as serviceWorker from "serviceWorker";
 import { store, browserHistory } from "store";
-import { SENTRY } from "lib/sentry";
+import { REACT_QUERY_CONFIG, SENTRY } from "lib";
+import { ReactQueryConfigProvider } from "react-query";
 
 // Sentry hooks itself into window.onerror and thereby catches errors during rendering.
 // For more an explicit handling the life-cycle-method `getDerivedStateFromError` could be used.
@@ -19,12 +20,14 @@ const theme = createMuiTheme({ palette: { primary: teal, secondary: amber } });
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </Router>
+    <ReactQueryConfigProvider config={REACT_QUERY_CONFIG}>
+      <Router history={browserHistory}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </Router>
+    </ReactQueryConfigProvider>
   </Provider>,
   document.getElementById("root")
 );

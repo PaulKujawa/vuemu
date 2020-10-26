@@ -1,90 +1,89 @@
-import { Grid, makeStyles, createStyles, Box } from "@material-ui/core";
-import { PlaylistCard, CategoryActions } from "modules/category";
 import {
-  NoContentPlaceholder,
-  getNextBatchOffset,
-  hasNextBatch,
-  LinearProgress,
-  PageHeadline
-} from "modules/shared";
-import React, { useEffect } from "react";
-import InfiniteScroll from "react-infinite-scroller";
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  createStyles,
+  Grid,
+  makeStyles,
+  Typography
+} from "@material-ui/core";
+import {
+  AdapterLink,
+  ImageWithPlaceholder,
+  InfiniteScroll,
+  PageHeadline,
+  PageHeadlineSkeleton
+} from "components";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { AppState } from "store";
+import { useGetCategory, useGetPlaylists } from "repositories";
+import { stripHtmlTags } from "utils";
 
 const useStyles = makeStyles(
   createStyles({
     root: {
-      flexGrow: 1
+      flexGrow: 1,
+      position: "relative"
     }
   })
 );
 
 export const Category = () => {
   const classes = useStyles();
-  const { id } = useParams();
-  const dispatch = useDispatch();
+  const { id: categoryId } = useParams<{ id: string }>();
+  const categoryInfo = useGetCategory(categoryId);
+  const playlistsInfo = useGetPlaylists(categoryId);
 
-  const { category, categoryError, isIsCategoryLoading } = useSelector(
-    ({ category }: AppState) => ({
-      category: category.category,
-      categoryError: category.categoryError,
-      isIsCategoryLoading: category.isCategoryLoading
-    }),
-    shallowEqual
-  );
-
-  const { playlists, playlistsError, playlistsPagination } = useSelector(
-    ({ category }: AppState) => ({
-      playlists: category.playlists,
-      playlistsError: category.playlistsError,
-      playlistsPagination: category.playlistsPagination
-    }),
-    shallowEqual
-  );
-
-  useEffect(() => {
-    if (id) {
-      dispatch(CategoryActions.getCategory(id));
-    }
-  }, [id, dispatch]);
-
-  if (categoryError || playlistsError) {
+  if (categoryInfo.isError || playlistsInfo.isError) {
     // TODO error handling
     return <div>error :/</div>;
   }
 
-  if (!category || isIsCategoryLoading) {
-    return <LinearProgress />;
-  }
-
-  const loadPlaylists = () =>
-    dispatch(
-      CategoryActions.getPlaylists(id!, getNextBatchOffset(playlistsPagination))
-    );
-
   return (
     <Box mt={3}>
-      <PageHeadline title={category.name} subtitle="Popular playlists" />
+      {!categoryInfo.data ? (
+        <PageHeadlineSkeleton />
+      ) : (
+        <PageHeadline
+          title={categoryInfo.data.name}
+          subtitle="Popular playlists"
+        />
+      )}
 
       <InfiniteScroll
-        loadMore={loadPlaylists}
-        hasMore={hasNextBatch(playlistsPagination)}
-        loader={<LinearProgress key={0} />}
+        canFetchMore={playlistsInfo.canFetchMore}
+        isFetching={playlistsInfo.isFetching}
+        fetchMore={playlistsInfo.fetchMore}
       >
         <div className={classes.root}>
           <Grid container spacing={2}>
-            {playlists.map(playlist => (
-              <Grid item xs={12} sm={4} md={3} key={playlist.id}>
-                <PlaylistCard playlist={playlist} />
-              </Grid>
-            ))}
+            {(playlistsInfo.data || [])
+              .flatMap(pp => pp.items)
+              .map(playlist => (
+                <Grid item xs={12} sm={4} md={3} key={playlist.id}>
+                  <Card>
+                    <CardActionArea
+                      component={AdapterLink}
+                      to={`/playlists/${playlist.id}`}
+                    >
+                      {/* CardMedia has no placeholder support but would otherwise work with `height: 100%` */}
+                      <ImageWithPlaceholder
+                        url={playlist.images[0].url}
+                        alt={playlist.name}
+                      />
+                      {playlist.description && (
+                        <CardContent>
+                          <Typography variant="body1">
+                            {stripHtmlTags(playlist.description)}
+                          </Typography>
+                        </CardContent>
+                      )}
+                    </CardActionArea>
+                  </Card>
+                </Grid>
+              ))}
           </Grid>
-
-          {!playlists.length && (
-            <NoContentPlaceholder message="This category has no playlists." />
-          )}
         </div>
       </InfiniteScroll>
     </Box>

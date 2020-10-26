@@ -1,9 +1,10 @@
-import { createStore, applyMiddleware, compose } from "redux";
 import { routerMiddleware } from "connected-react-router";
+import { SENTRY } from "lib";
+import { applyMiddleware, compose, createStore } from "redux";
 import { rootSagas, sagaMiddleware } from "store/sagas";
-import { SENTRY } from "lib/sentry";
 import { browserHistory, rootReducer } from "./reducers";
 
+export * from "./auth";
 export { browserHistory };
 
 const composeEnhancer =

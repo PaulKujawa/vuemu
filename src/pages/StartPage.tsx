@@ -1,7 +1,6 @@
 import { Typography, Button, Theme } from "@material-ui/core";
 import { makeStyles, createStyles } from "@material-ui/styles";
-import { AdapterLink } from "modules/shared";
-import { SvgContainer } from "modules/startpage";
+import { AdapterLink, StartpageSvg } from "components";
 import React from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -29,7 +28,7 @@ export const StartPage = () => {
 
   return (
     <React.Fragment>
-      <SvgContainer />
+      <StartpageSvg />
 
       <div className={classes.contentContainer}>
         <Typography variant="h1" className={classes.title}>

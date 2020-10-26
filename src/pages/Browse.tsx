@@ -1,60 +1,75 @@
-import React from "react";
-import { createStyles, Grid, makeStyles, Box } from "@material-ui/core";
-import { CategoryCard, BrowseActions } from "modules/browse";
 import {
-  getNextBatchOffset,
-  hasNextBatch,
-  PageHeadline,
-  LinearProgress
-} from "modules/shared";
-import InfiniteScroll from "react-infinite-scroller";
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import { AppState } from "store";
+  Box,
+  Card,
+  CardActionArea,
+  createStyles,
+  Grid,
+  makeStyles,
+  Typography
+} from "@material-ui/core";
+import {
+  AdapterLink,
+  ImageWithPlaceholder,
+  InfiniteScroll,
+  PageHeadline
+} from "components";
+import React from "react";
+import { useGetCategories } from "repositories";
 
 const useStyles = makeStyles(
   createStyles({
     root: {
       flexGrow: 1
+    },
+    cardTitle: {
+      position: "absolute",
+      top: "70%",
+      width: "100%",
+      color: "white"
     }
   })
 );
 
 export default () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
+  const categoriesInfo = useGetCategories();
 
-  const { categories, error, pagination } = useSelector(
-    ({ browse }: AppState) => ({
-      categories: browse.categories,
-      error: browse.categoriesError,
-      pagination: browse.categoriesPagination
-    }),
-    shallowEqual
-  );
-
-  if (error) {
+  if (categoriesInfo.isError) {
     // TODO error handling
     return <div>error</div>;
   }
 
-  const loadCategories = () =>
-    dispatch(BrowseActions.getCategories(getNextBatchOffset(pagination)));
-
   return (
     <Box mt={3}>
       <PageHeadline title="Browse" subtitle="Genres & Moods" />
+
       <InfiniteScroll
-        loadMore={loadCategories}
-        hasMore={hasNextBatch(pagination)}
-        loader={<LinearProgress key={0} />}
+        canFetchMore={categoriesInfo.canFetchMore}
+        isFetching={categoriesInfo.isFetching}
+        fetchMore={categoriesInfo.fetchMore}
       >
         <div className={classes.root}>
           <Grid container spacing={2}>
-            {categories.map(category => (
-              <Grid item xs={12} sm={4} md={3} key={category.id}>
-                <CategoryCard category={category} />
-              </Grid>
-            ))}
+            {categoriesInfo.data
+              ?.flatMap(pc => pc.items)
+              .map(category => (
+                <Grid item xs={12} sm={4} md={3} key={category.id}>
+                  <Card>
+                    <CardActionArea
+                      component={AdapterLink}
+                      to={`/categories/${category.id}`}
+                    >
+                      {/* CardMedia has no placeholder support but would otherwise work with `height: 100%` */}
+                      <ImageWithPlaceholder url={category.icons[0].url} />
+                      <div className={classes.cardTitle}>
+                        <Typography variant="h5" component="h2" align="center">
+                          {category.name}
+                        </Typography>
+                      </div>
+                    </CardActionArea>
+                  </Card>
+                </Grid>
+              ))}
           </Grid>
         </div>
       </InfiniteScroll>

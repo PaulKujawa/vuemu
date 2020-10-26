@@ -1,5 +1,5 @@
 import { Category, Paginated, PlaylistSimplified } from "values";
-import { buildQueryParams } from "modules/shared";
+import { buildQueryParams } from "utils";
 import { fetchClient } from "./api-methods";
 
 const country = "us";
