@@ -10,8 +10,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           version: "10.x"
-      - run: yarn install
-      - run: yarn run build
-      - run: yarn run test-bundlesize
+      - run: npm install
+      - run: npm run build
+      - run: npm run test-bundlesize
         env:
           BUNDLESIZE_GITHUB_TOKEN: ${{ secrets.BUNDLESIZE_GITHUB_TOKEN }}

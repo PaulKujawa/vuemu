@@ -2,16 +2,16 @@
 
 ## Development
 
-- `yarn install` and `yarn start` runs app in development mode.
-- `yarn test` launches the test runner in the interactive watch mode.
+- `npm install` and `npm start` runs app in development mode.
+- `npm test` launches the test runner in the interactive watch mode.
 
 ## Deployment
 
 - commit changes.
-- `yarn version major|minor|patch` to tag release.
-- merge to `master`, whereupon Netlify runs `yarn run deploy`.
-  - `yarn run build` to bundle and deploy `./build`.
-  - `yarn run sentry` to tag release in Sentry and upload source maps.
+- `npm version major|minor|patch` to tag release.
+- merge to `master`, whereupon Netlify runs `npm run deploy`.
+  - `npm run build` to bundle and deploy `./build`.
+  - `npm run sentry` to tag release in Sentry and upload source maps.
 
 ### Eject
 
