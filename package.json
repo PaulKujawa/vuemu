@@ -66,7 +66,7 @@
     },
     {
       "path": "./build/static/js/4.*.chunk.js",
-      "maxSize": "120 kB"
+      "maxSize": "130 kB"
     }
   ],
   "eslintConfig": {
